@@ -127,18 +127,24 @@
 
 ## 2021-03-30 공부내용
 ### Spring
+  - ForPrint : 게시물 내용에서 출력을 위한 내용을 정해서 요청할 때 사용
+    - 예) getForPrintArticle();
+    
   - Mybatis : 현업에서 가장 많이 사용
   - 새 프로젝트 생성시 Mybatis Framework, MySQL Driver 선택
   - DB 연결을 위해서 MySQL Driver는 필수
   - pom.xml 도 체크
   
   - Mybatis 적용시 @Mapper 어노테이션 사용
+  
     - ArticleDao의 내용을 모두 삭제하고 interface로 수정
     
     - Dao를 참조하던 소스파일의 메서드를 다시 생성하면 인터페이스이기에 추상메서드로 생성이 됨
+    
     - ArticleDao와 쌍으로 ArticleDao.xml파일 작성이 필수
     - 지정 양식으로 쿼리 작성하면 이전과 같이 정상 작동
     - xml 파일 작성 예시([참고자료](https://github.com/jhs512/untactTeacher/commit/435d48acb44986325e9afc1696fc53ac4e3c6ce8))
+    
 ```sql
  <insert id="ad Article" seGeneratedKeys="true" keyProperty="id">
 		 INSERT INTO article
@@ -149,8 +155,7 @@
 		 `body` = #{body} 
  </insert>
 ```
-
-    - xml에서도 if문 사용 가능
+  - xml에서도 if문 사용 가능
 
 ```sql
 	<select id="getArticles" resultType="Article">
@@ -170,7 +175,8 @@
 	</select>
 ```
     
-    
+  - 쿼리로거 적용하여, 콘솔에 실행되는 쿼리가 출력되도록 세팅 가능[[참고자료](https://www.youtube.com/watch?v=kbE_fOR4aD4)]
+  
 ### MySQL
   - 사용자 권한 부여를 먼저 해야 DB 접근 권한이 생김 
   
@@ -181,7 +187,12 @@
     - GRANT ALL PRIVILEGES ON *.* TO 계정명(sbsst)@`%` IDENTIFIED BY 계정비밀번호('sbs!123414');
     
     - 이후부터는 [계정명/계정비밀번호]로 사용 가능
-
+    
+  - inner join, left join 은 필수적으로 완벽히 이해하고 사용해야 함
+    - 예) inner join 사용시에는 탈퇴한 회원이 작성한 글을 조회할 수 없지만, left join을 사용하면 조회 가능
+    
+  - IFNULL : NULL인 경우 처리 가능
+  
   ### Java
   
   - 인터페이스 : 서로 관계가 없는 물체들이 상호 작용을 하기 위해서 사용하는 장치나 시스템
