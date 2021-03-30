@@ -129,7 +129,8 @@
 ### Spring
   - ForPrint : 게시물 내용에서 출력을 위한 내용을 정해서 요청할 때 사용
     - 예) getForPrintArticle();
-    
+  - 인터셉터를 추가해서 로그인 여부 등을 매번 확인하지 않도록 효율성을 높일 수 있음
+    - 관련 소스는 검색해서 추가 가능 : 필요한 부분만 편집해서 사용
   - Mybatis : 현업에서 가장 많이 사용
   - 새 프로젝트 생성시 Mybatis Framework, MySQL Driver 선택
   - DB 연결을 위해서 MySQL Driver는 필수
