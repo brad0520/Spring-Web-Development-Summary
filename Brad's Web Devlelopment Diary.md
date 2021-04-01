@@ -247,3 +247,24 @@ from article;
  - 인덱스에 조건을 걸어둔 순서대로 WHERE 문에 적용해야 올바로 인덱스 활용 가능
  - 최근에는 순서가 바뀐 쿼리도 자동으로 보정해서 검색을 해주기도 하지만, 그래도 순서를 지키는 것이 중요
  
+ 
+       
+---
+## 2021-04-01 공부내용
+
+### Java
+
+- 객체 저장 복습
+  - [배열없이 실습](https://replit.com/@brad0135/2021-03-31inryeoggwanriso-baeyeoleobsi-guhyeon#Main.java)
+    - 생성하는 객체마다 변수 생성 후 저장
+    
+  - [배열로 실습](https://replit.com/@brad0135/2021-03-31inryeoggwanriso-baeyeolsayong#Main.java)
+    - 리모컨을 담는 배열 생성하여 객체 관리
+    
+  - [리스트로 실습](https://replit.com/@brad0135/2021-03-31inryeoggwanriso-ArrayList-sayong#Main.java)
+    - 저장공간에 제약을 받지 않는 리스트로 간편하게 구현
+    
+    
+### Spring
+
+- 
