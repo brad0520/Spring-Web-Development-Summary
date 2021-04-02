@@ -21,6 +21,7 @@
   - [lombok](https://projectlombok.org/download) 설치
   - [maven](https://mvnrepository.com/) 활용 방법
   - 개발 환경 세팅
+    - 이클립스 Emmet : http://emmet.io/eclipse/updates
   - [git](https://git-scm.com/) 연동
     - ssh키 활용하여 깃허브 등록, 연결 및 확인
     
@@ -311,6 +312,41 @@ list<article> articles = new arrayList<>();
 
 ### Spring
 
+#### 지난 주 복습 파트
+
 - Spring 프레임워크와 lombok을 활용한 Controller, Service, Dao, Dto 작성 복습
 - Util class 들의 메서드 이해(현재까지는 위 프로그램 작성시 util은 기존 코드 활용)
 - 
+
+#### Web Project
+
+1. JSP, JSTL 설정
+
+   - application.yml 파일에 환경 설정 소스를 추가하여 mybatis, jsp, mysql 등을 활성화 시킴
+   - pom.xml 파일에도 사용하고자 하는 라이브러리를 추가해야 함
+   - maven project의 핵심인 pom.xml 파일로 이 파일을 잘 설정하면 프로젝프 실행과 배포를 위한 설정을 완료할 수 있음
+   - maven project의 dependencies(필수사항) : 라이브러리를 불러오는 부분
+   - src/main/webapp/WEB-INF/jsp/adm/member/login.jsp => jsp 파일 생성은 필수
+   - @responseBody 를 하지 않는 경우 폴더 경로를 찾아서 실행함
+
+2. CSS 작업환경 세팅
+
+   - [테일윈드](https://tailwindcss.com/)로 css 작업을 하면 효율적 : 추후 학습이 필요
+   - 직접 css파일을 조작하지 않고 html태그에 입력하여 화면 구성요소를 꾸밀 수 있음
+   - 사용하고자 하는 디자인을 선택하고 적용된 테일윈드 클래스명을 복사해서 붙여넣기로 간단하게 구현 가능
+   - 직접구현하는 것보다 UI구현에 시간을 절약할 수 있음
+
+3. 인터셉터
+
+   - beforeActionInterceptor
+     - 필터링(X)
+     - 정보강화 표준화
+     - req.set 
+   - needAdminInterceptor
+  
+   - needLoginInterceptor
+    
+   - needLogoutInterceptor
+  
+  - 4개의 인터셉터의 역할로 인해 컨트롤러의 일이 많이 줄어듬
+  
