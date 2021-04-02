@@ -350,3 +350,6 @@ list<article> articles = new arrayList<>();
   
   - 4개의 인터셉터의 역할로 인해 컨트롤러의 일이 많이 줄어듬
   
+  4. JSP
+     - header, footer 등으로 나누고 include
+     - common.css 등의 파일 작성 및 폴더 생성 및 정리
