@@ -10,7 +10,27 @@
 ---
 ## 2021-03-27 공부내용
 ### DB
-  - Database 개론
+- Database 개론
+  
+- DataBase(DB)
+  - 공유되어 사용될 목적으로 통합 저장, 관리되는 데이터.
+  - 검색과 갱신등을 효율적으로 하기 위해 구조화된 데이터.
+  - 관련된 테이블들의 집합.(테이블 폴더)
+
+- 테이블(Table)
+  - 사물이나 개념의 본질적인 속성을 모아서 표로 만든것.
+  - 사물이나 개념을 표현하는 단위
+    ex) 학생(사물, 개념) - 학번, 이름, 전공 (속성)
+  - 테이블은 엑셀 파일과 비슷하다.
+
+- DBMS(DataBase Management System)
+  - 데이터베이스를 체계적으로 관리할 수 있도록 기능을 제공하는 프로그램
+  - 대표적인 DBMS : Oracle, MySql, MsSql
+
+- SQL(Structed Query Language)
+  - DBMS를 다루기 위한 표준화된 언어 체계.
+
+
   - [xampp](https://www.apachefriends.org/index.html) 설치
   - [SQlyog](https://formac.informer.com/sqlyog) 설치 
   - mysql 기본 문법
@@ -27,19 +47,55 @@
     
   - [github](https://github.com/) clone, pull, push 완료
 
-#### UsrHomeCtroller
+### UsrHomeCtroller
 - @RequestMapping
+  - 주소창의 쿼리와 메서드를 연결해줌
+
 - @ResponseBody
+  - 메서드의 결과를 브라우저에 출력
+  
 - 쿼리를 통해 브라우저에 출력 구현
 - 브라우저와 java 프로그램의 인식의 범위 차이 확인
 ---
 ## 2021-03-28 공부내용
 ### DB
-  - mySQL 기본 문법
-    - DDL, DML 차이점
-    - drop, create, alter
-    - selecet, insert, update, delete 
+- mySQL 기본 문법
+- DDL, DML 차이점
 
+- 데이터 정의 언어(DDL)
+  - 데이터베이스, 테이블 생성 : CREATE
+    - 데이터베이스 생성 : CREATE DATABASE 데이터베이스명
+    - 테이블 생성 : CREATE TABLE 테이블명
+
+  - 테이블 구조 변경 : ALTER TABLE
+    - 칼럼 추가 : ALTER TABLE 테이블명 ADD COLUMN 칼럼명 타입(크기) 제약조건
+    - 칼럼 수정 : ALTER TABLE 테이블명 MODIFY COLUMN 칼럼명 타입(크기) 제약조건
+    - 칼럼 삭제 : ALTER TABLE 테이블명 DROP COLUMN 칼럼명
+    - 칼럼명 변경 : ALTER TABLE 테이블명 CHANGE 칼럼명 새칼럼명 타입(크기)
+        - 제약의 종류 :
+          - PRIMARY KEY : 주키 설정(데이터 중복 허용X + not null)
+          - NOT NULL : NULL데이터 허용 안함. 무조건 데이터 들어와야함.
+          - AUTO_INCREMENT : 자동증가. int형이고 주키인 컬럼에만 사용.
+          - UINSIGNED : 음수 표현 제거.
+          - UNIQUE : 중복데이터 허용 X
+          
+    - 테이블, 데이터베이스 삭제 : DROP
+      - 데이터베이스 삭제 : DROP DATABASE 데이터베이스명
+      - 테이블 삭제 : DROP TABLE 테이블명
+    - 테이블 내 모든 데이터 삭제 : TRUNCATE
+      - TRUNCATE TABLE 테이블명
+
+
+- 데이터 조작 언어(DML)
+  - 데이터 조회 : SELECT
+    - SELECT 칼럼 FROM 테이블 WHERE 조건
+  - 데이터 수정 : UPDATE
+    - UPDATE 테이블 SET 칼럼 = 값, .... WHERE 조건
+  - 데이터 삽입 : INSERT
+    - INSERT INTO 테이블 SET 칼럼 = 값, ...
+  - 데이터 삭제 : DELETE
+    - DELETE FROM 테이블 WHERE 조건
+    
 ### Spring
   - JSON Formatter : 크롬에 설치하여 웹에서 json형식 확인
   - dto, dao, service 구축
@@ -48,8 +104,7 @@
     
   - controller, service, dao의 상호작용 이해를 통한 구축
   
-  - article, articleDao, articleService, articleController
- 는 스스로 구축가능하게 이해 및 구축 연습 필요
+  - article, articleDao, articleService, articleController 는 스스로 구축가능하게 이해 및 구축 연습 필요
  
   - util은 참고해서 작성해도 무방한 부분
 
@@ -353,3 +408,215 @@ list<article> articles = new arrayList<>();
   4. JSP
      - header, footer 등으로 나누고 include
      - common.css 등의 파일 작성 및 폴더 생성 및 정리
+     
+     
+            
+---
+## 2021-04-03 공부내용
+
+### Java Dao 구조
+
+- MVC 구조 개념
+  - Model : 어플리케이션의 핵심
+    - Service : 어플리케이션의 핵심로직
+    - DAO : 데이터 관리자
+    - DTO : 데이터 단위
+    
+  - Controller : 사용자의 요청을 받아서 해석한 후 Model에게 다시 요청한다.
+  - View : 사용자가 보는 화면을 의미한다.
+
+- MVC 구조를 은행에 비유
+  - APP은 청원경찰이다.
+    - 이 분은 고객이 대출업무인지, 일반금융업무인지만 판단해서 올바른 컨트롤러(창구직원)에게 보내준다.
+    
+  - 컨트롤러는 창구직원이다.
+    - 이 분은 고객이 어떠한 일을 하기 위해서, 필요한 정보를 챙겨왔는지, 혹은 그 일을 예전에 이미 했는지, 그 일을 하는게 가능한지 등을 판단하고, 조금이라도 부족하면 고객의 요청을 거절하는 역할을 한다.
+    - 고객이 올바른 데이터를 챙겨왔고, 현재 그일을 수행하는게 가능한 상태라면, 컨트롤러는 서비스(과장)에게 고객의 요구를 토스한다.
+    
+  - 서비스는 과장급 직원이다.
+    - 이 분은 고객을 직접 만나지는 않는다. 컨트롤러가 고객의 요구를 깔끔하게 정리해서 보내주면 그것을 판단해서 가/부를 결정하고 가능하다면 처리한다음, 그 결과를 컨트롤러에게 알려준다.
+    - 단 이 분이 일을 하면서, 데이터를 저장하고, 검색하고, 수정하고, 삭제하는 일도 해야한다면 그런일만 따로 DAO(데이터 창고지기)에게 요청한다.
+    - 오직 서비스만이 해당 어플리케이션의 핵심로직을 알고 있다.
+    
+  - DAO는 과장님의 하인인 창고지기이다.
+    - 이 분은 이 애플리케이션의 핵심로직이 뭔지 모른다.
+    - 다만 과장님이 시키는 아주아주 단순한 일들만 한다.
+    
+### JDBC
+
+- java에서 mySQL을 사용하기 위해 사용하는 JDBC
+
+```
+		// JDBC
+		// 1. Driver 찾기 - 찾은 드라이버는 DriverManager로 사용 가능
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		// 2. DBMS에 연결
+		
+		String url = "jdbc:mysql://localhost:3306/board?serverTimezone=UTC";
+		String id = "sbsst"; // root
+		String pw = "sbs123414"; // "";
+		
+		Connection conn = DriverManager.getConnection(url, id, pw); // 연결.
+		
+		// 3. sql 문을 실행.
+		// 3.1 - 실행할 sql문
+		String sql = "SELECT * FROM article";
+		
+		// 3.2 - 작성된 sql문을 DBMS에 전달.
+		// Connection - 팀장.  실무자 - Statement
+		// sql처리 실무자 파견
+		
+		// 자동임포트 : ctrl + shift + o
+		Statement stmt = conn.createStatement();
+		
+		// 3.3 - DBMS에서 가져온 데이터를 ResultSet으로 담아 옴.
+		// ResultSet -> 조회 결과물(데이터)을 담는 상자.
+		ResultSet rs = stmt.executeQuery(sql); // 조회 결과가 있는 경우 => select 문
+		// stmt.executeUpdate(sql); // 조회 결과 없이 DB에 반영만 하는 경우 => insert, update, delete
+		
+		
+		// 4. next메서드로 커서를 이동시켜 각 row들의 데이터를 읽어옴
+		while(rs.next()) {
+			String title = rs.getString("title"); // 해당 커서가 위치한 row의 title 컬럼 데이터를 반환.
+			System.out.println(title);
+		}
+		
+		// 사용한 자원들 반납
+		if(rs != null) {			
+			rs.close();
+		}
+		if(stmt != null) {
+			stmt.close();
+		}
+		if(conn != null) {
+			conn.close();			
+		}
+```
+
+- 반복적으로 사용하는 부분은 묶어서 재사용하면 반복되는 부분이 많아 생각보다 사용하기가 쉬움
+- sql 쿼리를 잘 작성해야 원하는 결과를 도출할 수가 있음
+
+
+### Spring Web project
+
+- DBMS 연결
+- DB 스키마 생성 
+  - 기능 혹은 라이브러리 적용 등 설정 값에 변화가 생기면 application.yml 파일과 pom.xml 파일을 반드시 수정 적용해야함
+  - 필요한 jar 파일의 경우도 라이브러리 추가 확인 필요
+  
+- Dao에 MyBatis 적용
+  - lombok과 마찬가지로 간결한 코드작성에 큰 도움이 됨
+  - 작성 규칙을 숙지해야함
+  - DAO를 인터페이스(interface)로 만들고 내부의 메서드들도 모두 public을 붙이지 않아도 됨
+  - DAO의 변수는 
+    - @Param("id") int id 와 같이 작성
+  - @Mapper 로 변경
+  
+  - sql 쿼리는 DAO와 동일한 이름의 xml파일에 작성
+  - 변수는 #{}안에 표기
+  - 코드 예시
+  
+```
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sbs.untact.dao.ArticleDao">
+
+<select id="getArticleById" resultType="Article"> 
+		SELECT *
+		FROM article AS A
+		WHERE A.id = #{id}
+		AND A.delStatus = 0
+	</select>
+	
+	<select id="getLastInsertId" resultType="int">
+		SELECT LAST_INSERT_ID()
+	</select>
+
+	<update id="modifyArticle">
+		UPDATE article
+		SET updateDate = NOW(),
+		title =
+		#{title},
+		body = #{body}
+		WHERE id = #{id}
+	</update>
+
+	<insert id="writeArticle">
+		INSERT INTO article
+		SET regDate = NOW(),
+		updateDate = NOW(),
+		boardId = #{boardId},
+		memberId = #{memberId},
+		title = #{title},
+		body = #{body}
+	</insert>
+
+	<update id="deleteArticleById">
+		UPDATE article
+		SET delStatus = 1,
+		delDate = NOW()
+		WHERE id = #{id}
+	</update>
+
+</mapper>
+```
+
+- jsp 연결
+    - MpaUsrHomeController를 통해 메인페이지 구현
+    - 기본폴더 설정에 유의 : css, js 파일을 위치시킬 폴더와 MpaUsrHomeController 내의 jsp파일의 경로는 다름
+    
+- css, html 직접 작성 대신 라이브러리 활용
+  - 테일윈드 등의 라이브러리로 UI는 빠르게 구현하고 필요한 부분만 커스터마이징
+  
+  
+  ---
+
+## 2021-04-04 공부내용
+
+### DATABASE
+
+- DB와 DAO, DTO 중에서 한 곳에서만 int나 date관련 기능을 수행하면 되기 때문에 핸드폰번호나 날짜 관련 변수는 한 곳에서만 해당 유형의 데이터 타입으로 처리하고 나머지는 String으로 처리
+
+- rs, stmt, conn는 선언된 순서에 관련하여 닫는 순서는 가장 나중에 선언된 rs부터 conn순으로 함
+
+- 컨트롤러(해당 소스)에서 입력값과 관련된 기능을 모두 수행, 오류체크, 변수 입력 등의 작업 : MVC 패턴을 유지하여 유지, 보수가 용이해짐 
+
+- mySQL
+  - inner join 으로 분리한 데이터 테이블을 조합하여 검색
+  
+  
+### Spring
+
+- DBMS 사용자 계정 추가
+  - GRANT ALL PRIVILEGES ON . TO 'sbsst'@`%` IDENTIFIED BY 'sbs123414';
+  - 개인 PC에서는 사용할 아이디와 비번을 설정하여 마스터 계정을 생성
+  - 마스터 계정은 로컬이나 원격 모두 접근 권한을 가짐
+  
+- DB 스키마 생성
+  - SQL에서 DEFAULT 0 으로 초기값 설정이 가능함
+  - delStatus : 논리적 삭제와 물리적 삭제 중에서 관리자는 삭제된 데이터를 확인할 수 있게 논리적 삭제를 구현
+  - SELECT LAST_INSERT_ID(); => 마지막 추가된 아이디를 바로 구할 수 있는 쿼리
+  - 삭제된 데이터는 검색이 되지 않도록 쿼리에 and delStatus = 0 을 추가
+  - sql 로거를 활용해서 콘솔을 통해 실행되는 쿼리를 확인할 수 있음
+  
+- JSP 연결 및 css, js 세팅
+  - [JavaScript 편집툴 활성화 방법](https://creampuffy.tistory.com/66)
+  - css 포매팅은 코드펜 css의 드롭다운 메뉴 중 Format css기능을 활용하여 해결하거나 vs code와 같은 다른 편집툴 활용
+  - 이클립스의 포매팅을 사용하면 개발자가 의도한 변수 정의가 틀어질 가능성이 높음
+  - css, js 파일에서 주석의 중요성 : 코드의 재활용을 위해서는 필수!!!
+  - 디자인 시스템 동영상 참고 예정
+  - 메뉴바에서 게시판 클릭시 해당 게시판으로 이동 : 컨트롤러에서 showList 기능 구현시 리턴값이 String 인 이유????? (jsp가 나와야한다는데 궁금...)
+  => 나름의 정리 : @ResponseBody 를 삭제하고 해당 화면을 보여줄 JSP파일로 연결을 해줘야하기에 해당 주소를 ""에 담아 리턴
+  
+  - + : 인접 형제 선택자로 선행하는 요소 뒤를 따르는 형제 요소를 선택
+  
+  - list.jsp 파일이 하나인데 두 개의 게시판을 보여줄 수 있는 과정이 궁금... 
+  
+  - 공통되는 부분 header, footer 등은 사용할 모든 페이지에서 include로 사용하면 유지, 보수가 쉬움
+  - 카페24에서 홈페이지 작업시 제공하는 모듈과 같은 개념
+  
+  
