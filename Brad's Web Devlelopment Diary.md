@@ -612,7 +612,7 @@ list<article> articles = new arrayList<>();
   - 메뉴바에서 게시판 클릭시 해당 게시판으로 이동 : 컨트롤러에서 showList 기능 구현시 리턴값이 String 인 이유????? (jsp가 나와야한다는데 궁금...)
   => 나름의 정리 : @ResponseBody 를 삭제하고 해당 화면을 보여줄 JSP파일로 연결을 해줘야하기에 해당 주소를 ""에 담아 리턴
   
-  - + : 인접 형제 선택자로 선행하는 요소 뒤를 따르는 형제 요소를 선택
+  - ```+``` : 인접 형제 선택자로 선행하는 요소 뒤를 따르는 형제 요소를 선택
   
   - list.jsp 파일이 하나인데 두 개의 게시판을 보여줄 수 있는 과정이 궁금... 
   
@@ -620,3 +620,40 @@ list<article> articles = new arrayList<>();
   - 카페24에서 홈페이지 작업시 제공하는 모듈과 같은 개념
   
   
+    
+---
+
+## 2021-04-05 공부내용
+
+### git 사용법 정리
+
+- CMD git 명령어
+
+  - git 프로그램 그 자체를 최신버전으로 업데이트
+    - git update-git-for-windows
+  - git 로그인 정보 없애기
+    - git config --global credential.helper manager
+    - git credential-manager delete https://github.com
+  - git 설치 직후 사용자 정보 세팅
+    - git config --global user.name "깃허브 계정 ID"
+    - git config --global user.email "이메일"
+  - 로컬 리포지터리 생성
+    - git init
+  - 원격 저장소와 연결
+    - git remote add origin 저장소주소
+  - 원격 저장소와 연결 삭제
+    - git remote remove origin
+  - 커밋할 파일 장바구니에 담기
+    - git add .
+  - 커밋
+    - git commit -m "커밋 메시지"
+  - 푸시
+    - git push origin master
+  - 과거로 돌아가기
+    - git checkout -f 커밋번호
+  - 현재로 돌아오기
+    - git checkout -f master
+    
+- Github Desktop
+  - 커멘드라인 인터페이스로 깃을 관리하는 것보다 직관적이고 자동으로 해결해주는 부분이 많음
+  - push, pull이 필요한 내용을 알아서 알림으로 안내해주고, 히스토리 제공
