@@ -1236,6 +1236,7 @@ import javax.servlet.http.HttpServletRequest;
 - a 태그의 호버 범위 조정 
   - 링크를 주고자 할 때 a 태그를 적용(기존 태그 안쪽에)
   - a 태그의 display 속성을 block으로 지정하면 둘러싼 태그를 기준으로 전체를 사용
+  - 패딩 적용해서 여백을 적절히 조절 가능
   
 - hover 적용
   - 가급적 html 태그의 좌측에 붙이는 것이 좋음
@@ -1259,5 +1260,17 @@ import javax.servlet.http.HttpServletRequest;
 - 코드펜 학습내용 블로그 올리는 방법
   - 코드펜에 저장한 다음 Embed / iframe 으로 복사한 후 블로그의 입력창의 html모드에서 붙여넣기 하면 손쉽게 공유 가능
 
+- a 노멀라이즈 : color:inherit; => 텍스트 계열의 기본 컬러 속성은 black이 아닌 inherit이므로 주의 요망
 
+- h1, h2, ... h태그들은 기본적으로 margin 속성을 갖기에 노멀라이즈에서 margin:0; 을 줌
 
+- 상황에 맞는 태그가 있는 경우 
+
+- body, ul, li 노멀라이징 : div와 차이가 없도록 일반화 시켜줌
+  - margin:0;
+  - padding:0;
+  - list-style:none;
+  
+- 대부분 공통 서식을 쓰지만 일부만 변경이 되는 경우 기존 css를 활용하기 위해 html태그에 class를 추가하여 필요한 부분만 변경
+
+- position:absolute; 인 경우 너비가 inline 요소처럼 줄어듬
