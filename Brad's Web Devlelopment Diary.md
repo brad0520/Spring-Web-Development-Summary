@@ -817,8 +817,447 @@ import javax.servlet.http.HttpServletRequest;
 
 ### Java
 
-- 프로그래머스 자바 문제 풀이
+- 프로그래머스 자바 중급
+  - 파트1. Object 클래스
+    - Objcet클래스는 모든 클래스의 최상의 클래스
+    - 아무것도 상속받지 않으면 자동으로 Object를 상속
+    - Object가 가지고 있는 메소드는 모든 클래스에서 다 사용할 수 있다는 것을 의미
+    
+    - equals : 객체가 가진 값을 비교할 때 사용(사용목적에 맞게 오버라이딩해서 사용 가능)
+    - toString : 객체가 가진 값을 문자열로 반환
+    - hashCode : 객체의 해시코드 값 반환(자료구조에서 자주 사용)
+    - Generate hashCode() and equals()로 자동 생성 가능
+    
+    
+  - 파트2. java.lang 패키지 / 오토박싱
+    - 자바는 기본적으로 다양한 패키지를 지원 그중에서 가장 중요한 패키지
+      - java.lang패키지의 클래스는 import를 하지 않고도 사용할 수 있다.
+      - java.lang패키지에는 기본형타입을 객체로 변환시킬때 사용하는 Wrapper클래스가 있다.
+        - Boolean, Byte, Short, Integer, Long, Float, Double 클래스
+      - 모든 클래스의 최상위 클래스인 Object도 java.lang패키지
+      - 문자열과 관련된 String, StringBuffer, StringBuilder도 모두 java.lang패키지
+      - 화면에 값을 출력할때 사용했던 System클래스도 java.lang패키지
+      - 수학과 관련된 Math클래스도 java.lang패키지
+      - Thread와 관련된 중요 클래스들이 java.lang패키지
+      - 이외에도 다양한 클래스와 인터페이스가 java.lang패키지에 속해 있다.
 
-### Spring
+```
+    public class WrapperExam {
+        public static void main(String[] args) {
+            int i = 5; 
+            Integer i2 = new Integer(5);
+            Integer i3 = 5;     //오토박싱
+            int i4 = i2.intValue();
+            int i5 = i2;       //오토언박싱
+        }
+    }
+```
+- 
+  - 
+    - 오토박싱(Auto Boxing)
+      - Integer i3 = 5; 숫자 5는 원래 기본형이지만 자동으로 Integer형태로 변환된다.
+    - 오토 언박싱(Auto unboxing)
+      - int i5 = i2; Integer객체타입의 값을 기본형 int로 자동으로 변환되어 값을 할당한다.
+    - 오토박싱(Auto Boxing),오토 언박싱(Auto unboxing) 은 JAVA 5부터 지원한다. 이 때 내부적으로 Wrapper클래스들이 사용된다.
+  
+  - 파트3. java.util 패키지
+    - Data, Calendar 클래스 
+    - List, Set, Collection, Map 인터페이스 : 바로 사용하지 못하고 인터페이스를 구현한 클래스를 활용해 객체(인스턴스)를 생성하여 사용해야함
+    - 메소드 체이닝(Method Chaing) : 자기 자신을 리턴하여 계속해서 자신의 메소드를 호출하는 방식
+    - StringBuffer : 가지고 있는 메소드들은 대부분 자기 자신, this를 반환
+      - StringBuffer클래스는 메소드 체인 방식으로 사용할 수 있도록 만들어져 있음
+      
+    - String 객체의 경우 불변클래스로 문자열끼리 더할 때 StringBuffer가 사용되어 매번 new로 Stringbuffer로 객체를 생성함. 자바에서는 객체를 생성할 때마다 메모리를 소모하므로 성능 저하에 영향을 줄 수 있음
+    - 결론 : 문자열을 반복문 안에서 실행할 때는 성능상 문제가 발생할 수 있으므로 String 보다 StringBuffer를 사용하는 것이 좋음
+    
+    - 이터레이터 활용 : hasNext()의 불리언 값을 사용
+    - Map 인터페이스 활용
+      -  Map<String, String> map = new HashMap<>(); 과 같이 <Key, Value> 값을 지정하여 HashMap 인스턴스를 생성
+  
+  - 파트4. 날짜와 시간
+    - Callendar
+      - Calendar cal = Calendar.getInstance();
+      
+  - 파트5. IO
+    - 입력과 출력
+    - byte단위 입출력클래스는 모두 InputStream과 OutputStream이라는 추상클래스를 상속받아 만들어짐
+    - byte단위로 읽어들일 때는 512바이트 씩 읽어오기 때문에 1바이트씩 읽는 것보다 512바이트씩 읽고 처리하는 것이 처리 속도가 빠름
+    
+    - 문자(char)단위 입출력클래스는 모두 Reader와 Writer라는 추상클래스를 상속받아 만들어짐
+    - 파일로 부터 입력받고 쓰기 위한 클래스 : FileInputStream, FileOutputStream, FileReader, FileWriter
+    
+    - 배열로 부터 입력받고 쓰기 위한 클래스 : ByteArrayInputStream, ByteArrayOutputStream, CharReader, CharWriter
+      - 해당 클래스들은 어디로부터, 어디에라는 대상을 지정할 수 있는 IO클래스로, 이런 클래스를 장식대상 클래스라고 함
+      
+    - DataInputStream, DataOutputStream같은 클래스를 보면 다양한 데이터 형을 입력받고 출력
+    - PrintWriter는 다양하게 한줄 출력하는 pintln()메소드를 가짐
+    - BufferedReader는 한줄 입력받는 readLine()메소드를 가짐
+      - 이런 클래스들은 다양한 방식으로 입력하고, 출력하는 기능을 제공하며, 이런 클래스를 장식하는 클래스라고 함
+      
+    - IO의 모든 객체들은 사용이 끝나면 항상 닫아줘야함
+      - 아래의 코드 참조
+    
+```
+    public class ByteIOExam1 {
+        public static void main(String[] args){     
+            FileInputStream fis = null; 
+            FileOutputStream fos = null;        
+            try {
+                fis = new FileInputStream("src/javaIO/exam/ByteExam1.java");
+                fos = new FileOutputStream("byte.txt");
+
+                int readData = -1; 
+                while((readData = fis.read())!= -1){
+                    fos.write(readData);
+                }           
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }finally{
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+```
+- 
+  - 
+    - Char 단위 입출력(console)
+      - char단위 입출력 클래스는 클래스 이름이 Reader나 Writer로 끝남
+      - char단위 입출력 클래스를 이용해서 키보드로 부터 한줄 입력 받아서 콘솔에 출력
+        - System.in - 키보드를 의미 (InputStream )
+        - BufferedReader - 한줄씩 입력 받기위한 클래스
+        - BufferedReader 클래스의 생성자는 InputStream을 입력받는 생성자가 없음
+        - System.in은 InputStream 타입이므로 BufferedReader의 생성자에 바로 들어갈 수 없으므로 InputStreamReader 클래스를 이용해야함
+    
+```
+    import java.io.BufferedReader;
+    import java.io.FileWriter;
+    import java.io.IOException;
+    import java.io.InputStreamReader;
+    import java.io.PrintWriter; 
+    public class CharIOExam01 {
+        public static void main(String[] args) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            //키보드로 입력받은 문자열을 저장하기 위해 line변수를 선언               
+            String line = null;     
+            try {
+                line = br.readLine()
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //콘솔에 출력 
+            System.out.println(line);
+        }
+    }
+```
+
+
+
+
+---
+
+## 2021-04-07 공부내용
+
+### Java
+
+- 프로그래머스 자바 중급
+
+  - 파트5. IO
+  
+    - Char 단위 입출력(File)
+      - char단위 입출력 클래스는 클래스 이름이 Reader나 Writer로 끝이 남
+        - 파일에서 읽기위해서 FileReader 클래스 이용
+        - 한 줄 읽어 들이기 위해서 BufferedReader 클래스 이용
+          - BufferedReader 클래스가 가지고 있는 readLine() 메소드가 한줄씩 읽게 해줌
+          - readLine()메소드는 읽어낼 때 더 이상 읽어 들일 내용이 없을 때 null을 리턴
+        - 파일에 쓰게하기 위해서 FileWriter 클래스 이용
+        - 편리하게 출력하기 위해서 PrintWriter 클래스 이용
+        - 예시코드
+
+```java
+    import java.io.BufferedReader;
+    import java.io.FileReader;
+    import java.io.FileWriter;
+    import java.io.IOException;
+    import java.io.PrintWriter; 
+    public class CharIOExam02 {
+        public static void main(String[] args) {
+            BufferedReader br = null; 
+            PrintWriter pw = null;
+            try{        
+                br = new BufferedReader(new FileReader("src/javaIO/exam/CharIOExam02.java"));
+                pw = new PrintWriter(new FileWriter("test.txt"));
+                String line = null;
+                while((line = br.readLine())!= null){
+                    pw.println(line);
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }finally {
+                pw.close();
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+```
+
+
+  - 파트6. 어노테이션
+    - 어노테이션은 클래스나 메소드위에 붙으며, @(at)기호로 이름이 시작
+    - 어노테이션을 클래스나 메타코드에 붙인 후, 클래스가 컴파일되거나 실행될 때 어노테이션의 유무나 어노테이션에 설정된 값을 통하여 클래스가 좀 더 다르게 실행되게 할 수 있어, 이런 이유로 어노테이션을 일정의 설정파일처럼 설명하는 경우도 있음
+    - 어노테이션은 자바가 기본으로 제공해주는 것도 있고, 사용자가 직접 만들 수도 있음
+      - 사용자가 직접 작성하는 어노테이션 : Custom 어노테이션
+    - 커스텀 어노테이션을 이용하는 방법
+      1. 어노테이션을 정의
+      2. 어노테이션을 클래스에서 사용 (타겟에 적용)
+      3. 어노테이션을 이용하여 실행
+      
+    - 패키지 익스플로러에서 [new - Annotation]을 이용하여 Count100이라는 어노테이션 생성 (예제)
+      - Count100어노테이션을 JVM실행시에 감지할 수 있도록 하려면 @Retention(RetentionPolicy.RUNTIME)를 붙여줘야 함
+      
+```
+  import java.lang.annotation.Retention;
+  import java.lang.annotation.RetentionPolicy;
+
+  @Retention(RetentionPolicy.RUNTIME) public @interface Count100 {
+
+  }
+```
+- -       
+  - "hello"를 출력하는 hello()메소드를 가지는 MyHello라는 클래스를 작성
+    - hello메소드 위에 @Count100 어노테이션을 붙임
+  
+```
+    public class MyHello {
+        @Count100
+        public void hello(){
+            System.out.println("hello");
+        }
+    }
+```
+
+- -       
+  - MyHello클래스를 이용하는 MyHelloExam클래스를 작성
+    - MyHello의 hello메소드가 @Count100어노테이션이 설정되어 있을 경우, hello()메소드를 100번 호출
+```
+    import java.lang.reflect.Method;
+
+    public class MyHelloExam {
+        public static void main(String[] args) {
+            MyHello hello = new MyHello();
+
+            try{
+                Method method = hello.getClass().getDeclaredMethod("hello");
+            if(method.isAnnotationPresent(Count100.class)){
+                    for(int i = 0; i < 100; i++){
+                        hello.hello();
+                    }
+                }else{
+                    hello.hello();
+                }
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }       
+        }
+    }
+```
+
+  
+  - 파트7. 쓰레드
+    - Thread : 워드프로세서가 하나의 프로세스라면, 하나의 프로세스 안에서도 여러개의 흐름이 동작할 수 있게 해줌 
+    
+    - 쓰레드 예제 1)
+      - Thread를 상속 받아서 쓰레드를 생성하는 방법
+        - java.lang.Thread클래스를 상속받는다. 그리고 Thread가 가지고 있는 run()메소드를 오버라이딩
+        - 10번 반복하면서 str을 출력
+```
+    public class MyThread1 extends Thread {
+        String str;
+        public MyThread1(String str){
+            this.str = str;
+        }
+
+        public void run(){
+            for(int i = 0; i < 10; i ++){
+                System.out.print(str);
+                try {
+                    //컴퓨터가 너무 빠르기 때문에 수행결과를 잘 확인 할 수 없어서 Thread.sleep() 메서드를 이용해서 조금씩 
+                    //쉬었다가 출력할 수 있게한다. 
+                    Thread.sleep((int)(Math.random() * 1000));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } 
+        } 
+    }
+```
+- 
+  - 
+    - Thread 클래스를 상속받은 MyThread1을 사용하는 클래스
+      - Thread를 상속 받았으므로 MyThread1은 Thread
+      - 쓰레드를 생성하고, Thread 클래스가 가지고 있는 start() 메소드를 호출
+      
+```
+    public class ThreadExam1 {
+        public static void main(String[] args) {
+            // MyThread인스턴스를 2개 만듭니다. 
+            MyThread1 t1 = new MyThread1("*");
+            MyThread1 t2 = new MyThread1("-");
+
+            t1.start();
+            t2.start();
+            System.out.print("!!!!!");  
+        }   
+    }
+```
 
 - 
+  -        
+    - 쓰레드 예제 2)
+      - Runnable인터페이스를 구현해서 쓰레드를 만드는 방법
+        - Runable 인터페이스가 가지고 있는 run()메소드를 구현
+```
+    public class MyThread2 implements Runnable {
+        String str;
+        public MyThread2(String str){
+            this.str = str;
+        }
+
+        public void run(){
+            for(int i = 0; i < 10; i ++){
+                System.out.print(str);
+                try {
+                    Thread.sleep((int)(Math.random() * 1000));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } 
+        } 
+    }
+```
+- 
+  - 
+    - Runable 인터페이스를 구현한 MyThread2 사용하는 방법
+      - MyThread2는 Thread를 상속받지 않았기 때문에 Thread가 아님
+      - Thread를 생성하고, 해당 생성자에 MyThread2를 넣어서 Thread를 생성
+      - Thread 클래스가 가진 start()메소드를 호출
+      
+```
+    public class ThreadExam2 {  
+        public static void main(String[] args) {
+            MyThread2 r1 = new MyThread2("*");
+            MyThread2 r2 = new MyThread2("-");
+
+            Thread t1 = new Thread(r1);
+            Thread t2 = new Thread(r2);
+
+            t1.start();
+            t2.start();
+            System.out.print("!!!!!");  
+        }   
+    }
+```
+- 
+  - 동기화 메소드와 동기화 블록
+    - 공유객체가 가진 메소드를 동시에 호출 되지 않도록 하는 방법
+      - 메소드 앞에 synchronized 를 붙임
+      - 여러개의 Thread들이 공유객체의 메소드를 사용할 때 메소드에 synchronized가 붙어 있을 경우 먼저 호출한 메소드가 객체의 사용권(Monitoring Lock)을 얻음
+      
+  - 쓰레드와 상태제어
+    - 쓰레드는 실행가능상태인 Runnable과 실행상태인 Running상태로 나뉜다.
+    - 실행되는 쓰레드 안에서 Thread.sleep()이나 Object가 가지고 있는 wait()메소드가 호출이 되면 쓰레드는 블록상태가 된다.
+    - Thread.sleep()은 특정시간이 지나면 자신 스스로 블록상태에서 빠져나와 Runnable이나 Running상태가 된다.
+    - Object가 가지고 있는 wait()메소드는 다른 쓰레드가 notify()나 notifyAll()메소드를 호출하기 전에는 블록상태에서 해제되지 않는다.
+    - wait()메소드는 호출이 되면 모니터링 락을 놓게 된다. 그래서 대기중인 다른 메소드가 실행한다.
+    - 쓰레드의 run메소드가 종료되면, 쓰레드는 종료된다. 즉 Dead상태가 된다.
+    - Thread의 yeild메소드가 호출되면 해당 쓰레드는 다른 쓰레드에게 자원을 양보하게 된다.
+    - Thread가 가지고 있는 join메소드를 호출하게 되면 해당 쓰레드가 종료될 때까지 대기하게 된다.      
+    
+  - 파트8. 람다
+    - 익명 메소드
+    - 메서드를 하나만 가지고 있는 인터페이스를 함수형 인터페이스라고 하는데, 이런 경우 메서드 하나를 전달하기 위해서도 객체를 생성해야하는 자바의 불편함을 해결하는 방법으로 람다표현식을 사용할 수 있음
+    
+
+### 자바 웹을 다루는 기술[Book Study]
+
+- Servlet
+  - 서블릿의 생명주기 메서드
+    - 초기화 : init() 
+    - 작업수행 : doGet(), doPost()
+    - 종료 : destroy()
+    
+  - 사용자 정의 서블릿 만들기
+    - HttpServlet 클래스를 상속받아서 만들며, init(), doGet(), destroy() 메서드를 오버라이딩해서 기능을 구현
+  - 사용자 정의 서블릿 형식
+  
+```
+  public class FirstServlet extends HttpServlet {
+    @Override
+    public void init() {
+      ...
+    }
+    
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) {
+      ...
+    }
+    
+    @Override
+    public void destroy() {
+      ...
+    }
+    
+  }
+```
+- 
+  - 톰갯의 servlet-api.jar 클래스 패스 설정하기
+      - 이클립스 상단의 New 아이콘을 클릭한 후 Dynamic Web Project를 선택
+      - 경로확인 후 Generate web.xml deployment descriptor 옵션의 체크박스에 체크한 후 Finish 클릭
+      - Build path > Configure Build Path... 선택 / Libraries > Classpath > Add external JARs... 선택 / CATALINA_HOME(톰갯 루트 디렉터리)의 lib 디렉터리에 있는 servlet-api.jar 선택 후 열기 / 클랙스 패스의 설정을 확인한 후 종료
+      
+      
+### HTML, CSS 정리
+
+- a 태그의 호버 범위 조정 
+  - 링크를 주고자 할 때 a 태그를 적용(기존 태그 안쪽에)
+  - a 태그의 display 속성을 block으로 지정하면 둘러싼 태그를 기준으로 전체를 사용
+  
+- hover 적용
+  - 가급적 html 태그의 좌측에 붙이는 것이 좋음
+  
+- inline : 글자화!! => 최소한의 너비를 갖으며, 너비와 높이를 지정해도 적용이 되지 않음
+- inline-blcok : inline에 block 속성을 추가, 너비와 높이를 지정하면 적용이 됨
+- inline 계열은 문자 취급하기에 부모 요소에서 text-align:center; 로 조절 => 스스로 정렬 불가능
+
+- block : 무조건 한 줄을 사용, 기본값으로 너비를 가로 전체, 높이는 최소로 설정이 되어있음
+- block 계열은 margin: 0 auto;로 가운데 정렬 => 스스로 정렬 가능      
+- 태그는 부모, 자식 관계를 활용해서 작성 / 요소를 확정할 수 있음, 다른 요소와 설정이 겹치지 않게
+
+- background-color 속성은 주고 시작하는게 레이아웃을 보다 빠르게 완성할 수 있음
+
+- object-fit:cover; 주어진 너비, 높이에 이미지를 맞춤
+
+- 이미지는 고유의 가로, 세로 비율을 유지하려는 속성을 가지고 있음
+- 이미지는 부모의 가로, 세로 크기에 영향을 받지 않고 원래 크기를 기본적으로 유지함
+- 부모 태그의 너비값을 설정하지 않고 이미지의 가로를 100%로 지정하면 반응형에서 부모의 크기에 따라 이미지의 크기가 자동 조절이 됨
+
+- 코드펜 학습내용 블로그 올리는 방법
+  - 코드펜에 저장한 다음 Embed / iframe 으로 복사한 후 블로그의 입력창의 html모드에서 붙여넣기 하면 손쉽게 공유 가능
+
+
+
