@@ -1274,3 +1274,33 @@ import javax.servlet.http.HttpServletRequest;
 - 대부분 공통 서식을 쓰지만 일부만 변경이 되는 경우 기존 css를 활용하기 위해 html태그에 class를 추가하여 필요한 부분만 변경
 
 - position:absolute; 인 경우 너비가 inline 요소처럼 줄어듬
+
+
+---
+
+## 2021-04-08 공부내용
+
+### CSS, HTML
+
+- n차 메뉴
+  - 2차, 3차 메뉴 등은 항상 a태그의 형제인 ul로 구성 
+  - 선택자에서 사용 용도에 따라 > 를 사용하여 자식요소만 선택하거나 일괄 적용이 필요한 경우는 > 를 생략한 후손 선택자를 활용하여 모두 하위 메뉴를 선택할 수 있음
+  
+  - 메뉴별로 호버시에 하위 메뉴가 보이게 할 때는 아래와 같이 작성
+    ``` 
+    .menu-box ul ul {
+        display: none;   
+        position: absolute; // 펼쳐졌을 때 주변에 영향을 주지 않게 하기 위함
+    }
+    
+    .menu-box ul > li:hover > ul {
+        display: block;
+      }
+    ```
+    
+  - 클래스 작명 규칙 : BEM
+  - text-overflow: ellipsis;  => 잘린 글을 ... 으로 표시
+  
+- HTML 초기 메뉴 구성
+  - con-min-with : 너비를 줄여도 더 이상 줄지 않는 한계 너비를 지정
+  - con : 너비를 늘여도 콘텐츠가 담긴 부분이 더 이상 늘어나지 않는 한계 너비를 지정
