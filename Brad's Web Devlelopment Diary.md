@@ -1369,3 +1369,104 @@ import javax.servlet.http.HttpServletRequest;
 - 현업에서 현재 교육중에 사용한 코드를 재활용 참고해서 프로젝트를 진행해도 되는지, 필요한 함수를 구글링해서 사용되도 실력을 어떻게 평가 받는지...
 
 - Type safety: Unchecked cast from Object to T
+
+---
+
+## 2021-04-10 공부내용
+
+### Spring
+- 디버그시에 콘솔에서 확인하되 삭제하지 않아도 되는 방법
+  - import lombok.extern.slf4j.Slf4j;
+  - 사용예시) log.debug("searchKeyword : " + searchKeyword);
+
+### SQL, DataBase
+- 추가 함수
+  - if => null 처리에 사용
+  - inner join
+  - group by
+  - sum, avg, max, min
+  - distinct
+  - self join
+  - between
+  
+  
+---
+
+## 2021-04-11 공부내용
+
+
+### SQL, DataBase
+- 중급 함수
+  - outer join
+  - left join
+  - right join
+  - 인싸, 아싸로 접근하면 이해, 기억이 쉬움
+
+- 데이터베이스 구축
+  - aquerytool.com
+  - 논리적, 물리적 단계를 나눠서 데이터베이스를 구축할 수 있는 툴
+  - 개인적으로 데이터베이스를 구축해야할 경우 유용
+  - 자동으로 쿼리를 작성해주는 기능이 있음
+  - 데이터베이스의 유지, 보수를 고려한 구조를 구축해야 함
+  - 가시적으로 데이터베이스를 만들어 시뮬레이션을 하고 물리적으로 작성 후 아래와 같이 쿼리를 자동 작성해서 사용이 가능
+  
+```sql
+DROP DATABASE IF EXISTS simpleBoard;
+
+CREATE DATABASE simpleBoard;
+
+USE simpleBoard;
+
+CREATE TABLE `member`
+(
+    `id`            INT         NULL        AUTO_INCREMENT COMMENT '번호', 
+    `userId`        CHAR(30)    NOT NULL    COMMENT '아이디', 
+    `userPw`        CHAR(30)    NOT NULL    COMMENT '비밀번호', 
+    `userName`      CHAR(30)    NOT NULL    COMMENT '이름', 
+    `userNickname`  CHAR(30)    NOT NULL    COMMENT '닉네임', 
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE board
+(
+    `id`          INT         NOT NULL    AUTO_INCREMENT COMMENT '번호', 
+    `board_name`  CHAR(30)    NOT NULL    COMMENT '게시판 이름', 
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE reply
+(
+    `id`              INT         NOT NULL    AUTO_INCREMENT COMMENT '번호', 
+    `boardId`         INT         NOT NULL    COMMENT '게시판 번호', 
+    `boardArticleId`  INT         NOT NULL    COMMENT '게시글 번호', 
+    `writerId`        INT         NOT NULL    COMMENT '작성자 번호', 
+    `userNickname`    CHAR(30)    NOT NULL    COMMENT '작성자', 
+    `body`            TEXT        NOT NULL    COMMENT '내용', 
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE article
+(
+    `id`            INT         NOT NULL    AUTO_INCREMENT COMMENT '번호', 
+    `boardId`       INT         NOT NULL    COMMENT '게시판 번호', 
+    `title`         CHAR(50)    NOT NULL    COMMENT '제목', 
+    `body`          TEXT        NOT NULL    COMMENT '내용', 
+    `writerId`      INT         NOT NULL    COMMENT '작성자 번호', 
+    `userNickname`  CHAR(30)    NOT NULL    COMMENT '작성자', 
+    `hit`           INT         NOT NULL    COMMENT '조회수', 
+    PRIMARY KEY (id)
+);
+
+```
+  
+### Spring
+
+- html, css, js를 이용한 웹 구성과 비슷한 흐름의 spring web 구현 과정
+  - 백앤드 단의 DB와 mvc패턴으로 구현된 프로그램이 프론트앤드 단으로 연결되는 jsp
+  - jsp파일도 html과 유사하게 구조를 짜되 동적인 부분은 백앤드와 jstl, el 등으로 연결
+  - 태그에 클래스명을 통해 테일윈드 cdn을 활용한 css작업
+  - 게시글 출력, 검색창, 페이징 구현
+  - 쿼리가 실행됨에 있어 쿼리에 담겨 있어야하는 정보를 유지하는 기술
+  - 언어별 문법이 조금씩 상이하기에 연습이 필요
+  
+  
