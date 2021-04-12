@@ -1469,4 +1469,88 @@ CREATE TABLE article
   - 쿼리가 실행됨에 있어 쿼리에 담겨 있어야하는 정보를 유지하는 기술
   - 언어별 문법이 조금씩 상이하기에 연습이 필요
   
+- [게시물 데이터 빠르게 추가하는 SQL 쿼리 참고 동영상](https://www.youtube.com/watch?v=UmMJ7Qf_RzE)
+  - [SQL 쿼리](https://github.com/jhs512/untactTeacher/commit/33f04df237d1e4ead4c301fa0b36c9fe6ec55fc8)
+```sql
+  INSERT INTO article
+(regDate, updateDate, memberId, title, `body`, boardId)
+SELECT NOW(),
+NOW(),
+FLOOR(RAND() * 2) + 1,
+CONCAT('제목_', FLOOR(RAND() * 1000) + 1),
+CONCAT('내용_', FLOOR(RAND() * 1000) + 1),
+FLOOR(RAND() * 2) + 1
+FROM article;
+```
+  
+- 페이지 구현에 유용한 util
+  - 페이지 클릭시 기존 검색 쿼리가 담긴 주소가 날라가는 것을 방지하기 위한 코드를 간편하게 구현해주는 유틸
+  - 변경된 파라미터와 값을 이용해 새 쿼리 주소 생성
+  - 아래의 코드가 활용할 util
+  
+```java
+	public static String getNewUrlRemoved(String uri, String paramName) {
+		String deleteStrStarts = paramName + "=";
+		int delStartPos = uri.indexOf(deleteStrStarts);
+
+		if (delStartPos != -1) {
+			int delEndPos = uri.indexOf("&", delStartPos);
+
+			if (delEndPos != -1) {
+				delEndPos++;
+				uri = uri.substring(0, delStartPos) + uri.substring(delEndPos, uri.length());
+			} else {
+				uri = uri.substring(0, delStartPos);
+			}
+		}
+
+		if (uri.charAt(uri.length() - 1) == '?') {
+			uri = uri.substring(0, uri.length() - 1);
+		}
+
+		if (uri.charAt(uri.length() - 1) == '&') {
+			uri = uri.substring(0, uri.length() - 1);
+		}
+
+		return uri;
+	}
+
+	public static String getNewUrl(String uri, String paramName, String paramValue) {
+		uri = getNewUrlRemoved(uri, paramName);
+
+		if (uri.contains("?")) {
+			uri += "&" + paramName + "=" + paramValue;
+		} else {
+			uri += "?" + paramName + "=" + paramValue;
+		}
+
+		uri = uri.replace("?&", "?");
+
+		return uri;
+	}
+
+	public static String getNewUriAndEncoded(String uri, String paramName, String pramValue) {
+		return getUrlEncoded(getNewUrl(uri, paramName, pramValue));
+	}
+```
+
+
+  
+---
+
+## 2021-04-12 공부내용
+
+### Spring
+
+- fullstack 프리랜서 개발자 로드맵
+  - 요구되는 수준
+  
+-  파일 저장시 파일명이 __ 로 이어지게 구분되어 있으면 이후 파일명 관련 메서드를 구성할 때 split으로 나눠서 처리할 수 있음
+  - 예시 : fileInputNameBits
+  
+- 게시판에 글과 함께 저장하는 첨부파일의 정보를 DB에 저장하고, 실제 파일을 폴더에 저장하는 과정
+  - 메타정보를 세분해둘 수 있는 genFile 생성 및 관리 필요
+  
+- 파일 저장에 필요한 multipartRequest
+  - multipartRequest 정리 필요
   
