@@ -1541,9 +1541,6 @@ FROM article;
 ## 2021-04-12 공부내용
 
 ### Spring
-
-- fullstack 프리랜서 개발자 로드맵
-  - 요구되는 수준
   
 -  파일 저장시 파일명이 __ 로 이어지게 구분되어 있으면 이후 파일명 관련 메서드를 구성할 때 split으로 나눠서 처리할 수 있음
   - 예시 : fileInputNameBits
@@ -1554,3 +1551,98 @@ FROM article;
 - 파일 저장에 필요한 multipartRequest
   - multipartRequest 정리 필요
   
+- JSP 부분의 내용 정리가 필요함
+
+ 
+  
+---
+
+## 2021-04-13 공부내용
+
+### Spring
+
+- Vue, React 등을 활용하기 위해서는 파일 전송 방식을 ajax로 바꿔야함.
+
+- 파일업로드 부분은 반복학습이 필요 (101강은 추후 다시 보기)
+- JSP 파일에서 사용되는 JavaScirpt 함수의 이해를 위한 JavaScirpt 추가 학습 필요
+- 이클립스 자체적인 오류로 코드에 이상이 없어도 오류가 뜨는 경우에는 프로젝트 재시작, 업데이트를 통해 점검하면 정상으로 돌아오기도 하기에 반드시 체크!
+- 거의 같은 기능의 메서드를 구현하는데 있어서 서비스, DAO수준에서는 오버라이딩된 메서드 구현을 사용 가능, dao.xml에서는 중복된 메서드명 사용이 불가하지만 mybatis가 영리하게 해결해줌
+- 테일윈드를 sass로 변환하는 과정 이후 정리
+
+
+### 자바 스크립트
+- 비동기식 처리
+  - 콜백함수 활용
+  ```js
+  function getData(callbackFunc) {
+    $.get('url 주소/products/1', function(response) {
+      callbackFunc(response); // 서버에서 받은 데이터 response를 callbackFunc() 함수에 넘겨줌
+    });
+  }
+
+  getData(function(tableData) {
+    console.log(tableData); // $.get()의 response 값이 tableData에 전달됨
+  });
+  ```
+  
+  - promise 활용
+    - pending(대기)
+    - fulfilled(이행)
+    - rejected(실패)
+    - 예외 처리시에는 catch 구문으로 처리해야 더 많은 오류를 처리할 수 있음
+    - 더 많은 예외 처리 상황을 위해 프로미스의 끝에 가급적이면 catch()를 붙이는 것을 권장
+  
+  
+  ```js
+  function getData(callback) {
+  // new Promise() 추가
+    return new Promise(function(resolve, reject) {
+      $.get('url 주소/products/1', function(response) {
+        // 데이터를 받으면 resolve() 호출
+        resolve(response);
+      });
+    });
+  }
+
+  // getData()의 실행이 끝나면 호출되는 then()
+  getData().then(function(tableData) {
+    // resolve()의 결과 값이 여기로 전달됨
+    console.log(tableData); // $.get()의 reponse 값이 tableData에 전달됨
+  });
+  ```
+  
+- 
+  - async와 await 활용
+    - 비동기 처리 함수 중 가장 최신의 문법으로 기본적으로 위에서 아래로 실행되는 기존의 프로그래밍 방식과 유사한 흐름으로 코딩이 가능
+    
+    
+  ```js
+  function fetchItems() {
+    return new Promise(function(resolve, reject) {
+      var items = [1,2,3];
+      resolve(items)
+    });
+  }
+
+  async function logItems() {
+    var resultItems = await fetchItems();
+    console.log(resultItems); // [1,2,3]
+  }
+  ```
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
