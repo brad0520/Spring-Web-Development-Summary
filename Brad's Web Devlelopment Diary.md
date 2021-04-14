@@ -1364,12 +1364,6 @@ import javax.servlet.http.HttpServletRequest;
 - flex의 자식은 항상 부모의 높이를 물려받음
 - 
 
-
-<질문사항>
-- 현업에서 현재 교육중에 사용한 코드를 재활용 참고해서 프로젝트를 진행해도 되는지, 필요한 함수를 구글링해서 사용되도 실력을 어떻게 평가 받는지...
-
-- Type safety: Unchecked cast from Object to T
-
 ---
 
 ## 2021-04-10 공부내용
@@ -1561,12 +1555,65 @@ FROM article;
 
 ### Spring
 
+#### [개발환경에 따른 설정을 달리해야할 때, application.yml 파일 설정을 통한 간편 관리 방법](https://galid1.tistory.com/664)
+- 예시코드
+
+```java
+spring:
+  profiles:
+    active: home
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+server:
+  port: 8024
+
+mybatis:
+  type-aliases-package: com.sbs.untact.dto
+
+custom:
+  logging:
+    dir: log
+    level: debug
+    
+---
+
+spring:
+  profiles: local
+    
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/insta?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
+    username: sbsst
+    password: sbs123414    
+    
+---    
+    
+spring:
+  profiles: home
+
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/insta?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
+    username: root
+    password:  
+
+```
+
+
+
 - Vue, React 등을 활용하기 위해서는 파일 전송 방식을 ajax로 바꿔야함.
 
 - 파일업로드 부분은 반복학습이 필요 (101강은 추후 다시 보기)
 - JSP 파일에서 사용되는 JavaScirpt 함수의 이해를 위한 JavaScirpt 추가 학습 필요
 - 이클립스 자체적인 오류로 코드에 이상이 없어도 오류가 뜨는 경우에는 프로젝트 재시작, 업데이트를 통해 점검하면 정상으로 돌아오기도 하기에 반드시 체크!
 - 거의 같은 기능의 메서드를 구현하는데 있어서 서비스, DAO수준에서는 오버라이딩된 메서드 구현을 사용 가능, dao.xml에서는 중복된 메서드명 사용이 불가하지만 mybatis가 영리하게 해결해줌
+
+
 - 테일윈드를 sass로 변환하는 과정 이후 정리
 
 
@@ -1631,18 +1678,57 @@ FROM article;
   ```
   
 
+---
+
+## 2021-04-14 공부내용
+
+### Spring
+
+- 1월 프로젝트
+  - swagger2 api 설정으로 api 문서로 자동 변환이 가능함
+  - json ignore
+  - 아이디 체크
+  - mapping 관련 정리(request, get, post 등)
+  - lodash 활용한 키 입력 확인시 딜레이 적용
+  - 파일업로드를 지정한 파일형식만 허용하는 방법
+    - input 태그의 accept 속성에 파일 형식을 지정하면 모든 파일이 아닌 지정한 파일 형식의 첨부만 가능
+    
+  - 테스트 데이터 대량 입력 sql 쿼리
+  ```sql
+  
+  INSERT INTO article
+  (regDate, updateDate, memberId, title, `body`, boardId)
+  SELECT NOW(),
+  NOW(),
+  FLOOR(RAND()*2)+1,
+  CONCAT('제목_', FLOOR(RAND()*1000)+1),
+  CONCAT('내용_', FLOOR(RAND()*1000)+1),
+  FLOOR(RAND()*2)+1,
+  FROM article;
+  
+  ```
+  
+  - 비동기 자바스크립트 코드를 콜백함수 사용 형식이 아닌 async, await이나 promise로 바꿔서 구현이 가능한지...
+
+- 개인 프로젝트
+  - 전체 코드 리뷰, 분석, 정리 후 재작성
+  - 기존 프로젝트와 병합 시도
+
+  ```java
+  import java.util.regex.Pattern;
+
+  // 문자로 시작하고 5~21자까지의 아이디만 허용하는 정규표현식
+  return Pattern.matches("^[a-zA-Z]{1}[a-zA-Z0-9_]{4,20}$", str);
+  ```
+
+### JavaScript
+- $(function(){ }); 의 사용
+  - 제이쿼리 $(document).ready(function(){ });와 동일한 의미의 코드로 코드가 길어질 경우 간단하게 사용하는 문법
+  - 페이지가 준비되면 바로 실행이 되는 함수
 
 
-
-
-
-
-
-
-
-
-
-
-
+### CSS
+- inline속성을 가진 아이템들이 엔터로 줄바꿈이 되어있을 때 간격이 발생하는 것을 막는 방법 중 하나로 부모 요소에 폰트사이즈를 0으로 줄 수 있음
+- 
 
 
