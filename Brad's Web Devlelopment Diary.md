@@ -1736,8 +1736,6 @@ spring:
 
 ## 2021-04-15 공부내용
 
-### Spring
-
 ### CSS
 - 타일형으로 아이템들을 배치할 때 간격을 주는 방법
   - margin으로 간격을 조절하지 않고, box-sizing을 border-box로 설정한 후 padding으로 원하는 간격을 설정
@@ -1764,7 +1762,130 @@ spring:
     - flex-grow: 1; => 남아 있는 간격을 나눠갖기에 실제로는 균등 분할이 되지 않음
     
 - 기본 라이브러리 파일 구축 후 활용
+  
+- 애니메이션 기능은 검증된 외부 라이브러리 활용
+  - 외부 라이브러리 사용시에는 자동으로 추가되는 태그들이 있기에 반드시 개발자 툴로 태그를 확인하고 css 작업을 해야 태그 지정 오류로 인한 작업 내용 미적용을 방지할 수 있음
+
+  
+---
+
+## 2021-04-16 공부내용
+
+### Spring Boot Board Development
+
+- 4월 10, 11일 코드 리뷰
+  - 키워드 값이 없을 때 처리 사항이 현재 구현되어 있지 않음
+
+- 자체 제작 페이지에 게시판 기능 구현
+
+
+### Servlet / JSP
+
+- 뉴렉처 서블릿 / JSP 강의 내용 정리
+
+  - context : 다른 폴더의 경로를 마치 하위 폴더로 인식하게 하여 사용할 수 있는 문법
+  - servlet mapping으로 클라이언트 단에서 접근할 수 없는 web-info 폴더 내의 클래스 파일에 매핑을 통해 접근할 수 있게 함
+  - servlet은 요청이 있을 때 해당되는 프로그램만 실행되고 요청을 모두 수행하면 종료됨
+  - 아래의 코드에서 true는 버퍼가 찰 때까지 기다리지 않고 출력을 하는 옵션 => 이 response 객체를 활용해 콘솔이 아닌 브라우저에 출력을 할 수 있음
+  
+  ```java
+  OutputStream os = response.getOutSteam();
+  PrintStream out = new PrintStream(os, true);
+  out.println("Hello Servlet!!")
+  ```
+  
+  - 위와 같은 코드로 실제로는 아래의 코드를 많이 사용 (PrintWriter 활용) 
+  
+  ```java
+  PrintWriter out = response.getWriter();
+  out.println("Hello Servlet!!");
+  ```
+  
+  - 맵핑시에는 xml파일을 직접 수정하기보다 어노테이션을 사용하는 경우가 현업에서는 더 많음
+    - 설정 파일을 나눠서 작업하기 용이하지 않음
+    - 코드의 양이 적음, 구현이 간편함
+    
 
 
   
+---
+
+## 2021-04-17 공부내용
+
+### [MyBatis](https://mybatis.org/mybatis-3/ko/getting-started.html)
+- 공식문서의 사용법을 활용하여 환경 설정부터 쿼리 적용까지 수행
+- 
+
+
+### Servlet / JSP
+
+- 뉴렉처 서블릿 / JSP 강의 내용 정리
+  - 문서형식을 지정하지 않으면, 브라우저가 자의적으로 해석하여 보여주기 때문에 의도한 바와 같이 전달이 되지 않을 수 있음
   
+  ```java
+  response.setCharacterEncoding("UTF-8"); // 문서작성에 사용된 인코딩 방식 정의
+  respones.setContentType("text/html; charset=UTF-8"); // 브라우저가 해석할 인코딩 방식 정의
+  ```
+  
+  - 쿼리스트링 : https://domain/list?title=제목 과 같은 주소창의 내용중 ? 이후의 부분
+    - 기본 주소인 list의 추가 조건을 설정하여 쿼리를 전달하여 동적인 결과물을 얻을 수 있음
+    - https://domain/list?title= => ""
+    - https://domain/list? => null
+    - https://domain/list => null
+  
+  - input tag의 name이 key값의 역할을 함
+  
+  - get 방식으로 주소창에 퀴리를 담아 데이터를 전송하는데는 제한이 있기에 전달값에 따라 적절하지 않거나 오류가 날 수 있는 경우가 발생
+  
+  - post 방식으로 method를 선택하여 주소창에 쿼리가 작성되지 않고 데이터가 전송됨
+    - 개발자 도구를 통해 네트워크에서 전송값을 확인 가능
+  
+  - 한글이 전송되면서 깨지는 현상이 발생하면 톰캣의 기본 인코딩 방식이 UFT-8이 아니기 때문
+    - Servlet의 server 설정 파일을 수정해서 해결도 가능하지만 일반적으로 하나의 톰캣 서버에 여러 서비스를 운영할 수 있기 때문에 사용하는 Servlet 프로그램에 아래와 같은 코드를 추가하여 해결 가능
+      - request.setCharacterEncoding("UTF-8");
+  
+  - 한글이 전송되는 Servlet마다 위 코드를 사용하여 처리하는 것은 번거롭기에 filter를 사용하여 처리 가능
+  - filter의 맵핑은 설정파일에서도 가능하지만 어노테이션으로 간단히 구현 가능
+    - 예시) @Webfilter("/경로")
+  
+  - 같은 name 값을 갖는 데이터의 경우 배열로 받아서 처리가 가능함
+    - 동적인 사이트의 경우 입력란을 유동적으로 추가, 삭제가 가능하기에 이런 방식을 사용
+  
+  - 상태 유지를 위한 5가지 방법
+    - application : 모든 사용자
+    - session : 접속자마다 다름
+    - cookie
+    - hidden input
+    - querystring
+    
+  - Application 저장소(서버에 저장)
+    - 서블릿 컨텍스트(Context)
+    - 예시 코드
+    ```java
+    Servletcontext application = request.getServletContext();
+    application.setAttribute("value", v);
+    application.setAttribute("op", op);
+    
+    ```
+  - Session 저장소(서버에 저장)
+    - 사용법은 Application과 사용법은 똑같음
+    - 저장의 범위가 다름 / 세션이 다르면 저장값이 다름
+    - 웹서버는 SID로 사용자를 구분
+    - 최초 방문시에는 SID가 주어지지 않아 세션에 접근이 불가하여 application에만 접근이 가능
+    - 요청을 수행한 후에는 SID가 주어지고 session이 종료될 때까지 이를 통해 사용자를 구분함
+    - 세션의 타임아웃을 통해 주어진 시간이 지나면 세션이 만료됨 : 세션을 위한 메모리를 유지해야하기에 사용이 되지 않는 세션은 정리가 필요함 
+    
+  - Cookie 저장소(클라이언트에 저장)
+    - TCP/IP 정보, Header 정보
+    - 사용자 데이터
+    - application과 session은 서버에 데이터를 저장해두지만 cookie는 데이터를 클라이언트가 가지고 다님
+    - addCookie(); => 서버에서 저장 => 클라이언트에게 전달
+    - getCookie(); => 클라이언트로부터 획득
+  
+### Spring
+
+- 게시판 글 작성 페이지 구현
+  - 서블렛과 JSP를 활용하여 콘솔로 구현된 게시판을 웹으로 구현
+  - html, css, javascript 의 내용이 필요
+  - 사용하고자 하는 기능을 직접 구현하는 것도 좋지만 구현된 라이브러리를 활용하는 것도 중요한 능력
+
