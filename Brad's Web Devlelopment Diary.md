@@ -1982,4 +1982,181 @@
 ## 2021-04-19 공부내용
 
 ### Servlet / JSP 
-- 
+
+- 서블릿 내장 객체
+  - 서블릿을 작성할 때 변수명으로 내장객체에서 사용중인 변수인 경우 사용이 불가
+  - 내장 객체가 가지고 있는 메서드를 모두 기억할 필요는 없지만 필요에 따라 검색해서 사용할 정도로 이해하고 있는 것이 중요
+  - <% %> 로 java 코드블럭을 만들어 사용 
+  - jasper로 작성한 코드는 스파게티 코드처럼 복잡해질 수 있음
+  
+- JSP MVC model1
+  - Model : 출력 데이터 
+  - View : HTML 코드 (출력 담당)
+  - Controller : 자바코드 (입력과 제어를 담당)
+    - 입력코드는 상단에(코드 블록)) => 로직을 담당
+    - 출력코드는 하단에 배치
+    - 출력코드에 포함되는 java코드(코드블록)는 입력코드 부분에서 최대한 처리하고 실제 출력이 되는 부분만 변수에 담아서 출력 코드에 <% 변수 %> 와 같은 형태로 삽입하여 처리
+    - 자바코드에서는 한줄 코드인 경우 {}가 생략이 가능하기에 더 보기에 간결한 코드를 작성 가능
+    - view를 담당하는 html에서 java코드를 신경쓸 일이 거의 없어져서 협업에도 효율적임
+    
+- JSP MVC model2
+  - 컨트롤러와 뷰가 물리적으로 분리된 방식
+  - C(컨트롤러)과 M(모델) / V(뷰 HTML) => 2개의 파트로 분리하면 유지, 보수가 더욱 간편해지고 성능 향상에도 이점이 있음
+  - redirect vs forword
+    - redirect : 새로운 페이지로 요청
+    - forword : 작업을 이어서 수행
+    - java code
+    ```java
+    request.setAttribute("result", result); // 변수명은 임의로 선택 가능, jsp에 넘겨줄 변수 선언
+    
+    RequestDispatcher dispatcher = request.getRequestDispatcher("경로.파일명.jsp");
+    dispatcher.forword(request, response);  //포워드를 통해 연결된 jsp에서 데이터를 전달받아 작업을 이어갈 수 있음
+    ```
+    - jsp code // java 로 선언된 변수를 받아서 사용
+    ```
+    <%=request.getAttribute("result")%>
+    ```
+  
+- View를 위한 데이터 추출 표현식 EL (Expression Language)
+  - 저장 객체에서 값을 추출해서 출력하는 표현식(아래의 경우 view에 아직 java코드가 남아있음)
+  - Controller
+  ```
+  request.setAttribute("cnt", 30);
+  
+  List list = new ArrayList(){"1", "test", ...};
+  request.setAttribute("list", list);
+  
+  Map n = new HashMap(){"title", "제목"};
+  request.setAttribute("n", n);
+  ```
+  
+  - View (jsp)
+  ```
+  request.getAttribute("cnt");
+  
+  ((List)request.getAttribute("list")).get(0);
+  
+  ((Map)request.getAttribute("n")).get("title");
+  ``` 
+  - View (jsp / EL 사용) => 매우 간단해짐
+  ```
+  ${cnt}
+  
+  ${list[0]}
+  
+  ${n.title}
+  ```
+  
+- 저장객체에서 값을 추출하는 순서
+  - pageScope :  (페이지 내에서 필요한 데이터 저장가능 객체)
+  - requestScope : request
+  - sessionScope : session
+  - applicationScope : application
+  - page => request => session => application 순으로 추출
+  - 위 순서대로가 아닌 원하는 저장객체에서 추출하고자 할 때는 Scope를 사용
+    - 예시
+  ```
+  ${sessionScope.cnt}
+  ```
+  
+- EL 연산자
+  - [] .
+  - ()
+  - empty / not empty
+  - * / div % mod
+  - + -
+  - < > <= >= lt gt le ge (오류가 발생할 수 있기에 가급적 문자로 된 연산자 선택, 오류가 나지 않는 환경이면 기호를 선택)
+  - && and
+  - || or
+  - ? :
+  - ${ } 안에 연산기호 사용 가능
+  
+    - null 체크시 empty와 !=null && =="" 의 차이
+
+- JDBC를 활용하여 DB와 연결한 동적인 웹 구성
+  - 기본적인 JDBC 세팅
+  - web 개발에 있어서 사용하는 라이브러리는 배포시 경로가 달라질 수 있기 때문에 웹 컨텐츠에 포함시켜야 함
+  - WEB-INF / lib폴더에 필요한 라이브러리 저장
+  - 목록페이지 => 상세페이지 구현
+    - 게시글 상세 페이지, 게시글 목록 구현에 테이블 태그 활용
+    - 테이블 꾸미는 CSS 사용해서 UI 구현
+    
+- JSP MVC model2 의 장점
+  - 개별적으로 유지, 보수 협업 가능
+  - 실행면에서 콘트롤 부분은 자바이기 때문에 미리 컴파일해둘 수 있어 속도 향상
+  
+- JSP MVC model2 의 단점
+  - model1에 비해 복잡도가 올라갈 수 있음
+  
+- Model2에서 콘트롤러와 뷰의 데이터를 연결해주는 객체로는 request가 가장 적합함
+  - controller는 연산을 담당하고 jsp는 출력을 담당하기에 항상 controller가 먼저 실행이 되야함
+  - 데이터가 연속성을 가지고 전달되야하기에 redirect가 아닌 forword를 사용하여 전달
+  
+- Model 데이터를 위한 구조화의 필요성
+  - 데이터를 아우를 수 있는 클래스를 구성(예시: Article, Member 등)
+  - getter를 사용하지 않고 jsp에서는 member.id 와 같이 get을 생략하고 . 뒤에 get 뒷부분을 소문자로 수정해서 붙여서 활용
+  - jsp에 최대한 java code를 사용하지 않기 위함
+  - EL을 활용하여 간결한 코드 작성
+  - DTO, DAO, Controller 와 유사한 구성
+
+- View 페이지 은닉하기
+  - view 역할을 하는 페이지는 주소창에서 검색이 되면 안됨
+  - 항상 controller에서 로직을 수행한 이후 동적으로 작성이 되어 웹에 표현이 되야함
+  - WEB-Info 폴더 안으로 view 폴더를 만들고 그 안에 view단의 파일들을 저장하여 경로를 수정하면, 주소창으로부터 접근할 수 없게 조치할 수 있음
+  
+#### JSTL (JSP Standard Tag Library)
+- Maven repository : maven을 활용하기 위한 다양한 라이브러리가 있어 매우 유용함
+- 아래의 어노테이션을 문서 상단에 추가
+- 태그 라이브러리를 통한 로직을 수행
+- EL은 변수를 간단하게 사용하게 해줌
+```
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set>  
+<c:reomve>
+<c:if>
+<c:choose>
+<c:when>
+<c:otherwise>
+<c:forEach>
+<c:forTokens>
+<c:url>
+<c:catch> 
+```
+  
+- <c:forEach> => bigin, end, var, items 등을 활용해 반복 조건을 설정 가능
+  - varStatus를 활용해서 여러 상태를 확인하고 활용이 가능함  
+- 페이지네이션 (뉴렉쳐 63~64강) 
+  
+- JSTL format 태그로 날짜, 숫자 등의 출력 형식을 지정할 수 있음
+
+- JSTL function을 활용해서 사용할 수도 있음
+
+- 기업형 개발에서는 콘트롤러(JSP로 문서 출력도 담당) - 서비스 - DAO - DBMS 로 나누어서 업무 분담
+  - 개인적으로 개발할 경우에는 위와 같이 세분화시키지 않아도 되지만 기업에서는 분업을 하기에 위와 같은 구조의 프로세스를 익히는 것이 중요
+  
+- 서비스로 처리할 함수 : 클라이언트의 요청에 근거하여 요청을 정리
+
+- 서비스에서 처리한 함수들은 추후 DAO에서 처리 가능하게 재구조화할 수 있음
+
+- 검색에 있어서 폼 양식 내의 셀렉트 박스 안의 내용이 선택한 값으로 유지되게 하기 위해서 jsp 태그에 selected가 올 수 있도록 EL로 조건문을 활용 가능
+  - param.id와 같이 파라미터에 저장되 데이터를 활용
+
+- 검색에서 있어서 검색 조건이 풀리지 않게 설정이 중요
+
+- 페이지는 null 값이 올 수 있기에 string으로 받고 처리 후에 int로 형변환하여 사용
+
+- 항상 null과 함께 빈 문자열 ""을 체크해야함 => empty를 활용하면 간단하게 체크 가능
+
+- 삼항연산자를 사용하는 경우 바깥쪽에  ""가 있으면 내부 EL에는 ''를 사용 가능
+
+#### 게시물의 목록에 댓글 수 포함 (게시물 제목 옆에 댓글 수가 표시되도록...)
+- 제목 옆에 span 태그를 추가해 댓글 갯수를 받아서 출력
+- sql의 쿼리가 복잡해지는 것을 view를 사용하면 간결하고 가독성 높게 작성 가능
+
+#### 관리자 페이지
+- 필요한 서비스 목록을 조사하고 추가하기
+- 컨트롤러에 추가하고 서비스에 연결, 서비스는 DAO에게 요청
+
+
+  
+  
