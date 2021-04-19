@@ -219,36 +219,36 @@
   - 지정 양식으로 쿼리 작성하면 이전과 같이 정상 작동
   - xml 파일 작성 예시([참고자료](https://github.com/jhs512/untactTeacher/commit/435d48acb44986325e9afc1696fc53ac4e3c6ce8))
 
-```sql
- <insert id="ad Article" seGeneratedKeys="true" keyProperty="id">
-		 INSERT INTO article
-		 SET regDate = NOW(),
-		 updateDate = NOW(),
-		 title = #{title},
-		 title = #{title},
-		 `body` = #{body}
- </insert>
-```
+  ```sql
+   <insert id="ad Article" seGeneratedKeys="true" keyProperty="id">
+       INSERT INTO article
+       SET regDate = NOW(),
+       updateDate = NOW(),
+       title = #{title},
+       title = #{title},
+       `body` = #{body}
+   </insert>
+  ```
 
 - xml에서도 if문 사용 가능
 
-```sql
-	<select id="getArticles" resultType="Article">
-		SELECT *
-		FROM article
-		WHERE 1
-		<if test="searchKeywordType == 'title'">
-			AND title LIKE CONCAT('%', #{searchKeyword}, '%')
-		</if>
-		<if test="searchKeywordType == 'body'">
-			AND `body` LIKE CONCAT('%', #{searchKeyword}, '%')
-		</if>
-		<if test="searchKeywordType == 'titleAndBody'">
-			AND (title LIKE CONCAT('%', #{searchKeyword}, '%') OR `body` LIKE CONCAT('%', #{searchKeyword}, '%'))
-		</if>
-		ORDER BY id DESC
-	</select>
-```
+  ```sql
+    <select id="getArticles" resultType="Article">
+      SELECT *
+      FROM article
+      WHERE 1
+      <if test="searchKeywordType == 'title'">
+        AND title LIKE CONCAT('%', #{searchKeyword}, '%')
+      </if>
+      <if test="searchKeywordType == 'body'">
+        AND `body` LIKE CONCAT('%', #{searchKeyword}, '%')
+      </if>
+      <if test="searchKeywordType == 'titleAndBody'">
+        AND (title LIKE CONCAT('%', #{searchKeyword}, '%') OR `body` LIKE CONCAT('%', #{searchKeyword}, '%'))
+      </if>
+      ORDER BY id DESC
+    </select>
+  ```
 
 - 쿼리로거 적용하여, 콘솔에 실행되는 쿼리가 출력되도록 세팅 가능[[참고자료](https://www.youtube.com/watch?v=kbE_fOR4aD4)]
 
@@ -306,12 +306,12 @@
 
 - INSERT의 경우 아래와 같이 한번에 입력이 가능
 
-```sql
-insert into article
-(regDate, updateDate, memberId, title, `body`)
-SELECT NOW(), NOW(), FLOOR(RAND() * 2) + 1, CONCAT('제목_', FLOOR(RAND() * 1000) + 1), CONCAT('내용_', FLOOR(RAND() * 1000) + 1)
-from article;
-```
+  ```sql
+  insert into article
+  (regDate, updateDate, memberId, title, `body`)
+  SELECT NOW(), NOW(), FLOOR(RAND() * 2) + 1, CONCAT('제목_', FLOOR(RAND() * 1000) + 1), CONCAT('내용_', FLOOR(RAND() * 1000) + 1)
+  from article;
+  ```
 
 - 동적 SQL
 - LIMIT 구문
@@ -375,9 +375,9 @@ from article;
 - 따라서 실무에서는 list를 대부분 사용하여 융통성을 줄 수 있게 운영
   - 예시
 
-```
-list<article> articles = new arrayList<>();
-```
+  ```
+  list<article> articles = new arrayList<>();
+  ```
 
 - <>안은 Generic으로 생성할 타입을 선언
 - list에 추가되는 객체들의 타입을 확인하여 오류 검출
@@ -461,53 +461,53 @@ list<article> articles = new arrayList<>();
 
 - java에서 mySQL을 사용하기 위해 사용하는 JDBC
 
-```
-		// JDBC
-		// 1. Driver 찾기 - 찾은 드라이버는 DriverManager로 사용 가능
-		Class.forName("com.mysql.cj.jdbc.Driver");
+  ```
+      // JDBC
+      // 1. Driver 찾기 - 찾은 드라이버는 DriverManager로 사용 가능
+      Class.forName("com.mysql.cj.jdbc.Driver");
 
-		// 2. DBMS에 연결
+      // 2. DBMS에 연결
 
-		String url = "jdbc:mysql://localhost:3306/board?serverTimezone=UTC";
-		String id = "sbsst"; // root
-		String pw = "sbs123414"; // "";
+      String url = "jdbc:mysql://localhost:3306/board?serverTimezone=UTC";
+      String id = "sbsst"; // root
+      String pw = "sbs123414"; // "";
 
-		Connection conn = DriverManager.getConnection(url, id, pw); // 연결.
+      Connection conn = DriverManager.getConnection(url, id, pw); // 연결.
 
-		// 3. sql 문을 실행.
-		// 3.1 - 실행할 sql문
-		String sql = "SELECT * FROM article";
+      // 3. sql 문을 실행.
+      // 3.1 - 실행할 sql문
+      String sql = "SELECT * FROM article";
 
-		// 3.2 - 작성된 sql문을 DBMS에 전달.
-		// Connection - 팀장.  실무자 - Statement
-		// sql처리 실무자 파견
+      // 3.2 - 작성된 sql문을 DBMS에 전달.
+      // Connection - 팀장.  실무자 - Statement
+      // sql처리 실무자 파견
 
-		// 자동임포트 : ctrl + shift + o
-		Statement stmt = conn.createStatement();
+      // 자동임포트 : ctrl + shift + o
+      Statement stmt = conn.createStatement();
 
-		// 3.3 - DBMS에서 가져온 데이터를 ResultSet으로 담아 옴.
-		// ResultSet -> 조회 결과물(데이터)을 담는 상자.
-		ResultSet rs = stmt.executeQuery(sql); // 조회 결과가 있는 경우 => select 문
-		// stmt.executeUpdate(sql); // 조회 결과 없이 DB에 반영만 하는 경우 => insert, update, delete
+      // 3.3 - DBMS에서 가져온 데이터를 ResultSet으로 담아 옴.
+      // ResultSet -> 조회 결과물(데이터)을 담는 상자.
+      ResultSet rs = stmt.executeQuery(sql); // 조회 결과가 있는 경우 => select 문
+      // stmt.executeUpdate(sql); // 조회 결과 없이 DB에 반영만 하는 경우 => insert, update, delete
 
 
-		// 4. next메서드로 커서를 이동시켜 각 row들의 데이터를 읽어옴
-		while(rs.next()) {
-			String title = rs.getString("title"); // 해당 커서가 위치한 row의 title 컬럼 데이터를 반환.
-			System.out.println(title);
-		}
+      // 4. next메서드로 커서를 이동시켜 각 row들의 데이터를 읽어옴
+      while(rs.next()) {
+        String title = rs.getString("title"); // 해당 커서가 위치한 row의 title 컬럼 데이터를 반환.
+        System.out.println(title);
+      }
 
-		// 사용한 자원들 반납
-		if(rs != null) {
-			rs.close();
-		}
-		if(stmt != null) {
-			stmt.close();
-		}
-		if(conn != null) {
-			conn.close();
-		}
-```
+      // 사용한 자원들 반납
+      if(rs != null) {
+        rs.close();
+      }
+      if(stmt != null) {
+        stmt.close();
+      }
+      if(conn != null) {
+        conn.close();
+      }
+  ```
 
 - 반복적으로 사용하는 부분은 묶어서 재사용하면 반복되는 부분이 많아 생각보다 사용하기가 쉬움
 - sql 쿼리를 잘 작성해야 원하는 결과를 도출할 수가 있음
@@ -531,53 +531,53 @@ list<article> articles = new arrayList<>();
   - 변수는 #{}안에 표기
   - 코드 예시
 
-```
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  ```
+  <?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.sbs.untact.dao.ArticleDao">
+  <mapper namespace="com.sbs.untact.dao.ArticleDao">
 
-<select id="getArticleById" resultType="Article">
-		SELECT *
-		FROM article AS A
-		WHERE A.id = #{id}
-		AND A.delStatus = 0
-	</select>
+  <select id="getArticleById" resultType="Article">
+      SELECT *
+      FROM article AS A
+      WHERE A.id = #{id}
+      AND A.delStatus = 0
+    </select>
 
-	<select id="getLastInsertId" resultType="int">
-		SELECT LAST_INSERT_ID()
-	</select>
+    <select id="getLastInsertId" resultType="int">
+      SELECT LAST_INSERT_ID()
+    </select>
 
-	<update id="modifyArticle">
-		UPDATE article
-		SET updateDate = NOW(),
-		title =
-		#{title},
-		body = #{body}
-		WHERE id = #{id}
-	</update>
+    <update id="modifyArticle">
+      UPDATE article
+      SET updateDate = NOW(),
+      title =
+      #{title},
+      body = #{body}
+      WHERE id = #{id}
+    </update>
 
-	<insert id="writeArticle">
-		INSERT INTO article
-		SET regDate = NOW(),
-		updateDate = NOW(),
-		boardId = #{boardId},
-		memberId = #{memberId},
-		title = #{title},
-		body = #{body}
-	</insert>
+    <insert id="writeArticle">
+      INSERT INTO article
+      SET regDate = NOW(),
+      updateDate = NOW(),
+      boardId = #{boardId},
+      memberId = #{memberId},
+      title = #{title},
+      body = #{body}
+    </insert>
 
-	<update id="deleteArticleById">
-		UPDATE article
-		SET delStatus = 1,
-		delDate = NOW()
-		WHERE id = #{id}
-	</update>
+    <update id="deleteArticleById">
+      UPDATE article
+      SET delStatus = 1,
+      delDate = NOW()
+      WHERE id = #{id}
+    </update>
 
-</mapper>
-```
+  </mapper>
+  ```
 
 - jsp 연결
   - MpaUsrHomeController를 통해 메인페이지 구현
@@ -685,95 +685,95 @@ list<article> articles = new arrayList<>();
 - java에서 개발한 C버전으로 사용
 - jsp 파일에 아래의 코드 추가
 
-```
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-```
+  ```
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+  ```
 
 - pom.xml에 아래의 코드 추가
 
-```
-		<!-- SQL 로거 -->
-		<dependency>
-			<groupId>org.bgee.log4jdbc-log4j2</groupId>
-			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
-			<version>1.16</version>
-		</dependency>
+  ```
+      <!-- SQL 로거 -->
+      <dependency>
+        <groupId>org.bgee.log4jdbc-log4j2</groupId>
+        <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+        <version>1.16</version>
+      </dependency>
 
-```
+  ```
 
 - 자바문법과 JSTL 코드 비교
 
-```
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<h1> EL/JSTL 연습</h1>
+  ```
+  <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  </head>
+  <body>
+  <h1> EL/JSTL 연습</h1>
 
-<!-- 변수 선언 -->
-<%
-	int num = 21;
-%>
-<c:set var="num2" value="11" />
+  <!-- 변수 선언 -->
+  <%
+    int num = 21;
+  %>
+  <c:set var="num2" value="11" />
 
-<!-- 변수 출력 -->
-<%
-	out.println("jsp : " + num);
-%>
-<br>
-<c:out value="jstl : ${num2}" />
-<br>
-<!-- 조건문 -->
-<%
-	if(num % 2 == 0) {
-		out.println("even");
-	}
-	if(num % 2 == 1){
-		out.println("odd");
-	}
+  <!-- 변수 출력 -->
+  <%
+    out.println("jsp : " + num);
+  %>
+  <br>
+  <c:out value="jstl : ${num2}" />
+  <br>
+  <!-- 조건문 -->
+  <%
+    if(num % 2 == 0) {
+      out.println("even");
+    }
+    if(num % 2 == 1){
+      out.println("odd");
+    }
 
-	if(num % 2 == 0) {
-		out.println("even");
-	} else {
-		out.println("odd");
-	}
-%>
-<c:if test ="${num2 % 2 == 0}">
-	even
-</c:if>
-<c:if test ="${num2 % 2 == 1}">
-	even
-</c:if>
+    if(num % 2 == 0) {
+      out.println("even");
+    } else {
+      out.println("odd");
+    }
+  %>
+  <c:if test ="${num2 % 2 == 0}">
+    even
+  </c:if>
+  <c:if test ="${num2 % 2 == 1}">
+    even
+  </c:if>
 
-<c:choose>
-	<c:when test="${num2 % 2 == 0}">
-		even
-	</c:when>
-	<c:otherwise>
-		odd
-	</c:otherwise>
-</c:choose>
-<br>
-<!-- 반복문 -->
-<%
-	for(int i = 1; i <= 10; i++) {
-		out.println(i + " ");
-	}
-%>
-<br>
-<c:forEach var="i" begin="1" end="10" step="1">
-	${i}
-</c:forEach>
+  <c:choose>
+    <c:when test="${num2 % 2 == 0}">
+      even
+    </c:when>
+    <c:otherwise>
+      odd
+    </c:otherwise>
+  </c:choose>
+  <br>
+  <!-- 반복문 -->
+  <%
+    for(int i = 1; i <= 10; i++) {
+      out.println(i + " ");
+    }
+  %>
+  <br>
+  <c:forEach var="i" begin="1" end="10" step="1">
+    ${i}
+  </c:forEach>
 
-</body>
-</html>
-```
+  </body>
+  </html>
+  ```
 
 - Model model, model.addAttribute("", ) => 관련 내용 확인 필요 / ""안의 변수를 jsp에서 사용 가능하게 해줌
 
@@ -781,9 +781,9 @@ list<article> articles = new arrayList<>();
   - HttpsServletRequest로도 가능
   - Servlet 정리 요망
 
-```
-import javax.servlet.http.HttpServletRequest;
-```
+  ```
+  import javax.servlet.http.HttpServletRequest;
+  ```
 
 - jsp에서 java controller에서 얻은 결과가 담긴 변수를 활용할 수 있게 해줌
 - jsp에서는 변수를 ${변수}와 같이 표현식에 담아야 함
@@ -800,16 +800,15 @@ import javax.servlet.http.HttpServletRequest;
 
 - 여러 개의 데이터 출력시 마지막에는 콤마가 출력되지 않게 하는 코드
 
-```
-        for(int i=0; i< interest.length;i++)
-        {
-            if(i+1 == interest.length) {
-                out.println(interest[i]);
-            }else {
-                out.println(interest[i]+",");
-            }
-        }
-```
+  ```
+  for(int i=0; i< interest.length;i++) {
+    if(i+1 == interest.length) {
+      out.println(interest[i]);
+    } else {
+        out.println(interest[i]+",");
+    }
+  }
+  ```
 
 ---
 
@@ -841,17 +840,17 @@ import javax.servlet.http.HttpServletRequest;
       - Thread와 관련된 중요 클래스들이 java.lang패키지
       - 이외에도 다양한 클래스와 인터페이스가 java.lang패키지에 속해 있다.
 
-```
-    public class WrapperExam {
-        public static void main(String[] args) {
+      ```
+        public class WrapperExam {
+          public static void main(String[] args) {
             int i = 5; 
             Integer i2 = new Integer(5);
             Integer i3 = 5;     //오토박싱
             int i4 = i2.intValue();
             int i5 = i2;       //오토언박싱
+          }
         }
-    }
-```
+      ```
 - 
   - 
     - 오토박싱(Auto Boxing)
@@ -897,41 +896,39 @@ import javax.servlet.http.HttpServletRequest;
     - IO의 모든 객체들은 사용이 끝나면 항상 닫아줘야함
       - 아래의 코드 참조
     
-```
-    public class ByteIOExam1 {
-        public static void main(String[] args){     
-            FileInputStream fis = null; 
-            FileOutputStream fos = null;        
-            try {
-                fis = new FileInputStream("src/javaIO/exam/ByteExam1.java");
-                fos = new FileOutputStream("byte.txt");
+      ```
+          public class ByteIOExam1 {
+              public static void main(String[] args){     
+                  FileInputStream fis = null; 
+                  FileOutputStream fos = null;        
+                  try {
+                      fis = new FileInputStream("src/javaIO/exam/ByteExam1.java");
+                      fos = new FileOutputStream("byte.txt");
 
-                int readData = -1; 
-                while((readData = fis.read())!= -1){
-                    fos.write(readData);
-                }           
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }finally{
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                try {
-                    fis.close();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-```
-- 
-  - 
+                      int readData = -1; 
+                      while((readData = fis.read())!= -1){
+                          fos.write(readData);
+                      }           
+                  } catch (Exception e) {
+                      // TODO Auto-generated catch block
+                      e.printStackTrace();
+                  }finally{
+                      try {
+                          fos.close();
+                      } catch (IOException e) {
+                          // TODO Auto-generated catch block
+                          e.printStackTrace();
+                      }
+                      try {
+                          fis.close();
+                      } catch (IOException e) {
+                          // TODO Auto-generated catch block
+                          e.printStackTrace();
+                      }
+                  }
+              }
+          }                    
+      ```
     - Char 단위 입출력(console)
       - char단위 입출력 클래스는 클래스 이름이 Reader나 Writer로 끝남
       - char단위 입출력 클래스를 이용해서 키보드로 부터 한줄 입력 받아서 콘솔에 출력
@@ -940,30 +937,27 @@ import javax.servlet.http.HttpServletRequest;
         - BufferedReader 클래스의 생성자는 InputStream을 입력받는 생성자가 없음
         - System.in은 InputStream 타입이므로 BufferedReader의 생성자에 바로 들어갈 수 없으므로 InputStreamReader 클래스를 이용해야함
     
-```
-    import java.io.BufferedReader;
-    import java.io.FileWriter;
-    import java.io.IOException;
-    import java.io.InputStreamReader;
-    import java.io.PrintWriter; 
-    public class CharIOExam01 {
-        public static void main(String[] args) {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            //키보드로 입력받은 문자열을 저장하기 위해 line변수를 선언               
-            String line = null;     
-            try {
-                line = br.readLine()
-            } catch (IOException e) {
-                e.printStackTrace();
+        ```
+        import java.io.BufferedReader;
+        import java.io.FileWriter;
+        import java.io.IOException;
+        import java.io.InputStreamReader;
+        import java.io.PrintWriter; 
+        public class CharIOExam01 {
+            public static void main(String[] args) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                //키보드로 입력받은 문자열을 저장하기 위해 line변수를 선언               
+                String line = null;     
+                try {
+                    line = br.readLine()
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //콘솔에 출력 
+                System.out.println(line);
             }
-            //콘솔에 출력 
-            System.out.println(line);
         }
-    }
-```
-
-
-
+        ```
 
 ---
 
@@ -985,36 +979,36 @@ import javax.servlet.http.HttpServletRequest;
         - 편리하게 출력하기 위해서 PrintWriter 클래스 이용
         - 예시코드
 
-```java
-    import java.io.BufferedReader;
-    import java.io.FileReader;
-    import java.io.FileWriter;
-    import java.io.IOException;
-    import java.io.PrintWriter; 
-    public class CharIOExam02 {
-        public static void main(String[] args) {
-            BufferedReader br = null; 
-            PrintWriter pw = null;
-            try{        
-                br = new BufferedReader(new FileReader("src/javaIO/exam/CharIOExam02.java"));
-                pw = new PrintWriter(new FileWriter("test.txt"));
-                String line = null;
-                while((line = br.readLine())!= null){
-                    pw.println(line);
-                }
-            }catch(Exception e){
-                e.printStackTrace();
-            }finally {
-                pw.close();
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+        ```java
+            import java.io.BufferedReader;
+            import java.io.FileReader;
+            import java.io.FileWriter;
+            import java.io.IOException;
+            import java.io.PrintWriter; 
+            public class CharIOExam02 {
+                public static void main(String[] args) {
+                    BufferedReader br = null; 
+                    PrintWriter pw = null;
+                    try{        
+                        br = new BufferedReader(new FileReader("src/javaIO/exam/CharIOExam02.java"));
+                        pw = new PrintWriter(new FileWriter("test.txt"));
+                        String line = null;
+                        while((line = br.readLine())!= null){
+                            pw.println(line);
+                        }
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }finally {
+                        pw.close();
+                        try {
+                            br.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
-        }
-    }
-```
+        ```
 
 
   - 파트6. 어노테이션
@@ -1030,52 +1024,51 @@ import javax.servlet.http.HttpServletRequest;
     - 패키지 익스플로러에서 [new - Annotation]을 이용하여 Count100이라는 어노테이션 생성 (예제)
       - Count100어노테이션을 JVM실행시에 감지할 수 있도록 하려면 @Retention(RetentionPolicy.RUNTIME)를 붙여줘야 함
       
-```
-  import java.lang.annotation.Retention;
-  import java.lang.annotation.RetentionPolicy;
+      ```
+        import java.lang.annotation.Retention;
+        import java.lang.annotation.RetentionPolicy;
 
-  @Retention(RetentionPolicy.RUNTIME) public @interface Count100 {
+        @Retention(RetentionPolicy.RUNTIME) public @interface Count100 {
 
-  }
-```
-- -       
+        }
+      ```
+    
   - "hello"를 출력하는 hello()메소드를 가지는 MyHello라는 클래스를 작성
     - hello메소드 위에 @Count100 어노테이션을 붙임
   
-```
-    public class MyHello {
-        @Count100
-        public void hello(){
-            System.out.println("hello");
-        }
-    }
-```
-
-- -       
+      ```
+          public class MyHello {
+              @Count100
+              public void hello(){
+                  System.out.println("hello");
+              }
+          }
+      ```
+    
   - MyHello클래스를 이용하는 MyHelloExam클래스를 작성
     - MyHello의 hello메소드가 @Count100어노테이션이 설정되어 있을 경우, hello()메소드를 100번 호출
-```
-    import java.lang.reflect.Method;
+    ```
+        import java.lang.reflect.Method;
 
-    public class MyHelloExam {
-        public static void main(String[] args) {
-            MyHello hello = new MyHello();
+        public class MyHelloExam {
+            public static void main(String[] args) {
+                MyHello hello = new MyHello();
 
-            try{
-                Method method = hello.getClass().getDeclaredMethod("hello");
-            if(method.isAnnotationPresent(Count100.class)){
-                    for(int i = 0; i < 100; i++){
+                try{
+                    Method method = hello.getClass().getDeclaredMethod("hello");
+                if(method.isAnnotationPresent(Count100.class)){
+                        for(int i = 0; i < 100; i++){
+                            hello.hello();
+                        }
+                    }else{
                         hello.hello();
                     }
-                }else{
-                    hello.hello();
-                }
-            }catch(Exception ex){
-                ex.printStackTrace();
-            }       
+                }catch(Exception ex){
+                    ex.printStackTrace();
+                }       
+            }
         }
-    }
-```
+    ```
 
   
   - 파트7. 쓰레드
@@ -1085,94 +1078,89 @@ import javax.servlet.http.HttpServletRequest;
       - Thread를 상속 받아서 쓰레드를 생성하는 방법
         - java.lang.Thread클래스를 상속받는다. 그리고 Thread가 가지고 있는 run()메소드를 오버라이딩
         - 10번 반복하면서 str을 출력
-```
-    public class MyThread1 extends Thread {
-        String str;
-        public MyThread1(String str){
-            this.str = str;
-        }
-
-        public void run(){
-            for(int i = 0; i < 10; i ++){
-                System.out.print(str);
-                try {
-                    //컴퓨터가 너무 빠르기 때문에 수행결과를 잘 확인 할 수 없어서 Thread.sleep() 메서드를 이용해서 조금씩 
-                    //쉬었다가 출력할 수 있게한다. 
-                    Thread.sleep((int)(Math.random() * 1000));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        ```
+            public class MyThread1 extends Thread {
+                String str;
+                public MyThread1(String str){
+                    this.str = str;
                 }
-            } 
-        } 
-    }
-```
-- 
-  - 
+
+                public void run(){
+                    for(int i = 0; i < 10; i ++){
+                        System.out.print(str);
+                        try {
+                            //컴퓨터가 너무 빠르기 때문에 수행결과를 잘 확인 할 수 없어서 Thread.sleep() 메서드를 이용해서 조금씩 
+                            //쉬었다가 출력할 수 있게한다. 
+                            Thread.sleep((int)(Math.random() * 1000));
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } 
+                } 
+            }
+        ```
+
     - Thread 클래스를 상속받은 MyThread1을 사용하는 클래스
       - Thread를 상속 받았으므로 MyThread1은 Thread
       - 쓰레드를 생성하고, Thread 클래스가 가지고 있는 start() 메소드를 호출
       
-```
-    public class ThreadExam1 {
-        public static void main(String[] args) {
-            // MyThread인스턴스를 2개 만듭니다. 
-            MyThread1 t1 = new MyThread1("*");
-            MyThread1 t2 = new MyThread1("-");
+      ```
+          public class ThreadExam1 {
+              public static void main(String[] args) {
+                  // MyThread인스턴스를 2개 만듭니다. 
+                  MyThread1 t1 = new MyThread1("*");
+                  MyThread1 t2 = new MyThread1("-");
 
-            t1.start();
-            t2.start();
-            System.out.print("!!!!!");  
-        }   
-    }
-```
-
-- 
-  -        
+                  t1.start();
+                  t2.start();
+                  System.out.print("!!!!!");  
+              }   
+          }
+      ```
+       
     - 쓰레드 예제 2)
       - Runnable인터페이스를 구현해서 쓰레드를 만드는 방법
         - Runable 인터페이스가 가지고 있는 run()메소드를 구현
-```
-    public class MyThread2 implements Runnable {
-        String str;
-        public MyThread2(String str){
-            this.str = str;
-        }
-
-        public void run(){
-            for(int i = 0; i < 10; i ++){
-                System.out.print(str);
-                try {
-                    Thread.sleep((int)(Math.random() * 1000));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        ```
+            public class MyThread2 implements Runnable {
+                String str;
+                public MyThread2(String str){
+                    this.str = str;
                 }
-            } 
-        } 
-    }
-```
-- 
-  - 
+
+                public void run(){
+                    for(int i = 0; i < 10; i ++){
+                        System.out.print(str);
+                        try {
+                            Thread.sleep((int)(Math.random() * 1000));
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } 
+                } 
+            }
+        ```
     - Runable 인터페이스를 구현한 MyThread2 사용하는 방법
       - MyThread2는 Thread를 상속받지 않았기 때문에 Thread가 아님
       - Thread를 생성하고, 해당 생성자에 MyThread2를 넣어서 Thread를 생성
       - Thread 클래스가 가진 start()메소드를 호출
       
-```
-    public class ThreadExam2 {  
-        public static void main(String[] args) {
-            MyThread2 r1 = new MyThread2("*");
-            MyThread2 r2 = new MyThread2("-");
+      ```
+          public class ThreadExam2 {  
+              public static void main(String[] args) {
+                  MyThread2 r1 = new MyThread2("*");
+                  MyThread2 r2 = new MyThread2("-");
 
-            Thread t1 = new Thread(r1);
-            Thread t2 = new Thread(r2);
+                  Thread t1 = new Thread(r1);
+                  Thread t2 = new Thread(r2);
 
-            t1.start();
-            t2.start();
-            System.out.print("!!!!!");  
-        }   
-    }
-```
-- 
+                  t1.start();
+                  t2.start();
+                  System.out.print("!!!!!");  
+              }   
+          }
+      ```
+
   - 동기화 메소드와 동기화 블록
     - 공유객체가 가진 메소드를 동시에 호출 되지 않도록 하는 방법
       - 메소드 앞에 synchronized 를 붙임
@@ -1205,26 +1193,26 @@ import javax.servlet.http.HttpServletRequest;
     - HttpServlet 클래스를 상속받아서 만들며, init(), doGet(), destroy() 메서드를 오버라이딩해서 기능을 구현
   - 사용자 정의 서블릿 형식
   
-```
-  public class FirstServlet extends HttpServlet {
-    @Override
-    public void init() {
-      ...
-    }
+    ```
+      public class FirstServlet extends HttpServlet {
+        @Override
+        public void init() {
+          ...
+        }
+
+        @Override
+        public void doGet(HttpServletRequest req, HttpServletResponse resp) {
+          ...
+        }
+
+        @Override
+        public void destroy() {
+          ...
+        }
+
+      }
+    ```
     
-    @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) {
-      ...
-    }
-    
-    @Override
-    public void destroy() {
-      ...
-    }
-    
-  }
-```
-- 
   - 톰갯의 servlet-api.jar 클래스 패스 설정하기
       - 이클립스 상단의 New 아이콘을 클릭한 후 Dynamic Web Project를 선택
       - 경로확인 후 Generate web.xml deployment descriptor 옵션의 체크박스에 체크한 후 Finish 클릭
@@ -1404,54 +1392,54 @@ import javax.servlet.http.HttpServletRequest;
   - 데이터베이스의 유지, 보수를 고려한 구조를 구축해야 함
   - 가시적으로 데이터베이스를 만들어 시뮬레이션을 하고 물리적으로 작성 후 아래와 같이 쿼리를 자동 작성해서 사용이 가능
   
-```sql
-DROP DATABASE IF EXISTS simpleBoard;
+    ```sql
+    DROP DATABASE IF EXISTS simpleBoard;
 
-CREATE DATABASE simpleBoard;
+    CREATE DATABASE simpleBoard;
 
-USE simpleBoard;
+    USE simpleBoard;
 
-CREATE TABLE `member`
-(
-    `id`            INT         NULL        AUTO_INCREMENT COMMENT '번호', 
-    `userId`        CHAR(30)    NOT NULL    COMMENT '아이디', 
-    `userPw`        CHAR(30)    NOT NULL    COMMENT '비밀번호', 
-    `userName`      CHAR(30)    NOT NULL    COMMENT '이름', 
-    `userNickname`  CHAR(30)    NOT NULL    COMMENT '닉네임', 
-    PRIMARY KEY (id)
-);
+    CREATE TABLE `member`
+    (
+        `id`            INT         NULL        AUTO_INCREMENT COMMENT '번호', 
+        `userId`        CHAR(30)    NOT NULL    COMMENT '아이디', 
+        `userPw`        CHAR(30)    NOT NULL    COMMENT '비밀번호', 
+        `userName`      CHAR(30)    NOT NULL    COMMENT '이름', 
+        `userNickname`  CHAR(30)    NOT NULL    COMMENT '닉네임', 
+        PRIMARY KEY (id)
+    );
 
-CREATE TABLE board
-(
-    `id`          INT         NOT NULL    AUTO_INCREMENT COMMENT '번호', 
-    `board_name`  CHAR(30)    NOT NULL    COMMENT '게시판 이름', 
-    PRIMARY KEY (id)
-);
+    CREATE TABLE board
+    (
+        `id`          INT         NOT NULL    AUTO_INCREMENT COMMENT '번호', 
+        `board_name`  CHAR(30)    NOT NULL    COMMENT '게시판 이름', 
+        PRIMARY KEY (id)
+    );
 
-CREATE TABLE reply
-(
-    `id`              INT         NOT NULL    AUTO_INCREMENT COMMENT '번호', 
-    `boardId`         INT         NOT NULL    COMMENT '게시판 번호', 
-    `boardArticleId`  INT         NOT NULL    COMMENT '게시글 번호', 
-    `writerId`        INT         NOT NULL    COMMENT '작성자 번호', 
-    `userNickname`    CHAR(30)    NOT NULL    COMMENT '작성자', 
-    `body`            TEXT        NOT NULL    COMMENT '내용', 
-    PRIMARY KEY (id)
-);
+    CREATE TABLE reply
+    (
+        `id`              INT         NOT NULL    AUTO_INCREMENT COMMENT '번호', 
+        `boardId`         INT         NOT NULL    COMMENT '게시판 번호', 
+        `boardArticleId`  INT         NOT NULL    COMMENT '게시글 번호', 
+        `writerId`        INT         NOT NULL    COMMENT '작성자 번호', 
+        `userNickname`    CHAR(30)    NOT NULL    COMMENT '작성자', 
+        `body`            TEXT        NOT NULL    COMMENT '내용', 
+        PRIMARY KEY (id)
+    );
 
-CREATE TABLE article
-(
-    `id`            INT         NOT NULL    AUTO_INCREMENT COMMENT '번호', 
-    `boardId`       INT         NOT NULL    COMMENT '게시판 번호', 
-    `title`         CHAR(50)    NOT NULL    COMMENT '제목', 
-    `body`          TEXT        NOT NULL    COMMENT '내용', 
-    `writerId`      INT         NOT NULL    COMMENT '작성자 번호', 
-    `userNickname`  CHAR(30)    NOT NULL    COMMENT '작성자', 
-    `hit`           INT         NOT NULL    COMMENT '조회수', 
-    PRIMARY KEY (id)
-);
+    CREATE TABLE article
+    (
+        `id`            INT         NOT NULL    AUTO_INCREMENT COMMENT '번호', 
+        `boardId`       INT         NOT NULL    COMMENT '게시판 번호', 
+        `title`         CHAR(50)    NOT NULL    COMMENT '제목', 
+        `body`          TEXT        NOT NULL    COMMENT '내용', 
+        `writerId`      INT         NOT NULL    COMMENT '작성자 번호', 
+        `userNickname`  CHAR(30)    NOT NULL    COMMENT '작성자', 
+        `hit`           INT         NOT NULL    COMMENT '조회수', 
+        PRIMARY KEY (id)
+    );
 
-```
+    ```
   
 ### Spring
 
@@ -1465,68 +1453,68 @@ CREATE TABLE article
   
 - [게시물 데이터 빠르게 추가하는 SQL 쿼리 참고 동영상](https://www.youtube.com/watch?v=UmMJ7Qf_RzE)
   - [SQL 쿼리](https://github.com/jhs512/untactTeacher/commit/33f04df237d1e4ead4c301fa0b36c9fe6ec55fc8)
-```sql
-  INSERT INTO article
-(regDate, updateDate, memberId, title, `body`, boardId)
-SELECT NOW(),
-NOW(),
-FLOOR(RAND() * 2) + 1,
-CONCAT('제목_', FLOOR(RAND() * 1000) + 1),
-CONCAT('내용_', FLOOR(RAND() * 1000) + 1),
-FLOOR(RAND() * 2) + 1
-FROM article;
-```
+    ```sql
+      INSERT INTO article
+    (regDate, updateDate, memberId, title, `body`, boardId)
+    SELECT NOW(),
+    NOW(),
+    FLOOR(RAND() * 2) + 1,
+    CONCAT('제목_', FLOOR(RAND() * 1000) + 1),
+    CONCAT('내용_', FLOOR(RAND() * 1000) + 1),
+    FLOOR(RAND() * 2) + 1
+    FROM article;
+    ```
   
 - 페이지 구현에 유용한 util
   - 페이지 클릭시 기존 검색 쿼리가 담긴 주소가 날라가는 것을 방지하기 위한 코드를 간편하게 구현해주는 유틸
   - 변경된 파라미터와 값을 이용해 새 쿼리 주소 생성
   - 아래의 코드가 활용할 util
   
-```java
-	public static String getNewUrlRemoved(String uri, String paramName) {
-		String deleteStrStarts = paramName + "=";
-		int delStartPos = uri.indexOf(deleteStrStarts);
+    ```java
+      public static String getNewUrlRemoved(String uri, String paramName) {
+        String deleteStrStarts = paramName + "=";
+        int delStartPos = uri.indexOf(deleteStrStarts);
 
-		if (delStartPos != -1) {
-			int delEndPos = uri.indexOf("&", delStartPos);
+        if (delStartPos != -1) {
+          int delEndPos = uri.indexOf("&", delStartPos);
 
-			if (delEndPos != -1) {
-				delEndPos++;
-				uri = uri.substring(0, delStartPos) + uri.substring(delEndPos, uri.length());
-			} else {
-				uri = uri.substring(0, delStartPos);
-			}
-		}
+          if (delEndPos != -1) {
+            delEndPos++;
+            uri = uri.substring(0, delStartPos) + uri.substring(delEndPos, uri.length());
+          } else {
+            uri = uri.substring(0, delStartPos);
+          }
+        }
 
-		if (uri.charAt(uri.length() - 1) == '?') {
-			uri = uri.substring(0, uri.length() - 1);
-		}
+        if (uri.charAt(uri.length() - 1) == '?') {
+          uri = uri.substring(0, uri.length() - 1);
+        }
 
-		if (uri.charAt(uri.length() - 1) == '&') {
-			uri = uri.substring(0, uri.length() - 1);
-		}
+        if (uri.charAt(uri.length() - 1) == '&') {
+          uri = uri.substring(0, uri.length() - 1);
+        }
 
-		return uri;
-	}
+        return uri;
+      }
 
-	public static String getNewUrl(String uri, String paramName, String paramValue) {
-		uri = getNewUrlRemoved(uri, paramName);
+      public static String getNewUrl(String uri, String paramName, String paramValue) {
+        uri = getNewUrlRemoved(uri, paramName);
 
-		if (uri.contains("?")) {
-			uri += "&" + paramName + "=" + paramValue;
-		} else {
-			uri += "?" + paramName + "=" + paramValue;
-		}
+        if (uri.contains("?")) {
+          uri += "&" + paramName + "=" + paramValue;
+        } else {
+          uri += "?" + paramName + "=" + paramValue;
+        }
 
-		uri = uri.replace("?&", "?");
+        uri = uri.replace("?&", "?");
 
-		return uri;
-	}
+        return uri;
+      }
 
-	public static String getNewUriAndEncoded(String uri, String paramName, String pramValue) {
-		return getUrlEncoded(getNewUrl(uri, paramName, pramValue));
-	}
-```
+      public static String getNewUriAndEncoded(String uri, String paramName, String pramValue) {
+        return getUrlEncoded(getNewUrl(uri, paramName, pramValue));
+      }
+    ```
 
 
   
@@ -1558,51 +1546,51 @@ FROM article;
 #### [개발환경에 따른 설정을 달리해야할 때, application.yml 파일 설정을 통한 간편 관리 방법](https://galid1.tistory.com/664)
 - 예시코드
 
-```java
-spring:
-  profiles:
-    active: home
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp
+  ```java
+  spring:
+    profiles:
+      active: home
+    mvc:
+      view:
+        prefix: /WEB-INF/jsp/
+        suffix: .jsp
 
-server:
-  port: 8024
+  server:
+    port: 8024
 
-mybatis:
-  type-aliases-package: com.sbs.untact.dto
+  mybatis:
+    type-aliases-package: com.sbs.untact.dto
 
-custom:
-  logging:
-    dir: log
-    level: debug
-    
----
+  custom:
+    logging:
+      dir: log
+      level: debug
 
-spring:
-  profiles: local
-    
-  datasource:
-    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/insta?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
-    username: sbsst
-    password: sbs123414    
-    
----    
-    
-spring:
-  profiles: home
+  ---
 
-  datasource:
-    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/insta?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
-    username: root
-    password:  
+  spring:
+    profiles: local
 
-```
+    datasource:
+      driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      #driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:log4jdbc:mysql://127.0.0.1:3306/insta?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
+      username: sbsst
+      password: sbs123414    
+
+  ---    
+
+  spring:
+    profiles: home
+
+    datasource:
+      driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      #driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:log4jdbc:mysql://127.0.0.1:3306/insta?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
+      username: root
+      password:  
+
+  ```
 
 
 
@@ -1620,17 +1608,17 @@ spring:
 ### 자바 스크립트
 - 비동기식 처리
   - 콜백함수 활용
-  ```js
-  function getData(callbackFunc) {
-    $.get('url 주소/products/1', function(response) {
-      callbackFunc(response); // 서버에서 받은 데이터 response를 callbackFunc() 함수에 넘겨줌
-    });
-  }
+    ```js
+    function getData(callbackFunc) {
+      $.get('url 주소/products/1', function(response) {
+        callbackFunc(response); // 서버에서 받은 데이터 response를 callbackFunc() 함수에 넘겨줌
+      });
+    }
 
-  getData(function(tableData) {
-    console.log(tableData); // $.get()의 response 값이 tableData에 전달됨
-  });
-  ```
+    getData(function(tableData) {
+      console.log(tableData); // $.get()의 response 값이 tableData에 전달됨
+    });
+    ```
   
   - promise 활용
     - pending(대기)
@@ -1640,42 +1628,41 @@ spring:
     - 더 많은 예외 처리 상황을 위해 프로미스의 끝에 가급적이면 catch()를 붙이는 것을 권장
   
   
-  ```js
-  function getData(callback) {
-  // new Promise() 추가
-    return new Promise(function(resolve, reject) {
-      $.get('url 주소/products/1', function(response) {
-        // 데이터를 받으면 resolve() 호출
-        resolve(response);
-      });
-    });
-  }
+      ```js
+      function getData(callback) {
+      // new Promise() 추가
+        return new Promise(function(resolve, reject) {
+          $.get('url 주소/products/1', function(response) {
+            // 데이터를 받으면 resolve() 호출
+            resolve(response);
+          });
+        });
+      }
 
-  // getData()의 실행이 끝나면 호출되는 then()
-  getData().then(function(tableData) {
-    // resolve()의 결과 값이 여기로 전달됨
-    console.log(tableData); // $.get()의 reponse 값이 tableData에 전달됨
-  });
-  ```
-  
-- 
+      // getData()의 실행이 끝나면 호출되는 then()
+      getData().then(function(tableData) {
+        // resolve()의 결과 값이 여기로 전달됨
+        console.log(tableData); // $.get()의 reponse 값이 tableData에 전달됨
+      });
+      ```
+
   - async와 await 활용
     - 비동기 처리 함수 중 가장 최신의 문법으로 기본적으로 위에서 아래로 실행되는 기존의 프로그래밍 방식과 유사한 흐름으로 코딩이 가능
     
-    
-  ```js
-  function fetchItems() {
-    return new Promise(function(resolve, reject) {
-      var items = [1,2,3];
-      resolve(items)
-    });
-  }
 
-  async function logItems() {
-    var resultItems = await fetchItems();
-    console.log(resultItems); // [1,2,3]
-  }
-  ```
+      ```js
+      function fetchItems() {
+        return new Promise(function(resolve, reject) {
+          var items = [1,2,3];
+          resolve(items)
+        });
+      }
+
+      async function logItems() {
+        var resultItems = await fetchItems();
+        console.log(resultItems); // [1,2,3]
+      }
+      ```
   
 
 ---
@@ -1694,19 +1681,19 @@ spring:
     - input 태그의 accept 속성에 파일 형식을 지정하면 모든 파일이 아닌 지정한 파일 형식의 첨부만 가능
     
   - 테스트 데이터 대량 입력 sql 쿼리
-  ```sql
-  
-  INSERT INTO article
-  (regDate, updateDate, memberId, title, `body`, boardId)
-  SELECT NOW(),
-  NOW(),
-  FLOOR(RAND()*2)+1,
-  CONCAT('제목_', FLOOR(RAND()*1000)+1),
-  CONCAT('내용_', FLOOR(RAND()*1000)+1),
-  FLOOR(RAND()*2)+1,
-  FROM article;
-  
-  ```
+    ```sql
+
+    INSERT INTO article
+    (regDate, updateDate, memberId, title, `body`, boardId)
+    SELECT NOW(),
+    NOW(),
+    FLOOR(RAND()*2)+1,
+    CONCAT('제목_', FLOOR(RAND()*1000)+1),
+    CONCAT('내용_', FLOOR(RAND()*1000)+1),
+    FLOOR(RAND()*2)+1,
+    FROM article;
+
+    ```
   
   - 비동기 자바스크립트 코드를 콜백함수 사용 형식이 아닌 async, await이나 promise로 바꿔서 구현이 가능한지...
 
@@ -1714,12 +1701,12 @@ spring:
   - 전체 코드 리뷰, 분석, 정리 후 재작성
   - 기존 프로젝트와 병합 시도
 
-  ```java
-  import java.util.regex.Pattern;
+    ```java
+    import java.util.regex.Pattern;
 
-  // 문자로 시작하고 5~21자까지의 아이디만 허용하는 정규표현식
-  return Pattern.matches("^[a-zA-Z]{1}[a-zA-Z0-9_]{4,20}$", str);
-  ```
+    // 문자로 시작하고 5~21자까지의 아이디만 허용하는 정규표현식
+    return Pattern.matches("^[a-zA-Z]{1}[a-zA-Z0-9_]{4,20}$", str);
+    ```
 
 ### JavaScript
 - $(function(){ }); 의 사용
@@ -1788,18 +1775,18 @@ spring:
   - servlet은 요청이 있을 때 해당되는 프로그램만 실행되고 요청을 모두 수행하면 종료됨
   - 아래의 코드에서 true는 버퍼가 찰 때까지 기다리지 않고 출력을 하는 옵션 => 이 response 객체를 활용해 콘솔이 아닌 브라우저에 출력을 할 수 있음
   
-  ```java
-  OutputStream os = response.getOutSteam();
-  PrintStream out = new PrintStream(os, true);
-  out.println("Hello Servlet!!")
-  ```
+    ```java
+    OutputStream os = response.getOutSteam();
+    PrintStream out = new PrintStream(os, true);
+    out.println("Hello Servlet!!")
+    ```
   
   - 위와 같은 코드로 실제로는 아래의 코드를 많이 사용 (PrintWriter 활용) 
   
-  ```java
-  PrintWriter out = response.getWriter();
-  out.println("Hello Servlet!!");
-  ```
+    ```java
+    PrintWriter out = response.getWriter();
+    out.println("Hello Servlet!!");
+    ```
   
   - 맵핑시에는 xml파일을 직접 수정하기보다 어노테이션을 사용하는 경우가 현업에서는 더 많음
     - 설정 파일을 나눠서 작업하기 용이하지 않음
@@ -1822,10 +1809,10 @@ spring:
 - 뉴렉처 서블릿 / JSP 강의 내용 정리
   - 문서형식을 지정하지 않으면, 브라우저가 자의적으로 해석하여 보여주기 때문에 의도한 바와 같이 전달이 되지 않을 수 있음
   
-  ```java
-  response.setCharacterEncoding("UTF-8"); // 문서작성에 사용된 인코딩 방식 정의
-  respones.setContentType("text/html; charset=UTF-8"); // 브라우저가 해석할 인코딩 방식 정의
-  ```
+    ```java
+    response.setCharacterEncoding("UTF-8"); // 문서작성에 사용된 인코딩 방식 정의
+    respones.setContentType("text/html; charset=UTF-8"); // 브라우저가 해석할 인코딩 방식 정의
+    ```
   
   - 쿼리스트링 : https://domain/list?title=제목 과 같은 주소창의 내용중 ? 이후의 부분
     - 기본 주소인 list의 추가 조건을 설정하여 쿼리를 전달하여 동적인 결과물을 얻을 수 있음
@@ -1861,12 +1848,11 @@ spring:
   - Application 저장소(서버에 저장)
     - 서블릿 컨텍스트(Context)
     - 예시 코드
-    ```java
-    Servletcontext application = request.getServletContext();
-    application.setAttribute("value", v);
-    application.setAttribute("op", op);
-    
-    ```
+      ```java
+      Servletcontext application = request.getServletContext();
+      application.setAttribute("value", v);
+      application.setAttribute("op", op);
+      ```
   - Session 저장소(서버에 저장)
     - 사용법은 Application과 사용법은 똑같음
     - 저장의 범위가 다름 / 세션이 다르면 저장값이 다름
@@ -1889,3 +1875,111 @@ spring:
   - html, css, javascript 의 내용이 필요
   - 사용하고자 하는 기능을 직접 구현하는 것도 좋지만 구현된 라이브러리를 활용하는 것도 중요한 능력
 
+  
+---
+
+## 2021-04-18 공부내용
+
+### Mybatis
+
+- commit을 해야 DB에 반영이 됨
+  - session.commit
+  - transaction과 연관
+  
+- 변수를 넘길 때 객체로 넘겨야 하기에 추가적인 생성자가 필요하면 만들어서 사용
+
+- ParameterType 으로 전달받는 객체에 대한 정보를 xml 파일에 넘겨줘야함
+
+- 파라미터 표기 방법
+  - #{} 의 경우 ''를 붙여줌 => 대부분 String을 받기 때문에 주로 사용
+  - ${} 의 경우 ''를 안붙임
+  
+### SpringBoot
+
+- input type => tel, email, password 체크
+- 회원가입, 로그인 등 맴버 관련 기능 구현
+- 인터셉터 도입
+- 사용 가능하고 구현 가능한 기술 목록 정리와 구현 목표 기술 목록 작성 필요
+- 1인 쇼핑몰 구축하기를 프로젝트로 설정
+
+
+### Servlet / JSP 
+- 쿠키(지정된 경로에만 쿠키값을 요청할 수 있음)
+  - 모든 경로 허용
+    - valueCookie.setPath("/"); 
+    - opCookie.setPath("/");
+    
+  - 쿠키의 경로는 오직 한개만 설정이 가능함
+      
+  - 쿠키의 수명
+    - cookie.setMaxAge(24*60*60); => 1일 생명 주기, 초단위 입력
+    - 주기에 따라서 브라우저 실행이 멈추면 쿠키가 모두 사라지게 할 수도 있고 지정된 기간동안 지정한 위치에 저장할 수도 있음
+    
+  - 주소창에 입력되는 쿼리는 가급적 소문자로 작성하는 것이 SEO상의 불이익을 덜 받을 수 있음
+
+- Application, Session, Cookie 차이점 정리
+  - Application
+    - 사용범위 : 전역 범위에서 사용하는 저장 공간
+    - 생명주기 : WAS가 시작해서 종료할 때까지
+    - 저장위치 : WAS 서버의 메모리
+     
+  - Session
+    - 사용범위 : 세션범위에서 사용하는 저장 공간
+    - 생명주기 : 세션이 시작해서 종료할 때까지
+    - 저장위치 : WAS 서버의 메모리
+    
+  - Cookie
+    - 사용범위 : Web Browser별 지정한 path 범주 공간
+    - 생명주기 : Browser에 전달한 시간부터 만료시간까지
+    - 저장위치 : Web Browser의 메모리 또는 파일
+  
+  - 특정 사용 경로가 지정되거나 저장기간이 길 경우 쿠키를 선택하여 저장하는 것이 좋음
+   
+- Redirection
+  - response.sendRedirect("주소url");
+  - 위에 입력한 주소창으로 리다이렉트 시켜줌(이전 페이지로 이동시켜주는 등에 활용)
+  
+- 동적인 페이지(서버 페이지)의 필요성
+  - 서버 페이지 : 전달받은 쿼리 값에 따라서 이미 만들어진 html 파일이 아니라 서버에서 동적으로 만들어 주는 html 페이지
+  - JSP : Java Server Page
+  - 계산기 구현 예제(입력된 값과 연산 부호를 저장하는데 쿠키를 사용)
+  
+- 서블릿에서 get과 post 전송방식 구분하는 방법
+  - 방법1 : 서비스 오버라이드
+  ```
+  @WebServlet("/경로")
+  public class Calculator extends HttpServlet {
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) {
+      if(req.getMethod().equals("GET")) {
+      
+      } else if(req.getMethod().equals("POST")){
+      
+      }
+    }
+  }
+  ```
+  
+  - 방법2 : get 혹은 post 오버라이드 메서드 구현
+  ```
+  @WebServlet("/경로")
+  public class Calculator extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+    
+    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    
+    }
+  }
+  ```
+- 하나의 서블릿 파일에 두가지 전송방식을 사용하는 메서드들을 모두 담을 수 있음
+  - 쿠키의 경로를 지정할 수 있어 다른 url에 쿠키값이 전달되는 것을 방지할 수 있음
+  
+---
+
+## 2021-04-19 공부내용
+
+### Servlet / JSP 
+- 
