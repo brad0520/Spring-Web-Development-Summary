@@ -1,3 +1,5 @@
+<!-- <div class="con"> -->
+
 # Brad's Web Devlelopment Diary
 
 ## 페이지 소개
@@ -6,6 +8,8 @@
 - 내용 : Spring Web Development Study
 - 공부 Vlog
   링크예시) 박병규, 21-03-27, 공부 Vlog https://...(유튜브 업로드 영상 링크)
+- 개인 프로젝트
+  - NTLsoft 포트폴리오 : [https://to2.kr/cnv](https://to2.kr/cnv)
 
   - mac 화면 녹화 동영상 인코딩은 finder를 통해 빠르게 가능
 
@@ -2242,6 +2246,184 @@
 
   - 쿼리 작성에 있어서 + + 사이에 변수를 넣는 것보다 String.format을 활용하면 보다 직관적인 코딩이 가능함
 
-  
+    
 ### Spring
--  
+- 결합력 : 서비스의 개선에 있어서 관련 파트 각각의 소스코드의 수정이 있어야만 하면 높은 결합력
+- 인터페이스를 활용하여 구현하면 결합력을 낮출 수 있음
+    
+  #### DI(Dependency Injection) 
+  - 종속성 주입
+  - 부품 조립
+  - xml 파일
+
+  #### IoC Container 
+  - Inversion of Control
+  - 작은 부품부터 만들어서 큰 부품에 조립하는 과정
+  - DI 순서
+  - 스프링이 부품을 조립해주는 작업을 대신해줌
+
+
+---
+
+## 2021-04-21 공부내용
+
+### maven
+- IDE와 별개인 빌드 도구
+- maven : 빌드관리, Gradle, Ant 등도 있음
+- GIT : 형상관리, CVS 등도 있음
+- JUint : 테스트 도구 
+- POM(project object model).xml
+- 자바 프로젝트를 웹 프로젝트로 변경 => jar를 war 변경하면 간단하게 설정 변경
+- 빌드 패스에서 설정한 라이브러리 경로는 절대 경로인 경우 실행하는 환경이 달라지면 실행이 되지 않아 다시 빌드 패스를 설정해야함
+
+  #### 라이브러리 오류 문제  
+  - 다운로드 오류 등으로 라이브러리 파일에 문제가 있는 경우 m2 / repository 폴더의 모든 내용을 삭제
+  - 메이븐이 다시 전체 재다운로드해서 문제 해결
+  - java resources 에 느낌표가 뜨면 라이브러리에 문제가 있음을 나타냄
+  - 메이븐 설정을 바꾼 후 메이븐 업데이트를 하면 오류가 사라짐
+
+### jQuery
+- cdn으로 사용하는 것이 실제 서비스에서는 성능이 더 좋음
+- 라이브러리를 다운받는 것은 만약을 대비하는 의미로 사용
+- 다큐먼트 객체를 간단하게 사용하기 위함과 크로스브라우징을 가능하게 하는데 강한 이점이 있음
+
+### JavaScript
+- 데이터를 구분하기 위한 표현방법
+  - XML(태그활용), CSV(콤마로 데이터 구분), JSON(javascript의 자료 표현 양식)
+  - xml과 csv의 단점을 보완한 양식으로 최근 가장 많이 쓰이는 데이터 전송 양식
+  - API에서 제공하는 데이터도 JSON 형식으로 배포
+  
+- 👍 eval()
+  - 전송받은 JSON파일의 데이터는 문자열로 인식이 됨
+  - JSON으로 인식해서 데이터를 활용하기 위해서는 문자열을 다시 JSON으로 바꿔줄 필요가 있음
+  - eval()함수를 활용하면 '' 혹은 "" 으로 둘러싸여 문자열로 인식되는 코드를 원래 상태의 코드로 처리할 수 있게 해줌
+  - 예시 코드
+  ```javascript
+  eval('var x = 30;');
+  
+  console.log(x);
+  // 콘솔에 30 이 출력됨
+  // eval() 함수 안의 문자열이 변수로 인식됨
+  
+  var data = '[ \
+    {"co":0.6,"so2":0.006}, \
+    {"co":0.4,"so2":0.007} \
+  ]';
+  
+  eval("var ar = " + data + ";");
+
+  console.log(ar[0].co);
+  // eval()을 활용해서 ()안에 JSON 데이터를 담은 새로운 변수가 선언되게 하여 데이터 활용
+  // JSON parser가 있지만 eval()함수의 사용법을 익히기 좋은 활용 예시
+
+  ```
+- 👍 JSON parser
+  - JSON.parse();를 통해 JSON으로 변환되는 자료의 형태는 키값이 ""로 감싸져있어야 정상적으로 변환함
+  - JavaScript에서는 보통 ""를 생략하고 작성하기에 이렇게 작성된 데이터를 전송하면 JSON.parse();로 파싱할 수 없음
+  - "" 없이 작성된 JSON 파일을 ""가 있는 형식으로 변환해주는 함수 => JSON.stringify();
+  - JSON.stringify();로 변환 후 전송하면 쉽게 작성한 데이터를 JSON.parse();로 활용할 수 있게 됨
+  - 예시코드
+  ```javascript
+  // 1. 변환이 필요없는 경우
+  var data = JSON.parse('{"id":1, "title":"aaa"}'); // 엄밀하게 key값에 ""를 넣어서 작성 
+  console.log(data.title);
+  // aaa  출력
+
+  // 2. 변환이 필요한 경우
+  var data2 = {id:2, title:"bbb"}; // 일반적으로 key값에 ""를 생략하고 작성
+  var json = JSON.stringify(data2);
+  alert(json);
+  // {"id":2, "title":"bbb"}으로 변환된 결과값이 출력
+  ```
+- for in 문
+  - for(var i in array) / for(var i in object) => 모두 인덱스 혹은 key값을 반환하기에 데이터값을 사용하기 위해서는 array[i] / object[i] 와 같이 사용해야 함 
+  
+- 함수 자체를 객체로 만드는 자바스크립트
+  - 변수의 스코프에 유의해야함
+
+- 클로저(closure)
+  - 일반적으로 함수 내부에서 선언된 변수는 지역변수로 함수의 실행이 끝나면 변수의 생명주기도 끝이 남
+  - 자바스크립트는 함수안에 다른 함수를 인자로 갖을 수 있는데, 이 때 내부에 인자로 포함된 함수가 바깥쪽 함수와 같은 변수를 사용하지만 내부에서 선언하지 않는 경우(로컬변수가 생성되지 않는 경우) 바깥쪽에서 선언된 함수를 참조하게 됨
+  - 바깥쪽 함수가 실행을 마쳐도 변수의 생명주기를 끝내지 못함 <= 내부에 인자로 포함된 함수가 실행될 때 참조해야하므로...
+  - 이 변수의 생명주기를 끝낼 수 있는 것(함수가 닫히는 것)은 내부 함수의 실행
+  - 그렇기에 내부에 인자로 포함된 함수를 클로져(closure)라고 함
+
+- parseInt("123abc"); => ""안의 값이 숫자가 아니면 원래 NaN을 반환하지만,
+  숫자로 시작하는 경우 아래와 같이 숫자만 반환함
+  - Returns 12
+  - CSS의 모든 값은 스트링으로 오기에 10px 과 같은 자료의 경우 10만은 얻기 위해서 문자열을 잘라내고자 할 때 parseInt()를 사용하면 복잡한 로직 필요없이 숫자만 얻을 수 있음
+    
+ - 스크립트 내부에서 이벤트 실행을 위한 함수 호출
+  - 예시코드
+  
+  ```javascript
+  <script>
+  btnPrint.onclick = printResult;  // printResult()와 같이 ()를 넣지 않는다
+  // ()를 넣으면 실행을 의미
+  // onclick 시에 btnPrint에게 printResult의 실행을 부탁
+  </script>
+  ```
+    
+- window.onload
+  - 자바스크립트 코드가 HTML 엘리먼트보다 먼저 실행이 될 경우 참조하는 엘리먼트가 로드되지 않은 경우 실행되지 않는 오류가 발생
+  - 자바스트립트 코드를 엘리먼트 아래에 작성하면 로드 이후이므로 정상 실행이 됨
+  - 위치에 관계없이 자바스크립트 함수가 실행되기 위해서 조건을 부여
+  - window.onload는 window가 모두 로드되면 실행이 되는 조건
+  - 따라서 HTML의 엘리먼트들이 모두 로드 된 이후에 실행이 되기에 오류없이 정상 실행
+  - 예시코드
+  
+  ```javascript
+  function init() {
+    btnPrint.onclick = printResult;
+  }
+
+  window.onload = init; // 오류가 발생되지 않고 실행이 됨
+  ```
+- 👍🏻 명명규칙에 따른 HTML과 javaScript의 id, class 명 전환
+  - HTML은 카멜표기를 지원하지 않아 '-'로 단어를 이어서 명명
+  - javaScript는 카멜표기법으로 명명
+  - btnPrint과 같이 명명하는 것은 javaScript에서는 오류가 없지만 HTML에서는 오류가 발생할 수 있어 id, class를 참조할 때 문제가 발생
+  - 이런 이유로 아래와 같이 DOM 요소 선택을 통해 변수를 알맞게 명명하고 사용
+  
+  ```javascript
+  function init() {
+    var btnPrint = document.getElementById("btn-print");
+    btnPrint.onclick = printResult;
+  }
+
+  window.onload = init;
+  ```
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<!-- </div> -->
