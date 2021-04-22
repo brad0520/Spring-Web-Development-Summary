@@ -379,7 +379,7 @@
 - 따라서 실무에서는 list를 대부분 사용하여 융통성을 줄 수 있게 운영
   - 예시
 
-  ```
+  ```java
   list<article> articles = new arrayList<>();
   ```
 
@@ -465,7 +465,7 @@
 
 - java에서 mySQL을 사용하기 위해 사용하는 JDBC
 
-  ```
+  ```java
       // JDBC
       // 1. Driver 찾기 - 찾은 드라이버는 DriverManager로 사용 가능
       Class.forName("com.mysql.cj.jdbc.Driver");
@@ -535,53 +535,53 @@
   - 변수는 #{}안에 표기
   - 코드 예시
 
-  ```
-  <?xml version="1.0" encoding="UTF-8" ?>
-  <!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    ```java
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+      "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-  <mapper namespace="com.sbs.untact.dao.ArticleDao">
+    <mapper namespace="com.sbs.untact.dao.ArticleDao">
 
-  <select id="getArticleById" resultType="Article">
-      SELECT *
-      FROM article AS A
-      WHERE A.id = #{id}
-      AND A.delStatus = 0
-    </select>
+    <select id="getArticleById" resultType="Article">
+        SELECT *
+        FROM article AS A
+        WHERE A.id = #{id}
+        AND A.delStatus = 0
+      </select>
 
-    <select id="getLastInsertId" resultType="int">
-      SELECT LAST_INSERT_ID()
-    </select>
+      <select id="getLastInsertId" resultType="int">
+        SELECT LAST_INSERT_ID()
+      </select>
 
-    <update id="modifyArticle">
-      UPDATE article
-      SET updateDate = NOW(),
-      title =
-      #{title},
-      body = #{body}
-      WHERE id = #{id}
-    </update>
+      <update id="modifyArticle">
+        UPDATE article
+        SET updateDate = NOW(),
+        title =
+        #{title},
+        body = #{body}
+        WHERE id = #{id}
+      </update>
 
-    <insert id="writeArticle">
-      INSERT INTO article
-      SET regDate = NOW(),
-      updateDate = NOW(),
-      boardId = #{boardId},
-      memberId = #{memberId},
-      title = #{title},
-      body = #{body}
-    </insert>
+      <insert id="writeArticle">
+        INSERT INTO article
+        SET regDate = NOW(),
+        updateDate = NOW(),
+        boardId = #{boardId},
+        memberId = #{memberId},
+        title = #{title},
+        body = #{body}
+      </insert>
 
-    <update id="deleteArticleById">
-      UPDATE article
-      SET delStatus = 1,
-      delDate = NOW()
-      WHERE id = #{id}
-    </update>
+      <update id="deleteArticleById">
+        UPDATE article
+        SET delStatus = 1,
+        delDate = NOW()
+        WHERE id = #{id}
+      </update>
 
-  </mapper>
-  ```
+    </mapper>
+    ```
 
 - jsp 연결
   - MpaUsrHomeController를 통해 메인페이지 구현
@@ -689,13 +689,13 @@
 - java에서 개발한 C버전으로 사용
 - jsp 파일에 아래의 코드 추가
 
-  ```
+  ```java
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
   ```
 
 - pom.xml에 아래의 코드 추가
 
-  ```
+  ```java
       <!-- SQL 로거 -->
       <dependency>
         <groupId>org.bgee.log4jdbc-log4j2</groupId>
@@ -707,77 +707,77 @@
 
 - 자바문법과 JSTL 코드 비교
 
-  ```
-  <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-  <!DOCTYPE html>
-  <html>
-  <head>
-  <meta charset="UTF-8">
-  <title>Insert title here</title>
-  </head>
-  <body>
-  <h1> EL/JSTL 연습</h1>
+    ```java
+    <%@ page language="java" contentType="text/html; charset=UTF-8"
+      pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    </head>
+    <body>
+    <h1> EL/JSTL 연습</h1>
 
-  <!-- 변수 선언 -->
-  <%
-    int num = 21;
-  %>
-  <c:set var="num2" value="11" />
+    <!-- 변수 선언 -->
+    <%
+      int num = 21;
+    %>
+    <c:set var="num2" value="11" />
 
-  <!-- 변수 출력 -->
-  <%
-    out.println("jsp : " + num);
-  %>
-  <br>
-  <c:out value="jstl : ${num2}" />
-  <br>
-  <!-- 조건문 -->
-  <%
-    if(num % 2 == 0) {
-      out.println("even");
-    }
-    if(num % 2 == 1){
-      out.println("odd");
-    }
+    <!-- 변수 출력 -->
+    <%
+      out.println("jsp : " + num);
+    %>
+    <br>
+    <c:out value="jstl : ${num2}" />
+    <br>
+    <!-- 조건문 -->
+    <%
+      if(num % 2 == 0) {
+        out.println("even");
+      }
+      if(num % 2 == 1){
+        out.println("odd");
+      }
 
-    if(num % 2 == 0) {
-      out.println("even");
-    } else {
-      out.println("odd");
-    }
-  %>
-  <c:if test ="${num2 % 2 == 0}">
-    even
-  </c:if>
-  <c:if test ="${num2 % 2 == 1}">
-    even
-  </c:if>
-
-  <c:choose>
-    <c:when test="${num2 % 2 == 0}">
+      if(num % 2 == 0) {
+        out.println("even");
+      } else {
+        out.println("odd");
+      }
+    %>
+    <c:if test ="${num2 % 2 == 0}">
       even
-    </c:when>
-    <c:otherwise>
-      odd
-    </c:otherwise>
-  </c:choose>
-  <br>
-  <!-- 반복문 -->
-  <%
-    for(int i = 1; i <= 10; i++) {
-      out.println(i + " ");
-    }
-  %>
-  <br>
-  <c:forEach var="i" begin="1" end="10" step="1">
-    ${i}
-  </c:forEach>
+    </c:if>
+    <c:if test ="${num2 % 2 == 1}">
+      even
+    </c:if>
 
-  </body>
-  </html>
-  ```
+    <c:choose>
+      <c:when test="${num2 % 2 == 0}">
+        even
+      </c:when>
+      <c:otherwise>
+        odd
+      </c:otherwise>
+    </c:choose>
+    <br>
+    <!-- 반복문 -->
+    <%
+      for(int i = 1; i <= 10; i++) {
+        out.println(i + " ");
+      }
+    %>
+    <br>
+    <c:forEach var="i" begin="1" end="10" step="1">
+      ${i}
+    </c:forEach>
+
+    </body>
+    </html>
+    ```                 
 
 - Model model, model.addAttribute("", ) => 관련 내용 확인 필요 / ""안의 변수를 jsp에서 사용 가능하게 해줌
 
@@ -785,9 +785,9 @@
   - HttpsServletRequest로도 가능
   - Servlet 정리 요망
 
-  ```
-  import javax.servlet.http.HttpServletRequest;
-  ```
+    ```java
+    import javax.servlet.http.HttpServletRequest;
+    ```
 
 - jsp에서 java controller에서 얻은 결과가 담긴 변수를 활용할 수 있게 해줌
 - jsp에서는 변수를 ${변수}와 같이 표현식에 담아야 함
@@ -804,7 +804,7 @@
 
 - 여러 개의 데이터 출력시 마지막에는 콤마가 출력되지 않게 하는 코드
 
-  ```
+  ```java
   for(int i=0; i< interest.length;i++) {
     if(i+1 == interest.length) {
       out.println(interest[i]);
@@ -844,17 +844,17 @@
       - Thread와 관련된 중요 클래스들이 java.lang패키지
       - 이외에도 다양한 클래스와 인터페이스가 java.lang패키지에 속해 있다.
 
-      ```
-        public class WrapperExam {
-          public static void main(String[] args) {
-            int i = 5; 
-            Integer i2 = new Integer(5);
-            Integer i3 = 5;     //오토박싱
-            int i4 = i2.intValue();
-            int i5 = i2;       //오토언박싱
+        ```java
+          public class WrapperExam {
+            public static void main(String[] args) {
+              int i = 5; 
+              Integer i2 = new Integer(5);
+              Integer i3 = 5;     //오토박싱
+              int i4 = i2.intValue();
+              int i5 = i2;       //오토언박싱
+            }
           }
-        }
-      ```
+        ```
 - 
   - 
     - 오토박싱(Auto Boxing)
@@ -899,40 +899,40 @@
       
     - IO의 모든 객체들은 사용이 끝나면 항상 닫아줘야함
       - 아래의 코드 참조
-    
-      ```
-          public class ByteIOExam1 {
-              public static void main(String[] args){     
-                  FileInputStream fis = null; 
-                  FileOutputStream fos = null;        
-                  try {
-                      fis = new FileInputStream("src/javaIO/exam/ByteExam1.java");
-                      fos = new FileOutputStream("byte.txt");
 
-                      int readData = -1; 
-                      while((readData = fis.read())!= -1){
-                          fos.write(readData);
-                      }           
-                  } catch (Exception e) {
-                      // TODO Auto-generated catch block
-                      e.printStackTrace();
-                  }finally{
-                      try {
-                          fos.close();
-                      } catch (IOException e) {
-                          // TODO Auto-generated catch block
-                          e.printStackTrace();
-                      }
-                      try {
-                          fis.close();
-                      } catch (IOException e) {
-                          // TODO Auto-generated catch block
-                          e.printStackTrace();
-                      }
-                  }
-              }
-          }                    
-      ```
+        ```java
+            public class ByteIOExam1 {
+                public static void main(String[] args){     
+                    FileInputStream fis = null; 
+                    FileOutputStream fos = null;        
+                    try {
+                        fis = new FileInputStream("src/javaIO/exam/ByteExam1.java");
+                        fos = new FileOutputStream("byte.txt");
+
+                        int readData = -1; 
+                        while((readData = fis.read())!= -1){
+                            fos.write(readData);
+                        }           
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }finally{
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        try {
+                            fis.close();
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }                    
+        ```
     - Char 단위 입출력(console)
       - char단위 입출력 클래스는 클래스 이름이 Reader나 Writer로 끝남
       - char단위 입출력 클래스를 이용해서 키보드로 부터 한줄 입력 받아서 콘솔에 출력
@@ -941,27 +941,27 @@
         - BufferedReader 클래스의 생성자는 InputStream을 입력받는 생성자가 없음
         - System.in은 InputStream 타입이므로 BufferedReader의 생성자에 바로 들어갈 수 없으므로 InputStreamReader 클래스를 이용해야함
     
-        ```
-        import java.io.BufferedReader;
-        import java.io.FileWriter;
-        import java.io.IOException;
-        import java.io.InputStreamReader;
-        import java.io.PrintWriter; 
-        public class CharIOExam01 {
-            public static void main(String[] args) {
-                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-                //키보드로 입력받은 문자열을 저장하기 위해 line변수를 선언               
-                String line = null;     
-                try {
-                    line = br.readLine()
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                //콘솔에 출력 
-                System.out.println(line);
-            }
-        }
-        ```
+          ```java
+          import java.io.BufferedReader;
+          import java.io.FileWriter;
+          import java.io.IOException;
+          import java.io.InputStreamReader;
+          import java.io.PrintWriter; 
+          public class CharIOExam01 {
+              public static void main(String[] args) {
+                  BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                  //키보드로 입력받은 문자열을 저장하기 위해 line변수를 선언               
+                  String line = null;     
+                  try {
+                      line = br.readLine()
+                  } catch (IOException e) {
+                      e.printStackTrace();
+                  }
+                  //콘솔에 출력 
+                  System.out.println(line);
+              }
+          }
+          ```
 
 ---
 
@@ -983,36 +983,36 @@
         - 편리하게 출력하기 위해서 PrintWriter 클래스 이용
         - 예시코드
 
-        ```java
-            import java.io.BufferedReader;
-            import java.io.FileReader;
-            import java.io.FileWriter;
-            import java.io.IOException;
-            import java.io.PrintWriter; 
-            public class CharIOExam02 {
-                public static void main(String[] args) {
-                    BufferedReader br = null; 
-                    PrintWriter pw = null;
-                    try{        
-                        br = new BufferedReader(new FileReader("src/javaIO/exam/CharIOExam02.java"));
-                        pw = new PrintWriter(new FileWriter("test.txt"));
-                        String line = null;
-                        while((line = br.readLine())!= null){
-                            pw.println(line);
-                        }
-                    }catch(Exception e){
-                        e.printStackTrace();
-                    }finally {
-                        pw.close();
-                        try {
-                            br.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        ```
+          ```java
+              import java.io.BufferedReader;
+              import java.io.FileReader;
+              import java.io.FileWriter;
+              import java.io.IOException;
+              import java.io.PrintWriter; 
+              public class CharIOExam02 {
+                  public static void main(String[] args) {
+                      BufferedReader br = null; 
+                      PrintWriter pw = null;
+                      try{        
+                          br = new BufferedReader(new FileReader("src/javaIO/exam/CharIOExam02.java"));
+                          pw = new PrintWriter(new FileWriter("test.txt"));
+                          String line = null;
+                          while((line = br.readLine())!= null){
+                              pw.println(line);
+                          }
+                      }catch(Exception e){
+                          e.printStackTrace();
+                      }finally {
+                          pw.close();
+                          try {
+                              br.close();
+                          } catch (IOException e) {
+                              e.printStackTrace();
+                          }
+                      }
+                  }
+              }
+          ```
 
 
   - 파트6. 어노테이션
@@ -1027,20 +1027,20 @@
       
     - 패키지 익스플로러에서 [new - Annotation]을 이용하여 Count100이라는 어노테이션 생성 (예제)
       - Count100어노테이션을 JVM실행시에 감지할 수 있도록 하려면 @Retention(RetentionPolicy.RUNTIME)를 붙여줘야 함
-      
-      ```
-        import java.lang.annotation.Retention;
-        import java.lang.annotation.RetentionPolicy;
 
-        @Retention(RetentionPolicy.RUNTIME) public @interface Count100 {
+        ```java
+          import java.lang.annotation.Retention;
+          import java.lang.annotation.RetentionPolicy;
 
-        }
-      ```
+          @Retention(RetentionPolicy.RUNTIME) public @interface Count100 {
+
+          }
+        ```
     
   - "hello"를 출력하는 hello()메소드를 가지는 MyHello라는 클래스를 작성
     - hello메소드 위에 @Count100 어노테이션을 붙임
   
-      ```
+      ```java
           public class MyHello {
               @Count100
               public void hello(){
@@ -1051,28 +1051,28 @@
     
   - MyHello클래스를 이용하는 MyHelloExam클래스를 작성
     - MyHello의 hello메소드가 @Count100어노테이션이 설정되어 있을 경우, hello()메소드를 100번 호출
-    ```
-        import java.lang.reflect.Method;
+      ```java
+          import java.lang.reflect.Method;
 
-        public class MyHelloExam {
-            public static void main(String[] args) {
-                MyHello hello = new MyHello();
+          public class MyHelloExam {
+              public static void main(String[] args) {
+                  MyHello hello = new MyHello();
 
-                try{
-                    Method method = hello.getClass().getDeclaredMethod("hello");
-                if(method.isAnnotationPresent(Count100.class)){
-                        for(int i = 0; i < 100; i++){
-                            hello.hello();
-                        }
-                    }else{
-                        hello.hello();
-                    }
-                }catch(Exception ex){
-                    ex.printStackTrace();
-                }       
-            }
-        }
-    ```
+                  try{
+                      Method method = hello.getClass().getDeclaredMethod("hello");
+                  if(method.isAnnotationPresent(Count100.class)){
+                          for(int i = 0; i < 100; i++){
+                              hello.hello();
+                          }
+                      }else{
+                          hello.hello();
+                      }
+                  }catch(Exception ex){
+                      ex.printStackTrace();
+                  }       
+              }
+          }
+      ```
 
   
   - 파트7. 쓰레드
@@ -1082,88 +1082,88 @@
       - Thread를 상속 받아서 쓰레드를 생성하는 방법
         - java.lang.Thread클래스를 상속받는다. 그리고 Thread가 가지고 있는 run()메소드를 오버라이딩
         - 10번 반복하면서 str을 출력
-        ```
-            public class MyThread1 extends Thread {
-                String str;
-                public MyThread1(String str){
-                    this.str = str;
-                }
+          ```java
+              public class MyThread1 extends Thread {
+                  String str;
+                  public MyThread1(String str){
+                      this.str = str;
+                  }
 
-                public void run(){
-                    for(int i = 0; i < 10; i ++){
-                        System.out.print(str);
-                        try {
-                            //컴퓨터가 너무 빠르기 때문에 수행결과를 잘 확인 할 수 없어서 Thread.sleep() 메서드를 이용해서 조금씩 
-                            //쉬었다가 출력할 수 있게한다. 
-                            Thread.sleep((int)(Math.random() * 1000));
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    } 
-                } 
-            }
-        ```
+                  public void run(){
+                      for(int i = 0; i < 10; i ++){
+                          System.out.print(str);
+                          try {
+                              //컴퓨터가 너무 빠르기 때문에 수행결과를 잘 확인 할 수 없어서 Thread.sleep() 메서드를 이용해서 조금씩 
+                              //쉬었다가 출력할 수 있게한다. 
+                              Thread.sleep((int)(Math.random() * 1000));
+                          } catch (InterruptedException e) {
+                              e.printStackTrace();
+                          }
+                      } 
+                  } 
+              }
+          ```
 
     - Thread 클래스를 상속받은 MyThread1을 사용하는 클래스
       - Thread를 상속 받았으므로 MyThread1은 Thread
       - 쓰레드를 생성하고, Thread 클래스가 가지고 있는 start() 메소드를 호출
       
-      ```
-          public class ThreadExam1 {
-              public static void main(String[] args) {
-                  // MyThread인스턴스를 2개 만듭니다. 
-                  MyThread1 t1 = new MyThread1("*");
-                  MyThread1 t2 = new MyThread1("-");
+        ```java
+            public class ThreadExam1 {
+                public static void main(String[] args) {
+                    // MyThread인스턴스를 2개 만듭니다. 
+                    MyThread1 t1 = new MyThread1("*");
+                    MyThread1 t2 = new MyThread1("-");
 
-                  t1.start();
-                  t2.start();
-                  System.out.print("!!!!!");  
-              }   
-          }
-      ```
+                    t1.start();
+                    t2.start();
+                    System.out.print("!!!!!");  
+                }   
+            }
+        ```
        
     - 쓰레드 예제 2)
       - Runnable인터페이스를 구현해서 쓰레드를 만드는 방법
         - Runable 인터페이스가 가지고 있는 run()메소드를 구현
-        ```
-            public class MyThread2 implements Runnable {
-                String str;
-                public MyThread2(String str){
-                    this.str = str;
-                }
+          ```java
+              public class MyThread2 implements Runnable {
+                  String str;
+                  public MyThread2(String str){
+                      this.str = str;
+                  }
 
-                public void run(){
-                    for(int i = 0; i < 10; i ++){
-                        System.out.print(str);
-                        try {
-                            Thread.sleep((int)(Math.random() * 1000));
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    } 
-                } 
-            }
-        ```
+                  public void run(){
+                      for(int i = 0; i < 10; i ++){
+                          System.out.print(str);
+                          try {
+                              Thread.sleep((int)(Math.random() * 1000));
+                          } catch (InterruptedException e) {
+                              e.printStackTrace();
+                          }
+                      } 
+                  } 
+              }
+          ```
     - Runable 인터페이스를 구현한 MyThread2 사용하는 방법
       - MyThread2는 Thread를 상속받지 않았기 때문에 Thread가 아님
       - Thread를 생성하고, 해당 생성자에 MyThread2를 넣어서 Thread를 생성
       - Thread 클래스가 가진 start()메소드를 호출
-      
-      ```
-          public class ThreadExam2 {  
-              public static void main(String[] args) {
-                  MyThread2 r1 = new MyThread2("*");
-                  MyThread2 r2 = new MyThread2("-");
 
-                  Thread t1 = new Thread(r1);
-                  Thread t2 = new Thread(r2);
+        ```java
+            public class ThreadExam2 {  
+                public static void main(String[] args) {
+                    MyThread2 r1 = new MyThread2("*");
+                    MyThread2 r2 = new MyThread2("-");
 
-                  t1.start();
-                  t2.start();
-                  System.out.print("!!!!!");  
-              }   
-          }
-      ```
+                    Thread t1 = new Thread(r1);
+                    Thread t2 = new Thread(r2);
+
+                    t1.start();
+                    t2.start();
+                    System.out.print("!!!!!");  
+                }   
+            }
+        ```
 
   - 동기화 메소드와 동기화 블록
     - 공유객체가 가진 메소드를 동시에 호출 되지 않도록 하는 방법
@@ -1197,7 +1197,7 @@
     - HttpServlet 클래스를 상속받아서 만들며, init(), doGet(), destroy() 메서드를 오버라이딩해서 기능을 구현
   - 사용자 정의 서블릿 형식
   
-    ```
+    ```java
       public class FirstServlet extends HttpServlet {
         @Override
         public void init() {
@@ -1279,7 +1279,7 @@
   - 선택자에서 사용 용도에 따라 > 를 사용하여 자식요소만 선택하거나 일괄 적용이 필요한 경우는 > 를 생략한 후손 선택자를 활용하여 모두 하위 메뉴를 선택할 수 있음
   
   - 메뉴별로 호버시에 하위 메뉴가 보이게 할 때는 아래와 같이 작성
-    ``` 
+    ```css
     .menu-box ul ul {
         display: none;   
         position: absolute; // 펼쳐졌을 때 주변에 영향을 주지 않게 하기 위함
@@ -1654,7 +1654,7 @@
     - 비동기 처리 함수 중 가장 최신의 문법으로 기본적으로 위에서 아래로 실행되는 기존의 프로그래밍 방식과 유사한 흐름으로 코딩이 가능
     
 
-      ```js
+      ```javascript
       function fetchItems() {
         return new Promise(function(resolve, reject) {
           var items = [1,2,3];
@@ -1950,34 +1950,34 @@
   
 - 서블릿에서 get과 post 전송방식 구분하는 방법
   - 방법1 : 서비스 오버라이드
-  ```
-  @WebServlet("/경로")
-  public class Calculator extends HttpServlet {
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) {
-      if(req.getMethod().equals("GET")) {
-      
-      } else if(req.getMethod().equals("POST")){
-      
+    ```java
+    @WebServlet("/경로")
+    public class Calculator extends HttpServlet {
+      @Override
+      protected void service(HttpServletRequest req, HttpServletResponse resp) {
+        if(req.getMethod().equals("GET")) {
+
+        } else if(req.getMethod().equals("POST")){
+
+        }
       }
     }
-  }
-  ```
+    ```
   
   - 방법2 : get 혹은 post 오버라이드 메서드 구현
-  ```
-  @WebServlet("/경로")
-  public class Calculator extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-    
+    ```java
+    @WebServlet("/경로")
+    public class Calculator extends HttpServlet {
+      @Override
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+
+      }
+      @Override
+      protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+
+      }
     }
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
-    
-    }
-  }
-  ```
+    ```
 - 하나의 서블릿 파일에 두가지 전송방식을 사용하는 메서드들을 모두 담을 수 있음
   - 쿠키의 경로를 지정할 수 있어 다른 url에 쿠키값이 전달되는 것을 방지할 수 있음
   
@@ -2010,46 +2010,46 @@
       - redirect : 새로운 페이지로 요청
       - forword : 작업을 이어서 수행
       - java code
-      ```java
-      request.setAttribute("result", result); // 변수명은 임의로 선택 가능, jsp에 넘겨줄 변수 선언
+        ```java
+        request.setAttribute("result", result); // 변수명은 임의로 선택 가능, jsp에 넘겨줄 변수 선언
 
-      RequestDispatcher dispatcher = request.getRequestDispatcher("경로.파일명.jsp");
-      dispatcher.forword(request, response);  //포워드를 통해 연결된 jsp에서 데이터를 전달받아 작업을 이어갈 수 있음
-      ```
+        RequestDispatcher dispatcher = request.getRequestDispatcher("경로.파일명.jsp");
+        dispatcher.forword(request, response);  //포워드를 통해 연결된 jsp에서 데이터를 전달받아 작업을 이어갈 수 있음
+        ```
       - jsp code // java 로 선언된 변수를 받아서 사용
-      ```
-      <%=request.getAttribute("result")%>
-      ```
+        ```java
+        <%=request.getAttribute("result")%>
+        ```
 
   - View를 위한 데이터 추출 표현식 EL (Expression Language)
     - 저장 객체에서 값을 추출해서 출력하는 표현식(아래의 경우 view에 아직 java코드가 남아있음)
     - Controller
-    ```
-    request.setAttribute("cnt", 30);
+      ```java
+      request.setAttribute("cnt", 30);
 
-    List list = new ArrayList(){"1", "test", ...};
-    request.setAttribute("list", list);
+      List list = new ArrayList(){"1", "test", ...};
+      request.setAttribute("list", list);
 
-    Map n = new HashMap(){"title", "제목"};
-    request.setAttribute("n", n);
-    ```
+      Map n = new HashMap(){"title", "제목"};
+      request.setAttribute("n", n);
+      ```
 
     - View (jsp)
-    ```
-    request.getAttribute("cnt");
+      ```java
+      request.getAttribute("cnt");
 
-    ((List)request.getAttribute("list")).get(0);
+      ((List)request.getAttribute("list")).get(0);
 
-    ((Map)request.getAttribute("n")).get("title");
-    ``` 
+      ((Map)request.getAttribute("n")).get("title");
+      ``` 
     - View (jsp / EL 사용) => 매우 간단해짐
-    ```
-    ${cnt}
+      ```java
+      ${cnt}
 
-    ${list[0]}
+      ${list[0]}
 
-    ${n.title}
-    ```
+      ${n.title}
+      ```
 
   - 저장객체에서 값을 추출하는 순서
     - pageScope :  (페이지 내에서 필요한 데이터 저장가능 객체)
@@ -2059,9 +2059,9 @@
     - page => request => session => application 순으로 추출
     - 위 순서대로가 아닌 원하는 저장객체에서 추출하고자 할 때는 Scope를 사용
       - 예시
-    ```
-    ${sessionScope.cnt}
-    ```
+        ```java
+        ${sessionScope.cnt}
+        ```
 
   - EL 연산자
     - [] .
@@ -2113,7 +2113,7 @@
   - 아래의 어노테이션을 문서 상단에 추가
   - 태그 라이브러리를 통한 로직을 수행
   - EL은 변수를 간단하게 사용하게 해줌
-  ```
+  ```java
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
   <c:set>  
   <c:reomve>
@@ -2195,7 +2195,7 @@
       - 예시) max-request-size: 50MB*5 => 총 250MB 까지 전송이 가능
     - Part를 활용한 파일 처리
       - 예시 코드
-      ```
+      ```java
       Part filepart = request.getPart("file");
       String fileName = filePart.getSubmittedFileName();
       InputStrem fis = filePart.getInputStream();
@@ -2203,7 +2203,7 @@
       ```
 
     - 물리 경로 얻어 저장
-      ```
+      ```java
       String realPath = requestServletContext().getRealPath("/upload");
 
       String filePath = realPath + File.separator + fileName;
@@ -2293,7 +2293,7 @@
   - xml과 csv의 단점을 보완한 양식으로 최근 가장 많이 쓰이는 데이터 전송 양식
   - API에서 제공하는 데이터도 JSON 형식으로 배포
   
-- 👍 eval()
+#### eval() 👍 
   - 전송받은 JSON파일의 데이터는 문자열로 인식이 됨
   - JSON으로 인식해서 데이터를 활용하기 위해서는 문자열을 다시 JSON으로 바꿔줄 필요가 있음
   - eval()함수를 활용하면 '' 혹은 "" 으로 둘러싸여 문자열로 인식되는 코드를 원래 상태의 코드로 처리할 수 있게 해줌
@@ -2317,24 +2317,26 @@
   // JSON parser가 있지만 eval()함수의 사용법을 익히기 좋은 활용 예시
 
   ```
-- 👍 JSON parser
+#### JSON parser 👍
   - JSON.parse();를 통해 JSON으로 변환되는 자료의 형태는 키값이 ""로 감싸져있어야 정상적으로 변환함
   - JavaScript에서는 보통 ""를 생략하고 작성하기에 이렇게 작성된 데이터를 전송하면 JSON.parse();로 파싱할 수 없음
   - "" 없이 작성된 JSON 파일을 ""가 있는 형식으로 변환해주는 함수 => JSON.stringify();
   - JSON.stringify();로 변환 후 전송하면 쉽게 작성한 데이터를 JSON.parse();로 활용할 수 있게 됨
-  - 예시코드
-  ```javascript
-  // 1. 변환이 필요없는 경우
-  var data = JSON.parse('{"id":1, "title":"aaa"}'); // 엄밀하게 key값에 ""를 넣어서 작성 
-  console.log(data.title);
-  // aaa  출력
+    - 예시코드
+   
+      ```javascript
+      // 1. 변환이 필요없는 경우
+      var data = JSON.parse('{"id":1, "title":"aaa"}'); // 엄밀하게 key값에 ""를 넣어서 작성 
+      console.log(data.title);
+      // aaa  출력
 
-  // 2. 변환이 필요한 경우
-  var data2 = {id:2, title:"bbb"}; // 일반적으로 key값에 ""를 생략하고 작성
-  var json = JSON.stringify(data2);
-  alert(json);
-  // {"id":2, "title":"bbb"}으로 변환된 결과값이 출력
-  ```
+      // 2. 변환이 필요한 경우
+      var data2 = {id:2, title:"bbb"}; // 일반적으로 key값에 ""를 생략하고 작성
+      var json = JSON.stringify(data2);
+      alert(json);
+      // {"id":2, "title":"bbb"}으로 변환된 결과값이 출력
+      ```
+    
 - for in 문
   - for(var i in array) / for(var i in object) => 모두 인덱스 혹은 key값을 반환하기에 데이터값을 사용하기 위해서는 array[i] / object[i] 와 같이 사용해야 함 
   
@@ -2354,15 +2356,15 @@
   - CSS의 모든 값은 스트링으로 오기에 10px 과 같은 자료의 경우 10만은 얻기 위해서 문자열을 잘라내고자 할 때 parseInt()를 사용하면 복잡한 로직 필요없이 숫자만 얻을 수 있음
     
  - 스크립트 내부에서 이벤트 실행을 위한 함수 호출
-  - 예시코드
+   - 예시코드
   
-  ```javascript
-  <script>
-  btnPrint.onclick = printResult;  // printResult()와 같이 ()를 넣지 않는다
-  // ()를 넣으면 실행을 의미
-  // onclick 시에 btnPrint에게 printResult의 실행을 부탁
-  </script>
-  ```
+      ```javascript
+      <script>
+        btnPrint.onclick = printResult;  // printResult()와 같이 ()를 넣지 않는다
+      // ()를 넣으면 실행을 의미
+      // onclick 시에 btnPrint에게 printResult의 실행을 부탁
+      </script>
+      ```
     
 - window.onload
   - 자바스크립트 코드가 HTML 엘리먼트보다 먼저 실행이 될 경우 참조하는 엘리먼트가 로드되지 않은 경우 실행되지 않는 오류가 발생
@@ -2370,43 +2372,114 @@
   - 위치에 관계없이 자바스크립트 함수가 실행되기 위해서 조건을 부여
   - window.onload는 window가 모두 로드되면 실행이 되는 조건
   - 따라서 HTML의 엘리먼트들이 모두 로드 된 이후에 실행이 되기에 오류없이 정상 실행
-  - 예시코드
-  
-  ```javascript
-  function init() {
-    btnPrint.onclick = printResult;
-  }
+    
+    - 예시코드
 
-  window.onload = init; // 오류가 발생되지 않고 실행이 됨
-  ```
-- 👍🏻 명명규칙에 따른 HTML과 javaScript의 id, class 명 전환
+      ```javascript
+      function init() {
+        btnPrint.onclick = printResult;
+      }
+
+      window.onload = init; // 오류가 발생되지 않고 실행이 됨
+      ```
+#### 명명규칙에 따른 HTML과 javaScript의 id, class 명 전환 👍🏻
   - HTML은 카멜표기를 지원하지 않아 '-'로 단어를 이어서 명명
   - javaScript는 카멜표기법으로 명명
   - btnPrint과 같이 명명하는 것은 javaScript에서는 오류가 없지만 HTML에서는 오류가 발생할 수 있어 id, class를 참조할 때 문제가 발생
   - 이런 이유로 아래와 같이 DOM 요소 선택을 통해 변수를 알맞게 명명하고 사용
   
-  ```javascript
-  function init() {
-    var btnPrint = document.getElementById("btn-print");
-    btnPrint.onclick = printResult;
-  }
+    ```javascript
+    function init() {
+      var btnPrint = document.getElementById("btn-print");
+      btnPrint.onclick = printResult;
+    }
 
-  window.onload = init;
-  ```
+    window.onload = init;
+    ```
     
+---
+
+## 2021-04-22 공부내용
+
+### JavaScript
+- 스크립트 코드의 지역화
+  - 한번만 호출될 때 사용거나 이벤트 호출을 위해 작성한 함수는 함수명을 지어줄 필요가 없음 
+  - 익명함수의 형태로 만들어서 바로 필요한 부분에 삽입
+  - 함수 내에 필요한 변수를 선언한 코드의 지역화를 통해 변수의 재활용성을 높임
+  - 예시코드
+    ```javascript
+    window.onload = function() {
+      var btnPrint = document.getElementById("btn-print");
+      
+      var add = function(x, y) {
+        return x + y;
+      };
+      
+      btnPrint.onclick = function() {
+        var x = prompt("x값을 입력하세요.", 0);
+        var y = prompt("y값을 입력하세요.", 0);
+        
+        x = parseInt(x);
+        y = parseInt(y);
+        btnPrint.value = x+y;
+      };
+    }
+    ```
     
+- 이벤트 바인딩 (여러 스크립트 파일을 사용할 때) ⭐️
+  - 나중에 오는 스트립트로 덮어씌여지기에 앞단의 코드 적용이 안되는 문제 발생
+  - addEventListener를 활용한 문제 해결 방법
+  - 이벤트를 누적
+  - 예시 코드
+    ```javascript
+    window.addEventListener("load", function() { // 이벤트를 누적(괄호 사용 주의)
+      var btnPrint = document.getElementById("btn-print");
+      
+      var add = function(x, y) {
+        return x + y;
+      };
+      
+      btnPrint.onclick = function() {
+        var x = prompt("x값을 입력하세요.", 0);
+        var y = prompt("y값을 입력하세요.", 0);
+        
+        x = parseInt(x);
+        y = parseInt(y);
+        btnPrint.value = x+y;
+      };
+    });
+    ```
+   
+- innerText 와 같은 쓰임인 textContent
+   
+  #### 노드 선택 방법1
+  - getElementById(); => 아이디는 유일하기에 선택되는 노드는 단 한개
+  
+  - getElementsByTagName();  => 태그는 문서내에 여러개가 존재하기에 선택되는 노드는 여러개가 될 수 있음
+  - getElementsByClassName();  => 클래스는 문서내에 여러개가 존재할 주 있기에 선택되는 노드는 여러개가 될 수 있음
+    - getElementsByTagName, getElementsByClassName는 선택된 결과가 배열로 주어지기 때문에 사용에 있어 배열의 요소를 지정해야함
+      - 예시 코드
+      ```javascript
+      var btnAdd = section.getElementsByClass("btn-add")[0]; 
+      // 맨 뒤의 [0]으로 getElementsByClass로 얻게 된 요소들 중 첫번째 요소를 선택
+      ```
+      
+  #### 노드 선택 방법2
+  - 쿼리 셀랙터
+  - querySeletor(), querySeletors() => 선택하는 요소의 개수에 따라 선택하여 사용
+    - 예시 코드
+      ```javascript
+      var btnAdd = section.querySeletor(".btn-add"); 
+      // CSS 선택자를 활용하여 한 개만 선택
+      ```
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  #### 정교한 노드 선택 방법
+  - HTML 태그 내의 여러 속성을 활용해 정교하게 선택 가능
+  - 특정 요소를 선택하기 위해 매번 새로운 아이디, 클래스 명을 고안해야하는 어려움을 해소
+    - 예시 코드
+      ```javascript
+      var btnAdd = section.querySeletor("input[name='btn-add']"); 
+      // CSS
     
     
     
