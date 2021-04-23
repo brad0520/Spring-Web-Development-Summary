@@ -2452,7 +2452,7 @@
    
 - innerText 와 같은 쓰임인 textContent
    
-  #### 노드 선택 방법1
+  #### 노드 선택 방법1 (getElementsByClass)
   - getElementById(); => 아이디는 유일하기에 선택되는 노드는 단 한개
   
   - getElementsByTagName();  => 태그는 문서내에 여러개가 존재하기에 선택되는 노드는 여러개가 될 수 있음
@@ -2464,7 +2464,7 @@
       // 맨 뒤의 [0]으로 getElementsByClass로 얻게 된 요소들 중 첫번째 요소를 선택
       ```
       
-  #### 노드 선택 방법2
+  #### 노드 선택 방법2 (querySeletor)
   - 쿼리 셀랙터
   - querySeletor(), querySeletors() => 선택하는 요소의 개수에 따라 선택하여 사용
     - 예시 코드
@@ -2473,16 +2473,60 @@
       // CSS 선택자를 활용하여 한 개만 선택
       ```
     
-  #### 정교한 노드 선택 방법
+  #### 정교한 노드 선택 방법 (querySeletor)
   - HTML 태그 내의 여러 속성을 활용해 정교하게 선택 가능
   - 특정 요소를 선택하기 위해 매번 새로운 아이디, 클래스 명을 고안해야하는 어려움을 해소
     - 예시 코드
       ```javascript
       var btnAdd = section.querySeletor("input[name='btn-add']"); 
-      // CSS
-    
-    
-    
+      // CSS 선택자 활용 가능
+      ```
+
+--- 
+  
+## 2021-04-23 공부내용
+
+### JavaScript
+
+- childNodes
+  - 자식 요소 중에 주석도 포함되기에 일반적으로 엔터로 구분하는 코드들 사이에 엔터값을 자식으로 인식함
+  - 코드의 오류가 아닌 엄밀한 자식요소에 대한 분석이 필요
+  - 모든 노드들을 자식으로 인식
+- children
+  - 태그 형태의 노드들만 자식으로 인식
+
+- datalist 태그
+  - 텍스트 인풋창에 선택가능한 셀렉트가 들어있음 
+  
+- 선택자 변환 방법
+    - border-color => borderColor 와 같이 스네이크 표기법을 사용하는 HTML의 선택자를 카멜표기법을 사용하는 자바스크립트에 맞게 변경하면 인식 가능
+
+  #### Document 객체 조작 방법
+    - createElement
+    - createTextNode
+    - getElementsByTagName
+    - insertBefore();
+    - appendChild();
+    - removeChild();
+    - hasChildNodes();
+
+    - append(); 텍스트 노드를 직접 추가 가능, 복수의 노드 추가 가능
+    - .remove(); .앞의 노드를 바로 삭제 가능
+
+
+    - innerHTML 안에 추가할 태그를 작성하여 통째로 삽입
+      - = 으로 추가하면 기존에 있던 태그 대신 대체되고 += 으로 추가하면 기존 태그가 보존되지만 성능상에 문제가 발생할 수 있음
+      - 중간에 활용할 변수는 => '' + 변수 + '' 와 같이 조합해서 활용 가능
+
+  #### 노드 복제 (template 활용!!!)  
+    - 템플릿 복제를 사용하면 최초 샘플 데이터 없이 복제하고 데이터를 추가할 수 있음
+    - 템플릿은 실제 화면에 구현되는 내용이 아닌 양식을 제공하는 역할을 함
+    - template을 사용할 때는 cloneNode 방법에 유의 => importNode(); 사용  
+      - 예시 코드
+        ```javascript
+        var template = section.querySelector("template");
+        var cloneNode = document.importNode(template.content, true);
+        ```
     
     
     
