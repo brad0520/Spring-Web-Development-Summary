@@ -1610,6 +1610,9 @@
 
 
 ### 자바 스크립트
+
+[캡틴판교 블로그 참고](https://joshua1988.github.io/)
+
 - 비동기식 처리
   - 콜백함수 활용
     ```js
@@ -2528,9 +2531,47 @@
         var cloneNode = document.importNode(template.content, true);
         ```
     
+   --- 
+  
+## 2021-04-24 공부내용
+
+### JSP (sbsStudy)
+- Dynamic Web project
+  - tomcat과 같은 웹서버 프로그램 설치
+  - STS와 연동
+    - 서버에서 톰켓 추가(설치 위치 기억 필요)
+    - 포트 설정(기존에 사용중인 포트 피하기)
+    - 서버에 올릴 자원 선택(서버 우클릭 후 add and remove)
+  - 기본 주소 : http://localhost:8080(포트번호)/jsp(프로젝트명)/index.html(소스명)
+    - 포트번호를 달리해서 서버를 동시에 여러 개를 구성할 수 있음
+  
+  - Server tap에서 바로 톰켓 설치
+    - server tap 에서 우클릭 후 new / server를 선택하여 설치하고자 하는 서버와 버전을 선택할 수 있음
+    - 설치가 되어있지 않은 경우, 창에서 저장 경로 설정 후 바로 다운로드 하여 설치 및 세팅 가능
+    - server 창에서 여러 버전의 톰켓을 우면 여러 포트의 동시 사용이 가능함
+  
+  - Spring에서 구현
+    - spring으로 작업시에는 내장 톰켓 사용
+    - yml, xml 등으로 포트 및 톰켓 설정
+    - prefix, suffix 로 매핑될 주소의 앞뒤를 설정하여 주소 구성에 있어 편리함이 있음
     
     
+### Spring
+- afterLoginUri 설정 필요
+  - encodedUri을 사용해야 정상적으로 주소를 인식
+  
     
+    
+### JavaScript
+- 노드객체 선택
+  - parentNode
+  - firstChild
+  - lastChild
+  - previousSibling
+  - nextSibling
+  
+  - 요소를 지정해서 선택하고자 할 때는 element를 중간에 넣어서 활용
+  
     
     
     
