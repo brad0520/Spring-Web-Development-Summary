@@ -1298,7 +1298,7 @@
   - con : 너비를 늘여도 콘텐츠가 담긴 부분이 더 이상 늘어나지 않는 한계 너비를 지정
   
   
-### Sprin 복습
+### Spring 복습
 - 메뉴바에서 게시판 클릭시 해당 게시판으로 이동 : 컨트롤러에서 showList 기능 구현시 리턴값이 String 인 이유 =>  @ResponseBody 를 삭제하고 해당 화면을 보여줄 JSP파일로 연결을 해줘야하기에 해당 주소를 ""에 담아 리턴
   - 브라우저에 일반적인 홈페이지 형식으로 클라이언트에게 보여주기 위해 jsp로 그 기능을 넘김
   - 출력에 필요한 값들은 서블릿을 통해 변수로 담아 jsp로 전달
@@ -2017,7 +2017,7 @@
         request.setAttribute("result", result); // 변수명은 임의로 선택 가능, jsp에 넘겨줄 변수 선언
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("경로.파일명.jsp");
-        dispatcher.forword(request, response);  //포워드를 통해 연결된 jsp에서 데이터를 전달받아 작업을 이어갈 수 있음
+        dispatcher.forward(request, response);  //포워드를 통해 연결된 jsp에서 데이터를 전달받아 작업을 이어갈 수 있음
         ```
       - jsp code // java 로 선언된 변수를 받아서 사용
         ```java
@@ -2571,17 +2571,59 @@
   - nextSibling
   
   - 요소를 지정해서 선택하고자 할 때는 element를 중간에 넣어서 활용
+
+
+
+---  
+## 2021-04-25 공부내용
+    
+### JavaScript
+- input value vs checked 
+    
+- event target
+    
+- bubbling을 활용하면 반복을 줄이고 효과적인 코딩이 가능함 
+  - 중첩된 요소들 중에서 선택된 요소에만 반응하도록 구현 가능
+  - target 으로 선택된 요소 확인
+  - stopPropagation(); => 버블링 전파를 막아줌 
+  - target.classList.contains("클래스명") => 주어진 클래스명이 포함된 요소만 선택
+  - 
   
     
+--- 
+  
+## 2021-04-26 공부내용
     
+### Spring boot Web Project
+- 비밀번호 암호화
+  - sha256 util을 활용한 암호화
+  - 서버단에서 암호화를 하는 경우 클라이언트에서 서버로 오는 중에 비밀번호 보안에 취약점이 발생
+  - 클라이언트 단에서 암호화를 한 후 전송하는 것이 보다 안전한 방법
+  - 해당 기능을 적용하기 위한 검색 => 독립된 실험 공간에서 기능 적용 및 확인, 오류 점검 => util 화 하는 과정을 모두 마친 후 원하는 프로젝트에 적용
+  - sql 문으로 암호화도 가능
+    - SELECT SHA2('password', 256);
     
+- CSS, JS, img폴더 경로
+  - spring boot 에서는 기본적으로 src/main/resources/static에 위치한 자바스크립트, CSS, 이미지 등 정적 파일들은 URL에서 / 로 설정됨
+  
+  - 다음과 같이 파일이 위치하면 위치에 맞게 호출이 가능
+    - src/main/resources/static/js/*** (http://도메인/js/***)
+    - src/main/resources/static/css/*** (http://도메인/css/***)
+    - src/main/resources/static/image/*** (http://도메인/image/***)
+
     
+### Servlet
+- 톰켓 설정 변경
+  - 환경 설정이 달라짐에 따라 설치된 톰켓의 버전이 상이한 경우 발생하는 오류
+  - 설정 방법
+    - 서버탭에서 우클릭하여 new 선택 후 필요한 버전의 톰켓 설치
+    - 프로젝트 내의 아파치 톰켓을 우클릭 => 빌드 패스 => 컨피겨 빌드 패스 => 톰켓 클릭 후 활성화 되는 우측 메뉴중 edit 클릭하여 설치한 톰켓으로 설정 변경
+    - 서버탭에서 사용하고자 하는 톰켓 서버에 프로젝트 add
     
+
     
-    
-    
-    
-    
-    
-    
+
+
+
+
 <!-- </div> -->
