@@ -51,14 +51,14 @@
 - [STS](https://spring.io/tools) setting
 - Spring Boot 이론 학습
 - [lombok](https://projectlombok.org/download) 설치
-- [maven](https://mvnrepository.com/) 활용 방법
+- [maven repository](https://mvnrepository.com/) 활용 방법
 - 개발 환경 세팅
   - 이클립스 Emmet : http://emmet.io/eclipse/updates
 - [git](https://git-scm.com/) 연동
   - ssh키 활용하여 깃허브 등록, 연결 및 확인
 - [github](https://github.com/) clone, pull, push 완료
 
-### UsrHomeCtroller
+### UsrHomeController
 
 - @RequestMapping
 
@@ -623,13 +623,8 @@
   - css 포매팅은 코드펜 css의 드롭다운 메뉴 중 Format css기능을 활용하여 해결하거나 vs code와 같은 다른 편집툴 활용
   - 이클립스의 포매팅을 사용하면 개발자가 의도한 변수 정의가 틀어질 가능성이 높음
   - css, js 파일에서 주석의 중요성 : 코드의 재활용을 위해서는 필수!!!
-  - 디자인 시스템 동영상 참고 예정
-  - 메뉴바에서 게시판 클릭시 해당 게시판으로 이동 : 컨트롤러에서 showList 기능 구현시 리턴값이 String 인 이유????? (jsp가 나와야한다는데 궁금...)
-    => 나름의 정리 : @ResponseBody 를 삭제하고 해당 화면을 보여줄 JSP파일로 연결을 해줘야하기에 해당 주소를 ""에 담아 리턴
 
   - `+` : 인접 형제 선택자로 선행하는 요소 뒤를 따르는 형제 요소를 선택
-
-  - list.jsp 파일이 하나인데 두 개의 게시판을 보여줄 수 있는 과정이 궁금...
 
   - 공통되는 부분 header, footer 등은 사용할 모든 페이지에서 include로 사용하면 유지, 보수가 쉬움
   - 카페24에서 홈페이지 작업시 제공하는 모듈과 같은 개념
@@ -2621,7 +2616,181 @@
     - 서버탭에서 사용하고자 하는 톰켓 서버에 프로젝트 add
     
 
+     
+--- 
+  
+## 2021-04-27 공부내용
     
+### NTLsoft Project
+- 메인화면 구현
+- 게시판  3개 : 공지사항, 자유게시판, 질의응답
+- 웹 포폴 페이지, 쇼핑몰 포폴 페이지 링크
+- 회원 관련 기능 동작 테스트 확인
+- css적용을 위한 태그명 수정 필요
+- 이번 버전은 테일윈드 적용하지 않은 순수 css로 작업 예정
+- 파일 업로드, 댓글, 좋아요, 관리자 페이지 구현 예정
+
+#### static 폴더
+- css, js, img 등 DB에 영향을 받지 않는 정적인 파일들을 저장하면 spring boot 에서 자동으로 인식하는 폴더
+- 저장 경로를 잘 확인해야 오류가 아니기에 원하는 화면 구현 가능
+-  
+
+### JSP / Servlet 
+- Github에서 클론 등의 방법으로 가져온 프로젝트 실행시 처리 사항
+  - 프로젝트 우클릭 후 Properties / Project Facets 클릭
+  - 해당되는 사항을 체크 : servlet으로 구현 중인 웹프로젝트는 다이나믹 웹 프로젝트이기에 Dyanmic Web module 체크
+  - runtimes 도 버전에 맞는 톰켓 설정
+
+- 상속받아 클래스 작성시 Source / Override/Impelment Methods 선택하여 원하는 기능만 선택해서 오버라이드해서 구현 가능
+
+
+--- 
+  
+## 2021-04-28 공부내용
+    
+### JSP / Servlet 
+- MySQL 사용을 위한 [세팅](https://github.com/jhs512/jspCommunity/commit/438c2c260495da802a5697d6b71788c3177ce9e0) 필요 
+- Servlet이 필요한 데이터 처리를 모두 완료하고 jsp에 넘김
+- jsp에서는 데이터를 활용하여 html구성
+- 분업화된 mvc2 구조
+
+### Project
+- NTLsoft main, list페이지 작업
+  - 기존 작업 틀을 유지한 채로 css 스타일링
+  - class, id 의 중요성
+  - 라이브러리를 사용할 때는 중복으로 인한 스타일 미적용이 발생 가능
+  - 사용하고자 하는 라이브러리에 대한 학습 후 html태그에 식별자 사용을 권장
+  - 레이아웃과 관련된 부분은 초반에 구성하고 시작하면 작업 속도가 빨라질 수 있음
+  - 개인 블로그 프로젝트는 테일윈드 기반으로 기획하고 작업 예정
+  
+
+--- 
+  
+## 2021-04-29 공부내용
+    
+### Spring Boot
+- 기본 생성 패키지
+  - spring starter project 실행시 자동 생성되는 Application 파일만 생행하면 기본적인 톰켓, 스프링 등의 세팅이 이루어짐
+  - 내장 톰켓의 기본 포트는 8080으로 세팅되고 실행됨
+  
+- UUID 클래스
+  - 유일한 식별자를 생성 가능
+  - UUID 가 사용될 수 있는 사례
+    1. 업로드된 파일명의 중복을 방지하기 위해 파일명을 변경할 때 사용.
+    2. 첨부파일 파일다운로드시 다른 파일을 예측하여 다운로드하는것을 방지하는데 사용.
+    3. 일련번호 대신 유추하기 힘든 식별자를 사용하여 다른 컨텐츠의 임의 접근을 방지하는데 사용.
+    
+    ```java
+    import java.util.UUID;
+
+    public class UUIDTest {
+        public static void main(String[] args) {
+
+            UUID one = UUID.randomUUID();
+            UUID two = UUID.randomUUID();
+
+            System.out.println("UUID One: " + one.toString());
+            System.out.println("UUID Two: " + two.toString());
+        }
+    }
+    ```
+- 폴더 구조
+
+    src
+    └─ main
+       └─ resource
+          └─ templates (View: Thymeleaf, Groovy, Velocity 등)
+          └─ static    (정적 컨텐츠 : html, css, js, image 등)
+
+
+- 스프링 부트는 스프링 프로젝트와 다르게, 동적 파일들의 파일 변경을 자동으로 반영하지 않음
+  - 스프링부트 데브툴스 의존성 추가와 라이브 리로드 추가로 해결 가능
+
+    ```java
+    <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-devtools</artifactId> </dependency>
+    ```
+
+### PHP
+
+- 변수 선언
+  - $a 와 같이 변수명 앞에 $를 붙여서 선언
+  
+- 기본 문법
+  - 출력
+    - print($a);
+    - echo $a
+    
+  - 문자열 연결
+    - .  => 다른 언어에서 주로 사용하는 + 대신 .을 사용
+    
+  - 변수 활용
+    - "문장..." 안에 변수를 사용하고자 하는 위치에 바로 삽입해서 사용 가능
+    - "... $a ..." 과 같이 사용가능하지만 식별을 위해 "... {$a} ..."와 같이 중괄호로 묶어서 표현 권장
+    
+  - JSP와 비슷하게 사용
+    - php 문법인 부분은 <?php ?>로 감쌈
+    
+  - {}안에서 연산자 사용 불가능
+    - 연산 결과를 저장할 변수 선언 후 저장하여 활용
+    ```php
+    $a = 5;
+    $b = 10;
+    $result = $a + $b;
+    echo $result;
+    ```
+  
+--- 
+  
+## 2021-04-30 공부내용
+    
+### 개인프로젝트 (NTLsoft)
+    
+  - 페이지별 css 작업
+  - 멤버 관련 기능 버그 수정
+  - 구현 기능 점검
+  - 추가 구현 예정 기능 정리
+    - 자기 게시물 수정, 삭제
+    - 댓글 관련 기능 
+    - 검색에 작성자 키워드 포함
+    - 파일 업로드 다운로드
+    - 에디터 활용 글 작성모드
+    - 좋아요 기능
+    - 메인페이지 슬라이더 등 css 효과 추가
+    - 관리자 모드 페이지
+    - 어스키 활용 자동 로그인 기능
+    - cors 관련 문제 대비
+    - 회원 가입 환영 이메일 자동 발송 기능
+    - 자동 발신 메일 양식
+
+
+  
+--- 
+  
+## 2021-05-03 공부내용
+- Spring Boot Web
+  - Jackson ObjectMapper
+    - 자바 오브젝트를 JSON으로 시리얼라이징하거나 JSON 문자열을 자바 오브젝트로 디시리어라이징할 때 사용하는 클래스
+    - writeValue
+    - writeValueAsString
+    - writeValueAsBytes
+    - readValue
+    
+  - ResultMap
+    - 일대다 대응이 가능한 매핑
+    - 엑스트라 데이터를 맵에 담아서 활용가능
+
+  - [@RequestMapping을 이용한 요청 매핑](https://yang1650.tistory.com/133)
+    - 클래스와 메서드에 @RequestMapping 적용하기
+      - 컨트롤러와 메서드에 @RequestMapping 애노테이션을 모두 사용하면, 클래스에적용한 값과 메서드에 적용한 값을 조합해서 매핑될 경로를 결정
+      - @RequestMapping 애노테이션은 경로에 {변수} 형식의 경로 변수를 사용할 수 있음
+      - @PathVariable 애노테이션을 사용하면 경로 변수의 값을 파라미터로 전달받을 수 있음
+
+
+--- 
+  
+## 2021-05-04 공부내용
+- Spring Boot Web
+  - 
 
 
 
