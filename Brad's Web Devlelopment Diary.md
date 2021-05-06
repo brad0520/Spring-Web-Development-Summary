@@ -2814,5 +2814,64 @@
 
 
 
+--- 
+  
+## 2021-05-06일 공부내용
+
+### Oracle Datebase
+- SQL Developer
+  - 주석표시 -- => -를 2번 사용
+- 오라클 PDB 서버
+  - 가상 서버로 본 서버와는 다르게 플러그인 기능으로 테스트해보는 서버로 사용 가능
+  - EXEC DBMS_XDB.SETLISTENLOCALACCESS(FALSE);
+    - 원격으로 접속이 가능해짐
+  - 보기에서 DBA 클릭하여 접속
+  - 테이블 스페이스 생성
+  - 사용자 추가 : 보안 / 사용자 / 새로운 사용자 생성
+  
+- 데이터 형식
+  - charcter  => ''로 감싸서 표현
+    - CHAR : 검색 속도 빠름, 메모리 낭비 가능
+      - 스탠다드 사이즈 : 4000바이트
+      - 익스텐디드 사이즈 : 32767바이트
+      
+    - VARCHAR2 : 가변 길이, 검색속도 느림
+    - NCHAR : N은 보통 문자의 3배 사이즈를 차지, 다국적 언어를 입력받을 때 CHAR(2 CHAR)와 같이 사용하는 것보다 저장공간이 적게 소요되서 더 바람직
+    - NVARCHAR2
+     
+  - Numeric
+  - Date, TIMESTAMP(Date보다 세밀한 시간표현, 시분초까지)
+  - LOB
+  - 예약어를 변수로 사용하고자 하는 경우 "comment"와 같이 ""로 감싸면 사용 가능
+  
+- 데이터 조작
+  - Insert
+  ```oracle
+  INSERT INTO MEMBER(ID, PWD) VALUES('brad', '0520');
+  INSERT INTO MEMBER(PWD, ID) VALUES('0520', 'brad');
+  ```
+  
+  - UPDATE
+  ```oracle
+  UPDATEMEMBER SET PWD='111', NAME='손오공' WHERE ID='dragon';
+  ```
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
 
 <!-- </div> -->
