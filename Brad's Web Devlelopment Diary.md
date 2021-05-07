@@ -2856,6 +2856,153 @@
   UPDATEMEMBER SET PWD='111', NAME='손오공' WHERE ID='dragon';
   ```
   
+- 트랜젝션 처리를 위한 COMMIT, ROLLBACK
+  
+  
+--- 
+  
+## 2021-05-07일 공부내용
+
+### Oracle Datebase
+- 연산자
+  - 산술연산자
+    - + 는 숫자만 연산
+    - || 는 문자만 연산
+    
+  - 비교연산자
+    - IS NULL 
+    - IS NOT NULL 
+    - BETWEEN (범위가 주어질 때)
+    - IN (여러 불연속적인 데이터들을 범위로 사용 가능)
+    - NOT IN
+  
+  - 패턴 비교연산자
+    - LIKE : 특정 패턴을 포함하는 데이터 검색
+    - % => 임의의 문자를 의미
+    - _ => 자리수를 한정하여 검색 가능 
+      예) J_ => J로 시작하고 한글자가 뒤에 붙어있는 데이터 결과
+  
+  - 정규표현식 : REGEXP_LIKE()
+    - 시작 : ^
+    - 끝 : $
+    - \d : [0-9] 범위의 숫자
+    - \D : 숫자가 아닌 문자(대문자로 표현하면 부정을 의미)
+    
+    - \w : [0-9a-zA-Z]와 같이 숫자, 영어소문자, 영어대문자가 될 수 있는 한 글자를 표현
+    - {} : 반복횟수
+          예) {4} => 4번 반복, {3,4} => 3번이나 4번 반복
+          
+    - * : 0개 이상
+    - + : 1개 이상
+
+    - 쿼리 예시
+    ```oracle
+    SELECT * FROM MEMBER WHERE REGEXP_LIKE(TITLE, '^01[016-9]-\d{3,4}-\d{4}$');
+    ```
+    - 특정 정규패턴 포함한 데이터 검색에는 ^, $을 생략하면 검색 가능
+    - | : or 의 의미로 사용 가능
+      예시) (com|net)
+     
+- ROWNUM 으로 행 제한하기
+  - ROWNUM는 항상 1로 시작
+  - * 가 아닌 MEMBER.* 과 같이 사용하면 .앞의 테이블명으로 한정하는 효과가 있어 아래와 같은 쿼리가 가능
+  ```oracle
+  SELECT ROWNUM NUM, MEMBER.* FROM NOTICE;
+  ```
+  
+- DISTINCT
+  - 중복된 값 제거
+  
+- 여러 가지 함수
+  - CONTACT : 문자열 합치기
+  - TRIM : 빈 공백 제회
+  - LOWER : 소문자로 변환
+  - UPPER : 대문자로 변환
+  - SUBSTR : 문자열 추출
+  - REPLACE : 문자열 대체
+  - TRANSLATE : 각가의 문자를 대치
+  - 문자열 패딩 함수 : LPAD, RPAD (영문은 한글자, 한글은 2글자로 인식)
+  - INCAP : 문자의 첫글자를 대문자로 바꿔주는 함수
+  - INSTR : 문자열 내에서 원하는 문자를 검색
+  - ABS : 절댓값을 구하는 함수
+  - SIGN : 양수/음수를 알려주는 함수
+  - ROUND : 숫자의 반올림 값을 알려주는 함수
+  - POWER : 제곱
+  - SQRT : 제곱근
+  - NLS_DATE_FORMAT : 날짜 표기 포맷 변경 가능 
+  - EXTRACT : 날짜 추출 함수
+  - ADD_MONTH : 날짜를 누적하는 함수
+  - MONTH_BETWEEN : 날짜의 차이를 알려주는 함수
+  - NEXT_DAY : 다음 요일을 알려주는 함수
+  - LAST_DAY : 월의 마지막 요일을 알려주는 함수
+  - TO_DATE, TO_CHAR, TO_NUMBER, TO_TIMESTAMP : 형식변환 함수
+  - NVL(NULL, 대채값) => null을 처리하는 함수
+  - NVL2(NULL, ,NOT NULL 대채값, NULL 대채값) => null을 처리하는 함수
+  - DECODE(기준값, 비교값, 출력값, 비교값, 출력값)
+  ```oracle
+  SELECT DECODE(SUBSTR(PHONE, 1, 3)),
+                       '011', 'SK',
+                       '016', 'KT',
+                       '기타') FROM MEMBERS;
+  ```
+  
+- SELECT 구절과 정렬(ORDER BY)
+  - SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY => 작성 순서가 중요
+  - 실행순서
+    - FROM -> CONNECT BY -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY 
+    - 별칭의 경우 실행 순서에 영향을 받음
+    
+  - GROUP BY를 사용하는 경우 WHERE로 조건을 걸 수 없기에 이때는 HAVING절로 조건을 줄 수 있음
+  
+  - 정렬이 된 상태에서 ROW_NUMBER를 얻고자 하는 경우 ROW_NUMBER() 함수 사용
+  ```oracle
+  SELECT ROW_NUMBER() OVER(ORDER BY HIT), ID, TITLE, WRITER_ID, REGDATE, HIT FROM NOTICE;
+  ```
+  
+  - RANK() 로 ROW_NUMBER()를 수정하면 같은 수치 데이터가 있는 경우 같은 등수로 랭크되어 결과값이 산출됨
+  
+  - DENSE_RANK() : 동점자도 순서를 주는 순위
+  
+- 서브쿼리(부조회)
+  - 쿼리의 결과를 다시 SELECT 나 조건에 활용할 수 있음
+  
+- JOIN
+  - INNER JOIN
+  - OUTER JOIN
+  - LEFT, RIGHT, FULL JOIN 가능
+  - SELF JOIN
+  
+- Oracle inner join 
+  - join을 기술하지 않고 where절로 join 조건 기술
+  
+- Oracle outer join 
+  - join을 기술하지 않고 where절로 join 조건 기술 후 + 기호 사용
+
+- UNION
+  - 통합검색에 여러 게시판을 모아서 검색할 때와 같은 경우 사용
+  - MINUS, INTERSECT, ALL
+  
+- VIEW
+  - 실사용에서 자주 사용되는 형태는 매번 쿼리를 사용하지 않고 뷰로 만들어 테이블처럼 활용
+
+- 제약조건
+  - NOT NULL, DEFAULT
+  - CHECK 제약조건
+    - 데이터가 필요한 요건을 갖추고 있는지 확인
+    - 코드 예시
+    ```oracle
+    ALTER TABLE TEST ADD CONSTRAINT CK_TEST_PHONE CHECK(PHONE LIKE '010-%-____');
+    ```
+  - PRIMARY KEY
+  - UNIQUE
+  - 제약 조건(CONSTRAINT)는 하단에 한번에 정리해서 쿼리를 작성하면 가독성이 좋음
+  - 시퀀스 생성으로 자동증가 설정 가능
+  
+- Oracle 에서는 MySql에 있는 Auto_Increment 기능이 없음
+  - 시퀀스로 만들어서 사용해야함
+  - SEQ.NEXTVAL => 다음 번호를 입력
+  - 자동 증가로 입력하지 않아도 되게끔 설정하기 위해서는 테이블 편집에서 열을 선택하고 열의 시퀀스를 사용할 시퀀스로 지정해야 함
+  
   
   
   
