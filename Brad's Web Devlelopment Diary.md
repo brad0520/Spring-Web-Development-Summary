@@ -1,5 +1,5 @@
-<!-- <div class="con"> -->
 
+<!-- <div class="con"> -->
 # Brad's Web Devlelopment Diary
 
 ## 페이지 소개
@@ -3003,9 +3003,28 @@
   - SEQ.NEXTVAL => 다음 번호를 입력
   - 자동 증가로 입력하지 않아도 되게끔 설정하기 위해서는 테이블 편집에서 열을 선택하고 열의 시퀀스를 사용할 시퀀스로 지정해야 함
   
+--- 
   
+## 2021-05-09일 공부내용
+
+### SPRING AOP (Aspect Oriented Programming)
+
+- 관점지향 프로그래밍
+- 스프링 자체에 대한 이해
+
   
+--- 
   
+## 2021-05-10일 공부내용
+
+### SPRING AOP (Aspect Oriented Programming)
+
+- Before Advice
+- After returnnig Advice
+- After Throwing Advice
+- Around Advice
+
+
   
   
   
