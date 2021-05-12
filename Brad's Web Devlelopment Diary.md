@@ -3025,11 +3025,23 @@
 - Around Advice
 
 
+--- 
   
+## 2021-05-11일 공부내용
+
+### Ionic Framework
+- Vue를 활용한 프론트앤드 구현 미션
+- 밴앤드는 스프링부트로 구현
+- 소스코드 분석 후 추가 요청 사항 반영
+- FireBase 
+
   
+--- 
   
-  
-  
+## 2021-05-12일 공부내용
+### eclipse maven plugin error
+- [해결방법](https://web-obj.tistory.com/451)
+- 
   
   
   
