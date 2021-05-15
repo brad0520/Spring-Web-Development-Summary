@@ -2213,7 +2213,7 @@
         fos.write(buf, 0, size);
 
       fos.close();
-      fis .close();
+      fis.close();
       ```
 
     - 저장되는 디렉토리는 개발중인 디렉토리가 아닌 배포되어 서비스되는 디렉토리로 설정이 되기에 이클립스의 개발 폴더에서는 업로드된 파일을 확인할 수 없음
@@ -3038,14 +3038,37 @@
   
 --- 
   
-## 2021-05-12일 공부내용
-### eclipse maven plugin error
-- [해결방법](https://web-obj.tistory.com/451)
-- 
+## 2021-05-16일 공부내용
+
+### Spring
+- Dependency Injection
+  - Setter Injection
+  - Constructin Injection
+  - IOC Container(Inversion of Control)
+    - 부품이 결합되는 방식으로 설명할 경우 가장 작은 부품부터 조립되기에 이런 방식이 역방향
+    - 컨테이너 내에서 부품이 결합되어 제공되기에 컨테이너를 포함한 개념으로 제공
+  - Spring Bean Configuration
+    - bean tag에 정의 : id, class(클래스는 풀패키지로 작성, 같은 이름의 클래스가 존재할 수 있기에 구별을 위함)
+    - bean이 지정한 객체를 생성해줌
+    - bean tag내에 property로 결합하고자하는 클래스를 주입
+    - property 내에 name에는 set부분을 지우고 set뒤의 대문자를 소문자로 바꿔서 대입
+    - xml 파일이 조립 지시서 역할을 함
+    
+    
+- 이클립스에 스프링 설치
+  - help / marketplace에서 spring 검색 후 설치
+  - 스프링 부트도 같은 방식으로 설치 가능
+  
+  
+- Transaction management
+
+- DAO를 인터페이스로 생성함으로써 Service와 느슨하게 결합이 가능
+ 
+
   
   
   
-  
+
   
   
   
