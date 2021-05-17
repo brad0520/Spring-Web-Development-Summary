@@ -3108,9 +3108,43 @@
 - DAO를 인터페이스로 생성함으로써 Service와 느슨하게 결합이 가능
  
 
+--- 
   
+## 2021-05-17일 공부내용
+
+### 웹스퀘어
+- 웹스퀘어5 개발 가이드 [링크](http://docs.inswave.com:1975/sp2_user_guide#)
+- "위지위그 개발 도구가 포함된 HTML5 웹 표준 UI 플랫폼입니다." (WYS WYG: What You See Is What You Get)
+
+- WebSquare XML파일의 기본 구조
   
-  
+```websquare
+
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:w2="http://www.inswave.com/websquare" 
+ xmlns:xf="http://www.w3.org/2002/xforms">
+    <head>
+        <w2:type>DEFAULT</w2:type>
+        <w2:buildDate />
+        <xf:model>
+            <xf:instance>
+                <data xmlns="" />
+            </xf:instance>
+            <w2:dataCollection baseNode="map"></w2:dataCollection>
+            <w2:workflowCollection></w2:workflowCollection>
+        </xf:model>
+        <script type="javascript"><![CDATA[ ]]></script>
+        <style type="text/css"><![CDATA[ ]]></style>
+    </head>
+    <body></body>
+</html>
+
+
+```
+
+ 
   
   
   
