@@ -3118,34 +3118,62 @@
 
 - WebSquare XML파일의 기본 구조
   
-```websquare
+  ```websquare
 
-<?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ev="http://www.w3.org/2001/xml-events"
-    xmlns:w2="http://www.inswave.com/websquare" 
- xmlns:xf="http://www.w3.org/2002/xforms">
-    <head>
-        <w2:type>DEFAULT</w2:type>
-        <w2:buildDate />
-        <xf:model>
-            <xf:instance>
-                <data xmlns="" />
-            </xf:instance>
-            <w2:dataCollection baseNode="map"></w2:dataCollection>
-            <w2:workflowCollection></w2:workflowCollection>
-        </xf:model>
-        <script type="javascript"><![CDATA[ ]]></script>
-        <style type="text/css"><![CDATA[ ]]></style>
-    </head>
-    <body></body>
-</html>
-
-
-```
+  <?xml version="1.0" encoding="UTF-8"?>
+  <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ev="http://www.w3.org/2001/xml-events"
+      xmlns:w2="http://www.inswave.com/websquare" 
+   xmlns:xf="http://www.w3.org/2002/xforms">
+      <head>
+          <w2:type>DEFAULT</w2:type>
+          <w2:buildDate />
+          <xf:model>
+              <xf:instance>
+                  <data xmlns="" />
+              </xf:instance>
+              <w2:dataCollection baseNode="map"></w2:dataCollection>
+              <w2:workflowCollection></w2:workflowCollection>
+          </xf:model>
+          <script type="javascript"><![CDATA[ ]]></script>
+          <style type="text/css"><![CDATA[ ]]></style>
+      </head>
+      <body></body>
+  </html>
+  ```ㅍㅍ
 
  
+--- 
   
+## 2021-05-18, 19일 공부내용
+
+### 컴퓨터 프로그래밍
+- 컴퍼일 언어
+- 인터프리트 언어
+- 함수가 제공하는 3가지 능력
+  - 코드 파편화
+  - 코드 집중화
+  - 코드 은닉화
+  
+- 웹 개발자의 직업군  
+  - 웹퍼블리셔
+  - 프론트앤드 개발자
+    - DOM을 활용하는 방법의 진화
+    - jQuery를 많이 이용했지만, 최근에는 React나 Angular로 구현 가능
+    
+  - 백앤드 개발자
+    - 
+    
+- 학습 예정 언어 / 프레임워크
+  - Ionic
+  - Typescript
+  - React
+  - Node.js
+  - Spring(boot가 아닌...)
+  - Linux
+  - Vue
+
+
   
   
 
