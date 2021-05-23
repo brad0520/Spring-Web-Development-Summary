@@ -3140,7 +3140,7 @@
       </head>
       <body></body>
   </html>
-  ```ㅍㅍ
+  ```
 
  
 --- 
@@ -3162,7 +3162,11 @@
     - jQuery를 많이 이용했지만, 최근에는 React나 Angular로 구현 가능
     
   - 백앤드 개발자
-    - 
+
+- SPA (single page application)
+  - Ajax와 같은 비동기식 데이터 처리로 필요한 부분만 수정해서 페이지를 보여줌
+  - 전체 페이지 로드는 최초 한번만 하고 이후 변경이 되는 부분만 수정하여 전체화면이 깜빡이지 않음
+  - 데이터 로드 속도가 빨라짐
     
 - 학습 예정 언어 / 프레임워크
   - Ionic
@@ -3172,8 +3176,33 @@
   - Spring(boot가 아닌...)
   - Linux
   - Vue
+  - C, C++
 
+   
+--- 
+  
+## 2021-05-23일 공부내용
 
+### 24~30일 개발 플랜
+- NTLsoft Homepage
+  - Backend 수정 및 보완
+  - Frontend 디테일 보완
+  - 서비스 실시까지 실행
+  
+- App project
+  - Ionic Framework
+  - Vue.js
+  - Spring Boot
+  
+- Private Library
+  - Frontend
+  - Backend
+  
+- Future Plan
+  - Web service
+  - Application service
+  
+- ASAP !!!
   
   
 
