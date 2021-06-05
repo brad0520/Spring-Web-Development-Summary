@@ -3352,11 +3352,40 @@
   - 예) alias ls='ls -l'
     - ls를 별칭으로 하는 ls -l 명령
 
+- ALT + F2 : 새로운 터미널 추가 실행, 터미널 전환하기
 
+- PAM(Pluggable Authentication Modules)
+
+### Ionic
+- 크로스 플랫폼 앱 제작 가능
+- UI 컴포넌트를 제공하여 빠르게 구현 가능
+- 빌드와 실행 속도가 빠름
+- Angular, React, Vue 와 조합이 가능하며, vanilla JavaScript로도 제작이 가능
+- UI 컴포넌트의 경우 다른 css프레임워크와 사용 경험이 유사하여 빠르게 적용이 가능
+- JavaScript로 기기의 기능에 접근이 가능
+  - 카메라, 가속센서, 블루투스 등의 기능을 활용한 기능 구현
+  
+--- 
+  
+## 2021-06-01일 공부내용
+
+### Linux
+
+- 설치관리자 활용 가능
+  - deb 확장자를 가진 파일은 압축 해제 및 설치까지 되는 파일
+  - dpkg 
     
-    
+--- 
+  
+## 2021-06-03일 공부내용
 
-
+### Linux
+- 향상된 패키지 관리도구(APT)를 이용한 JDK 설치
+- telnet 서버 활용
+  - Port Forwarding
+- ssh 서버 활용
+  - putty
+  
 
 
 <!-- </div> -->
