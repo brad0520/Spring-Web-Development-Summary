@@ -1,3429 +1,1297 @@
 <!-- <div class="con"> -->
 
-# Brad's Web Devlelopment Diary
+# Brad's Task
 
-## 페이지 소개
-
-- 주소 : [https://to2.kr/cfB](https://to2.kr/cfB)
-- 내용 : Spring Web Development Study
-- 공부 Vlog
-  링크예시) 박병규, 21-03-27, 공부 Vlog https://...(유튜브 업로드 영상 링크)
-- 개인 프로젝트
-  - NTLsoft 포트폴리오 : [https://to2.kr/cnv](https://to2.kr/cnv)
-
-  - mac 화면 녹화 동영상 인코딩은 finder를 통해 빠르게 가능
+## 수자원공사 ERP 시스템 구축
 
 ---
 
-## 2021-03-27 공부내용
+## 2021-05-10 업무일지
 
-### DB
+### PC 인증
+- 데스크탑이나 노트북을 포맷 전 사진
+- 포맷 후 사진
+- 윈도우 10 pro 설치 및 인증
+- 원도우 업데이트 완료
+- 수자원공사 보안점검
+  - 수자원공사 본원으로 직접 가서 점검 후 확인 사인 필요
+  - 점검 장소 : 수자원 공사 정문으로 들어가서 막다른 좌회전 길이 나올 때까지 직진 => 좌회전 후 외쪽에 잔디밭을 지나 보이는 길가쪽 작은 흰색 건물(주차장에 진입 금지 안내가 있음) => 1층 입구를 들어가면 외쪽에 바로 위치한 서비스 창구에서 점검
+  - 점검 시간 : 40분여 소요
+- 필수 프로그램 설치(예정)
+- 설치 후 인증 사진 촬용(예정)
+- 노트북 시건장치(예정)
+- 미사용 포트 보안 장치(예정)
+- 보안 절차 완료후 사진 수합 보고(예정)
+- 필요 서류 제출(예정)
 
-- Database 개론
-- DataBase(DB)
-
-  - 공유되어 사용될 목적으로 통합 저장, 관리되는 데이터.
-  - 검색과 갱신등을 효율적으로 하기 위해 구조화된 데이터.
-  - 관련된 테이블들의 집합.(테이블 폴더)
-
-- 테이블(Table)
-
-  - 사물이나 개념의 본질적인 속성을 모아서 표로 만든것.
-  - 사물이나 개념을 표현하는 단위
-    ex) 학생(사물, 개념) - 학번, 이름, 전공 (속성)
-  - 테이블은 엑셀 파일과 비슷하다.
-
-- DBMS(DataBase Management System)
-
-  - 데이터베이스를 체계적으로 관리할 수 있도록 기능을 제공하는 프로그램
-  - 대표적인 DBMS : Oracle, MySql, MsSql
-
-- SQL(Structed Query Language)
-
-  - DBMS를 다루기 위한 표준화된 언어 체계.
-
-  - [xampp](https://www.apachefriends.org/index.html) 설치
-  - [SQlyog](https://formac.informer.com/sqlyog) 설치
-  - mysql 기본 문법
-
-### Spring
-
-- [STS](https://spring.io/tools) setting
-- Spring Boot 이론 학습
-- [lombok](https://projectlombok.org/download) 설치
-- [maven repository](https://mvnrepository.com/) 활용 방법
-- 개발 환경 세팅
-  - 이클립스 Emmet : http://emmet.io/eclipse/updates
-- [git](https://git-scm.com/) 연동
-  - ssh키 활용하여 깃허브 등록, 연결 및 확인
-- [github](https://github.com/) clone, pull, push 완료
-
-### UsrHomeController
-
-- @RequestMapping
-
-  - 주소창의 쿼리와 메서드를 연결해줌
-
-- @ResponseBody
-  - 메서드의 결과를 브라우저에 출력
-- 쿼리를 통해 브라우저에 출력 구현
-- 브라우저와 java 프로그램의 인식의 범위 차이 확인
+### ERP 시스템에 대한 사전 조사
+- 전사적 자원 관리 시스템
+- 회사의 자원이 효율적으로 분배, 사용될 수 있도록 하는 시스템 관리
+- 경영 정보 시스템(MIS)의 한 종류
+- 회사의 모든 정보 뿐만 아니라 공급 사슬 관리, 고객의 주문정보까지 포함하여 통합적으로 관리하는 시스템
 
 ---
 
-## 2021-03-28 공부내용
-
-### DB
-
-- mySQL 기본 문법
-- DDL, DML 차이점
-
-- 데이터 정의 언어(DDL)
-
-  - 데이터베이스, 테이블 생성 : CREATE
-
-    - 데이터베이스 생성 : CREATE DATABASE 데이터베이스명
-    - 테이블 생성 : CREATE TABLE 테이블명
-
-  - 테이블 구조 변경 : ALTER TABLE
-    - 칼럼 추가 : ALTER TABLE 테이블명 ADD COLUMN 칼럼명 타입(크기) 제약조건
-    - 칼럼 수정 : ALTER TABLE 테이블명 MODIFY COLUMN 칼럼명 타입(크기) 제약조건
-    - 칼럼 삭제 : ALTER TABLE 테이블명 DROP COLUMN 칼럼명
-    - 칼럼명 변경 : ALTER TABLE 테이블명 CHANGE 칼럼명 새칼럼명 타입(크기)
-      - 제약의 종류 :
-        - PRIMARY KEY : 주키 설정(데이터 중복 허용X + not null)
-        - NOT NULL : NULL데이터 허용 안함. 무조건 데이터 들어와야함.
-        - AUTO_INCREMENT : 자동증가. int형이고 주키인 컬럼에만 사용.
-        - UINSIGNED : 음수 표현 제거.
-        - UNIQUE : 중복데이터 허용 X
-    - 테이블, 데이터베이스 삭제 : DROP
-      - 데이터베이스 삭제 : DROP DATABASE 데이터베이스명
-      - 테이블 삭제 : DROP TABLE 테이블명
-    - 테이블 내 모든 데이터 삭제 : TRUNCATE
-      - TRUNCATE TABLE 테이블명
-
-- 데이터 조작 언어(DML)
-  - 데이터 조회 : SELECT
-    - SELECT 칼럼 FROM 테이블 WHERE 조건
-  - 데이터 수정 : UPDATE
-    - UPDATE 테이블 SET 칼럼 = 값, .... WHERE 조건
-  - 데이터 삽입 : INSERT
-    - INSERT INTO 테이블 SET 칼럼 = 값, ...
-  - 데이터 삭제 : DELETE
-    - DELETE FROM 테이블 WHERE 조건
-
-### Spring
-
-- JSON Formatter : 크롬에 설치하여 웹에서 json형식 확인
-- dto, dao, service 구축
-- lombok 활용 : 반복적인 코드 작성을 대신해줌
-  - 생성자, getter, setter, toString 등을 자동 생성
-- controller, service, dao의 상호작용 이해를 통한 구축
-
-- article, articleDao, articleService, articleController 는 스스로 구축가능하게 이해 및 구축 연습 필요
-
-- util은 참고해서 작성해도 무방한 부분
-
-### Spring boot 학습내용
-
-- @Controller : 소스파일이 컨트롤러임을 알게 해주는 어노테이션
-
-- @Autowired : 스프링 프레임워크에서 관리하는 Bean 객체와 같은 타입의 객체를 찾아서 자동으로 주입해주는 것
-
-- 입력값이 없는 경우 int는 null을 받을 수 없지만 Integer는 받을 수 있음. 처리할 수 있는 데이터의 범위가 int가 Integer보다 좁음.
+## 2021-05-11 업무일지
+### PC 인증 및 환경 설정
+- 노트북 시건장치
+- 필요 서류 제출
 
 ---
 
-## 2021-03-29 공부내용
+## 2021-05-12 업무일지
+### PC 인증 및 환경 설정 완료
+- 필수 프로그램 설치
+- 설치 후 인증 사진 촬영
+- 미사용 포트 보안 장치
+- 보안 절차 완료후 사진 수합 보고
+- 프로세스 및 개발 요구사항, ERD 확인
 
-### Spring
-
-- Board Application Structure Rebuilding
-
-- Today's goal : Build below
-
-  - Controller : 구현 기능 => 게시글 작성, 수정, 삭제, 열람
-
-    - 입력된 데이터의 유효성 체크와 같은 작업을 수행한 후 서비스에게 전달
-    - 서비스가 전달받은 데이터에 대한 검증을 하지 않아도 되도록 하기 위함
-    - Controller, Service, DAO가 역할을 분담하여 현업에서 유지, 보수가 쉽게 프로그래밍
-
-  - 4가지 쿼리문 작동 : doWrite, doModify, doDelete, getArticle
-
-  - DAO : 컨트롤러의 주문을 받아 데이터 관련 단순 업무를 수행하는 메서드 구현
-    - 서비스의 요청에 맞는 return 값을 설정하고 구현이 필요
-  - DTO : 객체 정보를 구현 / 객체 정의시 생성자, getter, setter, toString 등은 lombok을 활용하여 간단하게 구현 가능
-    - 아래와 같은 어노테이션을 통해 구현
-    - 정상 처리 여부는 Outline으로 확인이 가능
-    - @AllArgsConstructor
-    - @Data
-  - Service : ResultData 의 형식으로 return 값을 컨트롤러에게 반환
-
-  - 컨트롤러 => 서비스 => DAO
-
-    - @Autowired 어노테이션으로 객체 자동 연결 : 컨트롤러는 서비스와, 서비스는 DAO와 연결
-
-    - @Autowired로 연결되기 위해서는 연결되는 클래스에 @Component가 반드시 있어야함
-    - Service만 예외적으로 @Component가 대신 @Service를 사용
-    - 컨트롤러에서는 서비스로만 요청하고, 서비스는 DAO로만 요청
-    - 소스파일에서도 위와 같이 구현
-    - 현업에서 대부분 사용하는 MVC패턴([Head First Design Patterns](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=582754) 참고 예정)
-
-- DB connection(차시 학습 예정)
-  - DB 수업 예습과 더불어 지난 기수 학습 내용 공유 자료를 통해 학습 필요
-
-### Java
-
-- HashMap, LinkedHashMap
-
-  - LinkedHashMap은 입력 순서의 차이를 고려함
-  - util로 사용하는 mapOf의 구현 과정 : [2021 01 30 스프링부트, bY9, 22강, Util mapOf 구현연습](https://www.youtube.com/watch?v=xNzH40ZYDkg)
-
-  - map vs DTO [[참고영상]](https://www.youtube.com/watch?v=67_Qp0lW-dM)
-    - map으로 데이터를 입력하는 경우는 구성의 자유도가 높음
-    - DTO를 활용하는 경우가 국내에서는 다수이며, 입력하는 개발자의 실수를 클래스 구성을 통해 방지하며 효율적인 방법
-    - DTO 클래스 구성시 lombok을 활용하면 간단하게 구현 가능
-  - ResultData 구현[[참고영상]](https://www.youtube.com/watch?v=zZE13aJAaZY)
-    - 프로그래밍에 있어 2번 이상 반복이 되는 경우 공통되는 부분을 모듈화(클래스)하는 것이 중요
-    - mapOf를 활용하는 것에서 중복된 부분을 정의한 ResultData 구현
-
-### STS 활용 팁 (사이드 메뉴 폰트가 작아 안보이는 문제 해결)
-
-- Package Explore 등 폰트 크기가 너무 작은 경우 해법
-
-  - 프로그램의 CSS 폴더에서 폰트 사이즈 변경 + sts4.0 preferences/General/Appearance/Colors and Font/Veiw and Editor Folders/Tree and Table font for views 에서 폰트 사이즈 변경[(참조 링크)](https://stackoverflow.com/questions/47731327/change-project-explorer-tree-view-font-size-in-eclipse-oxygen/62838294#62838294?newreg=da90dd46ca2d4c229df3f020a7891933)
-
-  - 전제적인 폰트 사이즈를 크게 하고 싶은 경우 : CSS 폴더 내에서 사용중인 테마의 모든 CSS 파일의 폰트 사이즈 변경(QHD 환경에서 14~16포인트 정도면 괘적함)
-
-- 변수명 일괄 선택 단축키 : ctr + shift + R
-- 소스파일 실행 단축키: ctr + R
+### 기술통합팀 회의
+- 감리 대비 화면단 선 구성 일정
+- 웹스퀘어 활용한 화면단 구성
+- 빠를수록 효율성이 높아짐
 
 ---
 
-## 2021-03-30 공부내용
-
-### Spring
-
-- ForPrint : 게시물 내용에서 출력을 위한 내용을 정해서 요청할 때 사용
-  - 예) getForPrintArticle();
-- 인터셉터를 추가해서 로그인 여부 등을 매번 확인하지 않도록 효율성을 높일 수 있음
-  - 관련 소스는 검색해서 추가 가능 : 필요한 부분만 편집해서 사용
-- Mybatis : 현업에서 가장 많이 사용
-- 새 프로젝트 생성시 Mybatis Framework, MySQL Driver 선택
-- DB 연결을 위해서 MySQL Driver는 필수
-- pom.xml 도 체크
-
-- Mybatis 적용시 @Mapper 어노테이션 사용
-
-  - ArticleDao의 내용을 모두 삭제하고 interface로 수정
-
-  - Dao를 참조하던 소스파일의 메서드를 다시 생성하면 인터페이스이기에 추상메서드로 생성이 됨
-
-  - ArticleDao와 쌍으로 ArticleDao.xml파일 작성이 필수
-  - 지정 양식으로 쿼리 작성하면 이전과 같이 정상 작동
-  - xml 파일 작성 예시([참고자료](https://github.com/jhs512/untactTeacher/commit/435d48acb44986325e9afc1696fc53ac4e3c6ce8))
-
-  ```sql
-   <insert id="ad Article" seGeneratedKeys="true" keyProperty="id">
-       INSERT INTO article
-       SET regDate = NOW(),
-       updateDate = NOW(),
-       title = #{title},
-       title = #{title},
-       `body` = #{body}
-   </insert>
-  ```
-
-- xml에서도 if문 사용 가능
-
-  ```sql
-    <select id="getArticles" resultType="Article">
-      SELECT *
-      FROM article
-      WHERE 1
-      <if test="searchKeywordType == 'title'">
-        AND title LIKE CONCAT('%', #{searchKeyword}, '%')
-      </if>
-      <if test="searchKeywordType == 'body'">
-        AND `body` LIKE CONCAT('%', #{searchKeyword}, '%')
-      </if>
-      <if test="searchKeywordType == 'titleAndBody'">
-        AND (title LIKE CONCAT('%', #{searchKeyword}, '%') OR `body` LIKE CONCAT('%', #{searchKeyword}, '%'))
-      </if>
-      ORDER BY id DESC
-    </select>
-  ```
-
-- 쿼리로거 적용하여, 콘솔에 실행되는 쿼리가 출력되도록 세팅 가능[[참고자료](https://www.youtube.com/watch?v=kbE_fOR4aD4)]
-
-### MySQL
-
-- 사용자 권한 부여를 먼저 해야 DB 접근 권한이 생김
-
-- 권한 부여 과정
-
-  - XAMPP 최신 버전 필요[[xampp-osx-8.0.3-0-installer.dmg]](https://sourceforge.net/projects/xampp/files/XAMPP%20Mac%20OS%20X/8.0.3/xampp-osx-8.0.3-0-installer.dmg/download)
-  - root 접속 후 계정 생성 및 권한 부여
-  - root 계정 접속정보 : root/패스워드 없음
-  - GRANT ALL PRIVILEGES ON _._ TO 계정명(sbsst)@`%` IDENTIFIED BY 계정비밀번호('sbs!123414');
-
-  - 이후부터는 [계정명/계정비밀번호]로 사용 가능
-
-- inner join, left join 은 필수적으로 완벽히 이해하고 사용해야 함
-  - 예) inner join 사용시에는 탈퇴한 회원이 작성한 글을 조회할 수 없지만, left join을 사용하면 조회 가능
-- IFNULL : NULL인 경우 처리 가능
-
-### Java
-
-- 인터페이스 : 서로 관계가 없는 물체들이 상호 작용을 하기 위해서 사용하는 장치나 시스템
-
-  - 인터페이스 정의하는 방법
-
-    - 추상 메소드와 상수를 정의 가능
-
-    - 인터페이스에서 변수를 선언하면 컴파일시 자동으로 상수로 변환해줌(final을 붙이지 않아도 됨)
-
-  - 인터페이스 사용하는 방법
-
-    - 인터페이스는 사용할때 해당 인터페이스를 구현하는 클래스에서 implements 키워드를 이용
-
-    - 인터페이스가 가지고 있는 메소드를 하나라도 구현하지 않는다면 해당 클래스는 추상클래스가 됨(추상클래스는 인스턴스를 만들 수 없음)
-
----
-
-## 2021-03-31 공부내용
-
-### Spring
-
-- 인터셉터를 활용하면 로그인 관련 정보를 모두 처리해두기 때문에 관련 메서드에서 일일히 처리하는 과정이 필요하지 않게 됨
-
-- 기능 추가
-  - 콘트롤러에 추가 => 서비스에 클래스 생성 및 구현 => => DAO에 클래스 생성 및 구현 => XML 소스에 쿼리 추가 =>객체 클래스 구현(필요한 경우)
-  - lombok, MyBatis 덕분에 구현이 간단해짐
-  - 비슷한 기능을 가진 새로운 기능의 추가인 경우 기존에 구현한 메서드를 활용하여 구현
-- SESSION 에서 로그인 정보를 기억하고 있으며, 이를 활용하여 로그인 이후 필요한 기능 구현
-- REQUEST는 요청 후 데이터를 삭제하기 때문에 로그인이 유지되는 동안 처리가 필요한 경우 해당 정보를 SESSION에 저장
-
-### MySQL
-
-- SELECT 문의 경우 뒤에 FROM ARTICLE이 없는 경우 SELECT 1 과 같이 입력하면 1이 입력된 데이터가 생성이 됨
-
-- INSERT의 경우 아래와 같이 한번에 입력이 가능
-
-  ```sql
-  insert into article
-  (regDate, updateDate, memberId, title, `body`)
-  SELECT NOW(), NOW(), FLOOR(RAND() * 2) + 1, CONCAT('제목_', FLOOR(RAND() * 1000) + 1), CONCAT('내용_', FLOOR(RAND() * 1000) + 1)
-  from article;
-  ```
-
-- 동적 SQL
-- LIMIT 구문
-  - LIMIT a; => 위에서부터 a개
-  - LIMIT a, b; => a에서부터 b개 (a는 시작위치, b는 반환 갯수)
-- 게시판별 조회 및 출력
-  - 게시판별로 다른 값을 입력하는 컬럼 추가 (예> 공지사항:1, 자유게시판:2)
-  - 쿼리에서 boardId로 선택하여 출력
-  - 조건 추가하여 원하는 조회화면 제공 가능
-- DB에 게시물과 댓글이 매우 많은 경우 관련 데이터를 모아서 제공하는데 검색 시간이 많이 걸릴 수 있는 문제점은 인덱스를 활용하여 해결
-- 인덱스에 조건을 걸어둔 순서대로 WHERE 문에 적용해야 올바로 인덱스 활용 가능
-- 최근에는 순서가 바뀐 쿼리도 자동으로 보정해서 검색을 해주기도 하지만, 그래도 순서를 지키는 것이 중요
-
----
-
-## 2021-04-01 공부내용
-
-### Java
-
-- 객체 저장 복습
-  - [배열없이 실습](https://replit.com/@brad0135/2021-03-31inryeoggwanriso-baeyeoleobsi-guhyeon#Main.java)
-    - 생성하는 객체마다 변수 생성 후 저장
-  - [배열로 실습](https://replit.com/@brad0135/2021-03-31inryeoggwanriso-baeyeolsayong#Main.java)
-    - 리모컨을 담는 배열 생성하여 객체 관리
-  - [리스트로 실습](https://replit.com/@brad0135/2021-03-31inryeoggwanriso-ArrayList-sayong#Main.java)
-    - 저장공간에 제약을 받지 않는 리스트로 간편하게 구현
-
-### Spring
-
-- Java update 후 STS 혹은 이클립스 실행 오류 발생 이슈
-
-- vm 파일 수정으로 해결하는 방법
-  - 대부분 위와 같은 방법으로 해결이 되었으나 최근의 경우 해결이 되지 않는 문제점
-- lombok이 설치되었으나 실행이 되지 않는 문제의 경우 ini 파일의 lombok 경로를 수정해서 해결
-- 깃허브에 작업물이 보존되어 있기에 STS는 새로 설치하여 설치 안되는 문제점을 해결
-- STS 세팅의 경우 다시 설정해줘야하는 번거로움과 필요한 프로그램의 다운로드 및 설정을 하는데 생각보다 시간이 소요됨
-- 자바 업데이트 알림을 확인하고 가급적이면 해당업데이트로 인한 이슈가 정리된 다음에 업데이트를 하는 것이 좋지 않을까 함.
-- 현재 m1 macbook의 경우 이슈가 발생하면 정리되는데 시간이 필요한 듯
-
-### Postman
-
-- 개발 중에 프로그램을 매번 쿼리를 작성하여 실행하는데 있어 불편함을 획기적으로 줄여주는 프로그램!!!
-- 기능의 정상작동여부를 확인할 수 있는 명령어를 저장해두고 단축키로 실행하고 확인할 수 있음
-- 명령어의 경우 계정으로 관리가 되기에 다른 기기에서도 로그인하면 바로 사용이 가능
-
-### Vue 3.0
-
-- [Vue 3.0 Study](https://codepen.io/NTL-design/pen/poRNezd?editors=1000)
-- 위 링크에 학습 내용을 따로 정리
-- 다이나믹 웹 구현을 위한 양방향 데이터 바인딩 프레임워크
-- 게시판을 실제 웹으로 구현함에 있어 UI 구현을 쉽고 효율적으로 할 수 있게 도와주는 기능들 포함
-
----
-
-## 2021-04-02 공부내용
-
-### Java
-
-- list, arrayList 차이점
-- list는 인터페이스로 arrayList보다 큰 개념
-- 따라서 실무에서는 list를 대부분 사용하여 융통성을 줄 수 있게 운영
-  - 예시
-
-  ```java
-  list<article> articles = new arrayList<>();
-  ```
-
-- <>안은 Generic으로 생성할 타입을 선언
-- list에 추가되는 객체들의 타입을 확인하여 오류 검출
-
-- 컴파일 오류 vs 런타임 오류
-- try, catch, finally 구문을 활용하여 오류를 처리하여 프로그램이 실행중지 되지 않도록 처리할 수 있음
-
-### Spring
-
-#### 지난 주 복습 파트
-
-- Spring 프레임워크와 lombok을 활용한 Controller, Service, Dao, Dto 작성 복습
-- Util class들의 메서드 이해(현재까지는 위 프로그램 작성시 util은 기존 코드 활용)
-
-#### Web Project
-
-1. JSP, JSTL 설정
-
-   - application.yml 파일에 환경 설정 소스를 추가하여 mybatis, jsp, mysql 등을 활성화 시킴
-   - pom.xml 파일에도 사용하고자 하는 라이브러리를 추가해야 함
-   - maven project의 핵심인 pom.xml 파일로 이 파일을 잘 설정하면 프로젝프 실행과 배포를 위한 설정을 완료할 수 있음
-   - maven project의 dependencies(필수사항) : 라이브러리를 불러오는 부분
-   - src/main/webapp/WEB-INF/jsp/adm/member/login.jsp => jsp 파일 생성은 필수
-   - @responseBody 를 하지 않는 경우 폴더 경로를 찾아서 실행함
-
-2. CSS 작업환경 세팅
-
-   - [테일윈드](https://tailwindcss.com/)로 css 작업을 하면 효율적 : 추후 학습이 필요
-   - 직접 css파일을 조작하지 않고 html태그에 입력하여 화면 구성요소를 꾸밀 수 있음
-   - 사용하고자 하는 디자인을 선택하고 적용된 테일윈드 클래스명을 복사해서 붙여넣기로 간단하게 구현 가능
-   - 직접구현하는 것보다 UI구현에 시간을 절약할 수 있음
-
-3. 인터셉터
-
-   - beforeActionInterceptor
-     - 필터링(X)
-     - 정보강화 표준화
-     - req.set
-   - needAdminInterceptor
-
-   - needLoginInterceptor
-
-   - needLogoutInterceptor
-
-- 4개의 인터셉터의 역할로 인해 컨트롤러의 일이 많이 줄어듬
-
-4. JSP
-   - header, footer 등으로 나누고 include
-   - common.css 등의 파일 작성 및 폴더 생성 및 정리
-
----
-
-## 2021-04-03 공부내용
-
-### Java Dao 구조
-
-- MVC 구조 개념
-
-  - Model : 어플리케이션의 핵심
-    - Service : 어플리케이션의 핵심로직
-    - DAO : 데이터 관리자
-    - DTO : 데이터 단위
-  - Controller : 사용자의 요청을 받아서 해석한 후 Model에게 다시 요청한다.
-  - View : 사용자가 보는 화면을 의미한다.
-
-- MVC 구조를 은행에 비유
-  - APP은 청원경찰이다.
-    - 이 분은 고객이 대출업무인지, 일반금융업무인지만 판단해서 올바른 컨트롤러(창구직원)에게 보내준다.
-  - 컨트롤러는 창구직원이다.
-    - 이 분은 고객이 어떠한 일을 하기 위해서, 필요한 정보를 챙겨왔는지, 혹은 그 일을 예전에 이미 했는지, 그 일을 하는게 가능한지 등을 판단하고, 조금이라도 부족하면 고객의 요청을 거절하는 역할을 한다.
-    - 고객이 올바른 데이터를 챙겨왔고, 현재 그일을 수행하는게 가능한 상태라면, 컨트롤러는 서비스(과장)에게 고객의 요구를 토스한다.
-  - 서비스는 과장급 직원이다.
-    - 이 분은 고객을 직접 만나지는 않는다. 컨트롤러가 고객의 요구를 깔끔하게 정리해서 보내주면 그것을 판단해서 가/부를 결정하고 가능하다면 처리한다음, 그 결과를 컨트롤러에게 알려준다.
-    - 단 이 분이 일을 하면서, 데이터를 저장하고, 검색하고, 수정하고, 삭제하는 일도 해야한다면 그런일만 따로 DAO(데이터 창고지기)에게 요청한다.
-    - 오직 서비스만이 해당 어플리케이션의 핵심로직을 알고 있다.
-  - DAO는 과장님의 하인인 창고지기이다.
-    - 이 분은 이 애플리케이션의 핵심로직이 뭔지 모른다.
-    - 다만 과장님이 시키는 아주아주 단순한 일들만 한다.
-
-### JDBC
-
-- java에서 mySQL을 사용하기 위해 사용하는 JDBC
-
-  ```java
-      // JDBC
-      // 1. Driver 찾기 - 찾은 드라이버는 DriverManager로 사용 가능
-      Class.forName("com.mysql.cj.jdbc.Driver");
-
-      // 2. DBMS에 연결
-
-      String url = "jdbc:mysql://localhost:3306/board?serverTimezone=UTC";
-      String id = "sbsst"; // root
-      String pw = "sbs123414"; // "";
-
-      Connection conn = DriverManager.getConnection(url, id, pw); // 연결.
-
-      // 3. sql 문을 실행.
-      // 3.1 - 실행할 sql문
-      String sql = "SELECT * FROM article";
-
-      // 3.2 - 작성된 sql문을 DBMS에 전달.
-      // Connection - 팀장.  실무자 - Statement
-      // sql처리 실무자 파견
-
-      // 자동임포트 : ctrl + shift + o
-      Statement stmt = conn.createStatement();
-
-      // 3.3 - DBMS에서 가져온 데이터를 ResultSet으로 담아 옴.
-      // ResultSet -> 조회 결과물(데이터)을 담는 상자.
-      ResultSet rs = stmt.executeQuery(sql); // 조회 결과가 있는 경우 => select 문
-      // stmt.executeUpdate(sql); // 조회 결과 없이 DB에 반영만 하는 경우 => insert, update, delete
-
-
-      // 4. next메서드로 커서를 이동시켜 각 row들의 데이터를 읽어옴
-      while(rs.next()) {
-        String title = rs.getString("title"); // 해당 커서가 위치한 row의 title 컬럼 데이터를 반환.
-        System.out.println(title);
-      }
-
-      // 사용한 자원들 반납
-      if(rs != null) {
-        rs.close();
-      }
-      if(stmt != null) {
-        stmt.close();
-      }
-      if(conn != null) {
-        conn.close();
-      }
-  ```
-
-- 반복적으로 사용하는 부분은 묶어서 재사용하면 반복되는 부분이 많아 생각보다 사용하기가 쉬움
-- sql 쿼리를 잘 작성해야 원하는 결과를 도출할 수가 있음
-
-### Spring Web project
-
-- DBMS 연결
-- DB 스키마 생성
-  - 기능 혹은 라이브러리 적용 등 설정 값에 변화가 생기면 application.yml 파일과 pom.xml 파일을 반드시 수정 적용해야함
-  - 필요한 jar 파일의 경우도 라이브러리 추가 확인 필요
-- Dao에 MyBatis 적용
-
-  - lombok과 마찬가지로 간결한 코드작성에 큰 도움이 됨
-  - 작성 규칙을 숙지해야함
-  - DAO를 인터페이스(interface)로 만들고 내부의 메서드들도 모두 public을 붙이지 않아도 됨
-  - DAO의 변수는
-    - @Param("id") int id 와 같이 작성
-  - @Mapper 로 변경
-
-  - sql 쿼리는 DAO와 동일한 이름의 xml파일에 작성
-  - 변수는 #{}안에 표기
-  - 코드 예시
-
-    ```java
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <!DOCTYPE mapper
-      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-      "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-    <mapper namespace="com.sbs.untact.dao.ArticleDao">
-
-    <select id="getArticleById" resultType="Article">
-        SELECT *
-        FROM article AS A
-        WHERE A.id = #{id}
-        AND A.delStatus = 0
-      </select>
-
-      <select id="getLastInsertId" resultType="int">
-        SELECT LAST_INSERT_ID()
-      </select>
-
-      <update id="modifyArticle">
-        UPDATE article
-        SET updateDate = NOW(),
-        title =
-        #{title},
-        body = #{body}
-        WHERE id = #{id}
-      </update>
-
-      <insert id="writeArticle">
-        INSERT INTO article
-        SET regDate = NOW(),
-        updateDate = NOW(),
-        boardId = #{boardId},
-        memberId = #{memberId},
-        title = #{title},
-        body = #{body}
-      </insert>
-
-      <update id="deleteArticleById">
-        UPDATE article
-        SET delStatus = 1,
-        delDate = NOW()
-        WHERE id = #{id}
-      </update>
-
-    </mapper>
-    ```
-
-- jsp 연결
-  - MpaUsrHomeController를 통해 메인페이지 구현
-  - 기본폴더 설정에 유의 : css, js 파일을 위치시킬 폴더와 MpaUsrHomeController 내의 jsp파일의 경로는 다름
-- css, html 직접 작성 대신 라이브러리 활용
-
-  - 테일윈드 등의 라이브러리로 UI는 빠르게 구현하고 필요한 부분만 커스터마이징
-
-  ***
-
-## 2021-04-04 공부내용
-
-### DATABASE
-
-- DB와 DAO, DTO 중에서 한 곳에서만 int나 date관련 기능을 수행하면 되기 때문에 핸드폰번호나 날짜 관련 변수는 한 곳에서만 해당 유형의 데이터 타입으로 처리하고 나머지는 String으로 처리
-
-- rs, stmt, conn는 선언된 순서에 관련하여 닫는 순서는 가장 나중에 선언된 rs부터 conn순으로 함
-
-- 컨트롤러(해당 소스)에서 입력값과 관련된 기능을 모두 수행, 오류체크, 변수 입력 등의 작업 : MVC 패턴을 유지하여 유지, 보수가 용이해짐
-
-- mySQL
-  - inner join 으로 분리한 데이터 테이블을 조합하여 검색
-
-### Spring
-
-- DBMS 사용자 계정 추가
-  - GRANT ALL PRIVILEGES ON . TO 'sbsst'@`%` IDENTIFIED BY 'sbs123414';
-  - 개인 PC에서는 사용할 아이디와 비번을 설정하여 마스터 계정을 생성
-  - 마스터 계정은 로컬이나 원격 모두 접근 권한을 가짐
-- DB 스키마 생성
-  - SQL에서 DEFAULT 0 으로 초기값 설정이 가능함
-  - delStatus : 논리적 삭제와 물리적 삭제 중에서 관리자는 삭제된 데이터를 확인할 수 있게 논리적 삭제를 구현
-  - SELECT LAST_INSERT_ID(); => 마지막 추가된 아이디를 바로 구할 수 있는 쿼리
-  - 삭제된 데이터는 검색이 되지 않도록 쿼리에 and delStatus = 0 을 추가
-  - sql 로거를 활용해서 콘솔을 통해 실행되는 쿼리를 확인할 수 있음
-- JSP 연결 및 css, js 세팅
-
-  - [JavaScript 편집툴 활성화 방법](https://creampuffy.tistory.com/66)
-  - css 포매팅은 코드펜 css의 드롭다운 메뉴 중 Format css기능을 활용하여 해결하거나 vs code와 같은 다른 편집툴 활용
-  - 이클립스의 포매팅을 사용하면 개발자가 의도한 변수 정의가 틀어질 가능성이 높음
-  - css, js 파일에서 주석의 중요성 : 코드의 재활용을 위해서는 필수!!!
-
-  - `+` : 인접 형제 선택자로 선행하는 요소 뒤를 따르는 형제 요소를 선택
-
-  - 공통되는 부분 header, footer 등은 사용할 모든 페이지에서 include로 사용하면 유지, 보수가 쉬움
-  - 카페24에서 홈페이지 작업시 제공하는 모듈과 같은 개념
-
----
-
-## 2021-04-05 공부내용
-
-### git 사용법 정리
-
-- CMD git 명령어
-
-  - git 프로그램 그 자체를 최신버전으로 업데이트
-    - git update-git-for-windows
-  - git 로그인 정보 없애기
-    - git config --global credential.helper manager
-    - git credential-manager delete https://github.com
-  - git 설치 직후 사용자 정보 세팅
-    - git config --global user.name "깃허브 계정 ID"
-    - git config --global user.email "이메일"
-  - 로컬 리포지터리 생성
-    - git init
-  - 원격 저장소와 연결
-    - git remote add origin 저장소주소
-  - 원격 저장소와 연결 삭제
-    - git remote remove origin
-  - 커밋할 파일 장바구니에 담기
-    - git add .
-  - 커밋
-    - git commit -m "커밋 메시지"
-  - 푸시
-    - git push origin master
-  - 과거로 돌아가기
-    - git checkout -f 커밋번호
-  - 현재로 돌아오기
-    - git checkout -f master
-
-- Github Desktop
-  - 커멘드라인 인터페이스로 깃을 관리하는 것보다 직관적이고 자동으로 해결해주는 부분이 많음
-  - push, pull이 필요한 내용을 알아서 알림으로 안내해주고, 히스토리 제공
-
-### JDK 버전이 상이한 경우 해결 방법
-
-- cmd에서 자바 버전 확인
-- sts4.9 이상 버전은 내장 openjdk가 깔려있어서 사용하는 자바 버전이 상관이 없음 : 컴퓨터에 설치된 자바의 버전과 상관없이 구동이 가능함
-
-- 컴퓨터에 기본적으로 설치된 자바의 버전과 sts에서 프로젝트가 요구하는 자바의 버전이 상이할 수 있음 : sts4.9 미만 버전인 경우 실행 오류가 발생할 수 있음
-- 프로젝트의 pom.xml 파일의 자바 버전을 확인 : 11인 경우 프로젝트가 수행되기 위해 필요한 자바 버전이 11임을 나타냄
-- 컴퓨터에 설치된 자바가 1.8(8버전)인 경우 빨간색 느낌표 오류 메세지가 발생함
-- 해결 방법
-  - pom.xml 파일의 자바 버전을 8로 수정
-  - 환경설정 / Project Facets / Java 버전을 8로 수정(컴퓨터에 깔린 자바와 일치시킴)
-
-### JSTL
-
-- html에서 Java코드가 갖는 단점을 보완할 수 있는 el, jstl
-- java에서 개발한 C버전으로 사용
-- jsp 파일에 아래의 코드 추가
-
-  ```java
-  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-  ```
-
-- pom.xml에 아래의 코드 추가
-
-  ```java
-      <!-- SQL 로거 -->
-      <dependency>
-        <groupId>org.bgee.log4jdbc-log4j2</groupId>
-        <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
-        <version>1.16</version>
-      </dependency>
-
-  ```
-
-- 자바문법과 JSTL 코드 비교
-
-    ```java
-    <%@ page language="java" contentType="text/html; charset=UTF-8"
-      pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
-    </head>
-    <body>
-    <h1> EL/JSTL 연습</h1>
-
-    <!-- 변수 선언 -->
-    <%
-      int num = 21;
-    %>
-    <c:set var="num2" value="11" />
-
-    <!-- 변수 출력 -->
-    <%
-      out.println("jsp : " + num);
-    %>
-    <br>
-    <c:out value="jstl : ${num2}" />
-    <br>
-    <!-- 조건문 -->
-    <%
-      if(num % 2 == 0) {
-        out.println("even");
-      }
-      if(num % 2 == 1){
-        out.println("odd");
-      }
-
-      if(num % 2 == 0) {
-        out.println("even");
-      } else {
-        out.println("odd");
-      }
-    %>
-    <c:if test ="${num2 % 2 == 0}">
-      even
-    </c:if>
-    <c:if test ="${num2 % 2 == 1}">
-      even
-    </c:if>
-
-    <c:choose>
-      <c:when test="${num2 % 2 == 0}">
-        even
-      </c:when>
-      <c:otherwise>
-        odd
-      </c:otherwise>
-    </c:choose>
-    <br>
-    <!-- 반복문 -->
-    <%
-      for(int i = 1; i <= 10; i++) {
-        out.println(i + " ");
-      }
-    %>
-    <br>
-    <c:forEach var="i" begin="1" end="10" step="1">
-      ${i}
-    </c:forEach>
-
-    </body>
-    </html>
-    ```                 
-
-- Model model, model.addAttribute("", ) => 관련 내용 확인 필요 / ""안의 변수를 jsp에서 사용 가능하게 해줌
-
-- Servlet 사용도 가능
-  - HttpsServletRequest로도 가능
-  - Servlet 정리 요망
-
-    ```java
-    import javax.servlet.http.HttpServletRequest;
-    ```
-
-- jsp에서 java controller에서 얻은 결과가 담긴 변수를 활용할 수 있게 해줌
-- jsp에서는 변수를 ${변수}와 같이 표현식에 담아야 함
-- JSP가 java로 만드는 html이기에 소스코드로 JavaScript 소스를 작성하여 활용할 수 있음
-  - Vue나 React 같은 경우는 어떻게 함께 활용할 수 있을까?
-
-### [HTLM, CSS 내용 정리](https://codepen.io/jangka44/live/BazXNEL)
-- emmet 활용한 젠코딩 활용 
-- inline은 높이 넓이 적용불가지만 inline-block은 가능
-- [] : 속성, {} : 내용
-- 
-
-### 참고자료
-
-- 여러 개의 데이터 출력시 마지막에는 콤마가 출력되지 않게 하는 코드
-
-  ```java
-  for(int i=0; i< interest.length;i++) {
-    if(i+1 == interest.length) {
-      out.println(interest[i]);
-    } else {
-        out.println(interest[i]+",");
-    }
-  }
-  ```
-
----
-
-## 2021-04-06 공부내용
-
-### Java
-
-- 프로그래머스 자바 중급
-  - 파트1. Object 클래스
-    - Objcet클래스는 모든 클래스의 최상의 클래스
-    - 아무것도 상속받지 않으면 자동으로 Object를 상속
-    - Object가 가지고 있는 메소드는 모든 클래스에서 다 사용할 수 있다는 것을 의미
-    
-    - equals : 객체가 가진 값을 비교할 때 사용(사용목적에 맞게 오버라이딩해서 사용 가능)
-    - toString : 객체가 가진 값을 문자열로 반환
-    - hashCode : 객체의 해시코드 값 반환(자료구조에서 자주 사용)
-    - Generate hashCode() and equals()로 자동 생성 가능
-    
-    
-  - 파트2. java.lang 패키지 / 오토박싱
-    - 자바는 기본적으로 다양한 패키지를 지원 그중에서 가장 중요한 패키지
-      - java.lang패키지의 클래스는 import를 하지 않고도 사용할 수 있다.
-      - java.lang패키지에는 기본형타입을 객체로 변환시킬때 사용하는 Wrapper클래스가 있다.
-        - Boolean, Byte, Short, Integer, Long, Float, Double 클래스
-      - 모든 클래스의 최상위 클래스인 Object도 java.lang패키지
-      - 문자열과 관련된 String, StringBuffer, StringBuilder도 모두 java.lang패키지
-      - 화면에 값을 출력할때 사용했던 System클래스도 java.lang패키지
-      - 수학과 관련된 Math클래스도 java.lang패키지
-      - Thread와 관련된 중요 클래스들이 java.lang패키지
-      - 이외에도 다양한 클래스와 인터페이스가 java.lang패키지에 속해 있다.
-
-        ```java
-          public class WrapperExam {
-            public static void main(String[] args) {
-              int i = 5; 
-              Integer i2 = new Integer(5);
-              Integer i3 = 5;     //오토박싱
-              int i4 = i2.intValue();
-              int i5 = i2;       //오토언박싱
-            }
-          }
-        ```
-- 
-  - 
-    - 오토박싱(Auto Boxing)
-      - Integer i3 = 5; 숫자 5는 원래 기본형이지만 자동으로 Integer형태로 변환된다.
-    - 오토 언박싱(Auto unboxing)
-      - int i5 = i2; Integer객체타입의 값을 기본형 int로 자동으로 변환되어 값을 할당한다.
-    - 오토박싱(Auto Boxing),오토 언박싱(Auto unboxing) 은 JAVA 5부터 지원한다. 이 때 내부적으로 Wrapper클래스들이 사용된다.
+## 2021-05-13 업무일지
+### DB 권한 신청
+- DB 접근 권한이 부여되야 maven 업데이트 등이 가능하여 예제 파일 작성 및 연습 등도 가능
+- 차주부터 예정된 화면단 구성 작업을 위한 웹스퀘어 학습 시작
+
+- 위원회 파트 업무 프로세스 파악
+  - 처음부터의 기획과 설계 과정이 궁금
+  - 관련 내용 중 구상한 바를 정리하여 질문 예정
   
-  - 파트3. java.util 패키지
-    - Data, Calendar 클래스 
-    - List, Set, Collection, Map 인터페이스 : 바로 사용하지 못하고 인터페이스를 구현한 클래스를 활용해 객체(인스턴스)를 생성하여 사용해야함
-    - 메소드 체이닝(Method Chaing) : 자기 자신을 리턴하여 계속해서 자신의 메소드를 호출하는 방식
-    - StringBuffer : 가지고 있는 메소드들은 대부분 자기 자신, this를 반환
-      - StringBuffer클래스는 메소드 체인 방식으로 사용할 수 있도록 만들어져 있음
-      
-    - String 객체의 경우 불변클래스로 문자열끼리 더할 때 StringBuffer가 사용되어 매번 new로 Stringbuffer로 객체를 생성함. 자바에서는 객체를 생성할 때마다 메모리를 소모하므로 성능 저하에 영향을 줄 수 있음
-    - 결론 : 문자열을 반복문 안에서 실행할 때는 성능상 문제가 발생할 수 있으므로 String 보다 StringBuffer를 사용하는 것이 좋음
+- 웹스퀘어는 대부분 간단하게 기능을 구현할 수 있게 설정이 되어있음
+- 회사 계약 완료
+
+- 각 종 프로그램 설치 및 실행에 있어 환경변수로 인한 오류 해결에 어려움이 있음
+  - 예1) 웹스퀘어 예제 파일 구동시 8080포트 사용 불가로 인한 포트 수정 이슈
+    - 관리자 권한으로도 8080포트 사용 중지가 어려움
+    - 예제 파일이 8080포트로 세팅이 되어있어 톰켓 서버 실행 포트를 8090 등으로 수정해서 실행해도 소스코드 실행시 자동으로 8080으로 실행이 됨
+    - 오류 메세지에 라이센스 기한 만료도 공유 라이센스 코드로 해결이 되지 않음
     
-    - 이터레이터 활용 : hasNext()의 불리언 값을 사용
-    - Map 인터페이스 활용
-      -  Map<String, String> map = new HashMap<>(); 과 같이 <Key, Value> 값을 지정하여 HashMap 인스턴스를 생성
+  - 예2) asIs, toBe 소스 실행을 위한 maven 업데이트 및 repository 설정 오류
+    - 인터넷이 되지 않기에 실행 환경 구성을 위한 요소의 다운로드 불가
+    - 내부 DB에 접근할 수 있어야 이를 통해 구성이 가능
+
+- 웹스퀘어 학습 내용
+  - 웹스퀘어5의 util의 API를 사용할 때는 $P객체를 이용 가능
+  - $P 입력 후 . 을 입력하면 가능한 API 확인 및 사용 가능
+  - 라디오 박스, 셀렉트 박스 등을 직접 클릭 후 입력을 통해 하드코딩도 가능하고, 스크립트에서 API를 활용하여 코딩도 가능
+  - 데이터리스트를 활용해서 셀렉트 박스, 라디오 박스 등의 옵션 내용을 입력할 수도 있음
+    - Palette 옆의 DataCollection을 통해 화면을 보면서 작업이 가능
+    - BindItemSet 기능을 이용해야 data 객체와 component 연결 가능
+    - 스크립트로도 입력이 가능
+      - setData - 1차원 Array
+      - setXML - xml Object
+      - setJSON - json Object
+  - submission
+    - form태그 대신 통신을 담당
+    - submission 탭을 property옆에 만들어 활용하면 화면을 보면서 작업할 수 있음
+    
+    
+  - dataList의 dataMap 등에 실제 다량의 데이터 입력시 일일히 입력하는 번거로움을 덜 수 있도록 복사, 붙여넣기 기능 활용 가능
+    - 엑셀로 작성된 데이터를 활용하는데 있어 편리함
   
-  - 파트4. 날짜와 시간
-    - Callendar
-      - Calendar cal = Calendar.getInstance();
-      
-  - 파트5. IO
-    - 입력과 출력
-    - byte단위 입출력클래스는 모두 InputStream과 OutputStream이라는 추상클래스를 상속받아 만들어짐
-    - byte단위로 읽어들일 때는 512바이트 씩 읽어오기 때문에 1바이트씩 읽는 것보다 512바이트씩 읽고 처리하는 것이 처리 속도가 빠름
+  - config.xml은 websquare의 각 컴포넌트에 대한 default 설정을 담고 있음
+    - 화면에서 적용되지 않으면 config.xml에서 설정된 내용이 적용됨
     
-    - 문자(char)단위 입출력클래스는 모두 Reader와 Writer라는 추상클래스를 상속받아 만들어짐
-    - 파일로 부터 입력받고 쓰기 위한 클래스 : FileInputStream, FileOutputStream, FileReader, FileWriter
-    
-    - 배열로 부터 입력받고 쓰기 위한 클래스 : ByteArrayInputStream, ByteArrayOutputStream, CharReader, CharWriter
-      - 해당 클래스들은 어디로부터, 어디에라는 대상을 지정할 수 있는 IO클래스로, 이런 클래스를 장식대상 클래스라고 함
-      
-    - DataInputStream, DataOutputStream같은 클래스를 보면 다양한 데이터 형을 입력받고 출력
-    - PrintWriter는 다양하게 한줄 출력하는 pintln()메소드를 가짐
-    - BufferedReader는 한줄 입력받는 readLine()메소드를 가짐
-      - 이런 클래스들은 다양한 방식으로 입력하고, 출력하는 기능을 제공하며, 이런 클래스를 장식하는 클래스라고 함
-      
-    - IO의 모든 객체들은 사용이 끝나면 항상 닫아줘야함
-      - 아래의 코드 참조
-
-        ```java
-            public class ByteIOExam1 {
-                public static void main(String[] args){     
-                    FileInputStream fis = null; 
-                    FileOutputStream fos = null;        
-                    try {
-                        fis = new FileInputStream("src/javaIO/exam/ByteExam1.java");
-                        fos = new FileOutputStream("byte.txt");
-
-                        int readData = -1; 
-                        while((readData = fis.read())!= -1){
-                            fos.write(readData);
-                        }           
-                    } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }finally{
-                        try {
-                            fos.close();
-                        } catch (IOException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                        try {
-                            fis.close();
-                        } catch (IOException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }                    
-        ```
-    - Char 단위 입출력(console)
-      - char단위 입출력 클래스는 클래스 이름이 Reader나 Writer로 끝남
-      - char단위 입출력 클래스를 이용해서 키보드로 부터 한줄 입력 받아서 콘솔에 출력
-        - System.in - 키보드를 의미 (InputStream )
-        - BufferedReader - 한줄씩 입력 받기위한 클래스
-        - BufferedReader 클래스의 생성자는 InputStream을 입력받는 생성자가 없음
-        - System.in은 InputStream 타입이므로 BufferedReader의 생성자에 바로 들어갈 수 없으므로 InputStreamReader 클래스를 이용해야함
-    
-          ```java
-          import java.io.BufferedReader;
-          import java.io.FileWriter;
-          import java.io.IOException;
-          import java.io.InputStreamReader;
-          import java.io.PrintWriter; 
-          public class CharIOExam01 {
-              public static void main(String[] args) {
-                  BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-                  //키보드로 입력받은 문자열을 저장하기 위해 line변수를 선언               
-                  String line = null;     
-                  try {
-                      line = br.readLine()
-                  } catch (IOException e) {
-                      e.printStackTrace();
-                  }
-                  //콘솔에 출력 
-                  System.out.println(line);
-              }
-          }
-          ```
-
----
-
-## 2021-04-07 공부내용
-
-### Java
-
-- 프로그래머스 자바 중급
-
-  - 파트5. IO
-  
-    - Char 단위 입출력(File)
-      - char단위 입출력 클래스는 클래스 이름이 Reader나 Writer로 끝이 남
-        - 파일에서 읽기위해서 FileReader 클래스 이용
-        - 한 줄 읽어 들이기 위해서 BufferedReader 클래스 이용
-          - BufferedReader 클래스가 가지고 있는 readLine() 메소드가 한줄씩 읽게 해줌
-          - readLine()메소드는 읽어낼 때 더 이상 읽어 들일 내용이 없을 때 null을 리턴
-        - 파일에 쓰게하기 위해서 FileWriter 클래스 이용
-        - 편리하게 출력하기 위해서 PrintWriter 클래스 이용
-        - 예시코드
-
-          ```java
-              import java.io.BufferedReader;
-              import java.io.FileReader;
-              import java.io.FileWriter;
-              import java.io.IOException;
-              import java.io.PrintWriter; 
-              public class CharIOExam02 {
-                  public static void main(String[] args) {
-                      BufferedReader br = null; 
-                      PrintWriter pw = null;
-                      try{        
-                          br = new BufferedReader(new FileReader("src/javaIO/exam/CharIOExam02.java"));
-                          pw = new PrintWriter(new FileWriter("test.txt"));
-                          String line = null;
-                          while((line = br.readLine())!= null){
-                              pw.println(line);
-                          }
-                      }catch(Exception e){
-                          e.printStackTrace();
-                      }finally {
-                          pw.close();
-                          try {
-                              br.close();
-                          } catch (IOException e) {
-                              e.printStackTrace();
-                          }
-                      }
-                  }
-              }
-          ```
-
-
-  - 파트6. 어노테이션
-    - 어노테이션은 클래스나 메소드위에 붙으며, @(at)기호로 이름이 시작
-    - 어노테이션을 클래스나 메타코드에 붙인 후, 클래스가 컴파일되거나 실행될 때 어노테이션의 유무나 어노테이션에 설정된 값을 통하여 클래스가 좀 더 다르게 실행되게 할 수 있어, 이런 이유로 어노테이션을 일정의 설정파일처럼 설명하는 경우도 있음
-    - 어노테이션은 자바가 기본으로 제공해주는 것도 있고, 사용자가 직접 만들 수도 있음
-      - 사용자가 직접 작성하는 어노테이션 : Custom 어노테이션
-    - 커스텀 어노테이션을 이용하는 방법
-      1. 어노테이션을 정의
-      2. 어노테이션을 클래스에서 사용 (타겟에 적용)
-      3. 어노테이션을 이용하여 실행
-      
-    - 패키지 익스플로러에서 [new - Annotation]을 이용하여 Count100이라는 어노테이션 생성 (예제)
-      - Count100어노테이션을 JVM실행시에 감지할 수 있도록 하려면 @Retention(RetentionPolicy.RUNTIME)를 붙여줘야 함
-
-        ```java
-          import java.lang.annotation.Retention;
-          import java.lang.annotation.RetentionPolicy;
-
-          @Retention(RetentionPolicy.RUNTIME) public @interface Count100 {
-
-          }
-        ```
-    
-  - "hello"를 출력하는 hello()메소드를 가지는 MyHello라는 클래스를 작성
-    - hello메소드 위에 @Count100 어노테이션을 붙임
-  
-      ```java
-          public class MyHello {
-              @Count100
-              public void hello(){
-                  System.out.println("hello");
-              }
-          }
-      ```
-    
-  - MyHello클래스를 이용하는 MyHelloExam클래스를 작성
-    - MyHello의 hello메소드가 @Count100어노테이션이 설정되어 있을 경우, hello()메소드를 100번 호출
-      ```java
-          import java.lang.reflect.Method;
-
-          public class MyHelloExam {
-              public static void main(String[] args) {
-                  MyHello hello = new MyHello();
-
-                  try{
-                      Method method = hello.getClass().getDeclaredMethod("hello");
-                  if(method.isAnnotationPresent(Count100.class)){
-                          for(int i = 0; i < 100; i++){
-                              hello.hello();
-                          }
-                      }else{
-                          hello.hello();
-                      }
-                  }catch(Exception ex){
-                      ex.printStackTrace();
-                  }       
-              }
-          }
-      ```
-
-  
-  - 파트7. 쓰레드
-    - Thread : 워드프로세서가 하나의 프로세스라면, 하나의 프로세스 안에서도 여러개의 흐름이 동작할 수 있게 해줌 
-    
-    - 쓰레드 예제 1)
-      - Thread를 상속 받아서 쓰레드를 생성하는 방법
-        - java.lang.Thread클래스를 상속받는다. 그리고 Thread가 가지고 있는 run()메소드를 오버라이딩
-        - 10번 반복하면서 str을 출력
-          ```java
-              public class MyThread1 extends Thread {
-                  String str;
-                  public MyThread1(String str){
-                      this.str = str;
-                  }
-
-                  public void run(){
-                      for(int i = 0; i < 10; i ++){
-                          System.out.print(str);
-                          try {
-                              //컴퓨터가 너무 빠르기 때문에 수행결과를 잘 확인 할 수 없어서 Thread.sleep() 메서드를 이용해서 조금씩 
-                              //쉬었다가 출력할 수 있게한다. 
-                              Thread.sleep((int)(Math.random() * 1000));
-                          } catch (InterruptedException e) {
-                              e.printStackTrace();
-                          }
-                      } 
-                  } 
-              }
-          ```
-
-    - Thread 클래스를 상속받은 MyThread1을 사용하는 클래스
-      - Thread를 상속 받았으므로 MyThread1은 Thread
-      - 쓰레드를 생성하고, Thread 클래스가 가지고 있는 start() 메소드를 호출
-      
-        ```java
-            public class ThreadExam1 {
-                public static void main(String[] args) {
-                    // MyThread인스턴스를 2개 만듭니다. 
-                    MyThread1 t1 = new MyThread1("*");
-                    MyThread1 t2 = new MyThread1("-");
-
-                    t1.start();
-                    t2.start();
-                    System.out.print("!!!!!");  
-                }   
-            }
-        ```
-       
-    - 쓰레드 예제 2)
-      - Runnable인터페이스를 구현해서 쓰레드를 만드는 방법
-        - Runable 인터페이스가 가지고 있는 run()메소드를 구현
-          ```java
-              public class MyThread2 implements Runnable {
-                  String str;
-                  public MyThread2(String str){
-                      this.str = str;
-                  }
-
-                  public void run(){
-                      for(int i = 0; i < 10; i ++){
-                          System.out.print(str);
-                          try {
-                              Thread.sleep((int)(Math.random() * 1000));
-                          } catch (InterruptedException e) {
-                              e.printStackTrace();
-                          }
-                      } 
-                  } 
-              }
-          ```
-    - Runable 인터페이스를 구현한 MyThread2 사용하는 방법
-      - MyThread2는 Thread를 상속받지 않았기 때문에 Thread가 아님
-      - Thread를 생성하고, 해당 생성자에 MyThread2를 넣어서 Thread를 생성
-      - Thread 클래스가 가진 start()메소드를 호출
-
-        ```java
-            public class ThreadExam2 {  
-                public static void main(String[] args) {
-                    MyThread2 r1 = new MyThread2("*");
-                    MyThread2 r2 = new MyThread2("-");
-
-                    Thread t1 = new Thread(r1);
-                    Thread t2 = new Thread(r2);
-
-                    t1.start();
-                    t2.start();
-                    System.out.print("!!!!!");  
-                }   
-            }
-        ```
-
-  - 동기화 메소드와 동기화 블록
-    - 공유객체가 가진 메소드를 동시에 호출 되지 않도록 하는 방법
-      - 메소드 앞에 synchronized 를 붙임
-      - 여러개의 Thread들이 공유객체의 메소드를 사용할 때 메소드에 synchronized가 붙어 있을 경우 먼저 호출한 메소드가 객체의 사용권(Monitoring Lock)을 얻음
-      
-  - 쓰레드와 상태제어
-    - 쓰레드는 실행가능상태인 Runnable과 실행상태인 Running상태로 나뉜다.
-    - 실행되는 쓰레드 안에서 Thread.sleep()이나 Object가 가지고 있는 wait()메소드가 호출이 되면 쓰레드는 블록상태가 된다.
-    - Thread.sleep()은 특정시간이 지나면 자신 스스로 블록상태에서 빠져나와 Runnable이나 Running상태가 된다.
-    - Object가 가지고 있는 wait()메소드는 다른 쓰레드가 notify()나 notifyAll()메소드를 호출하기 전에는 블록상태에서 해제되지 않는다.
-    - wait()메소드는 호출이 되면 모니터링 락을 놓게 된다. 그래서 대기중인 다른 메소드가 실행한다.
-    - 쓰레드의 run메소드가 종료되면, 쓰레드는 종료된다. 즉 Dead상태가 된다.
-    - Thread의 yeild메소드가 호출되면 해당 쓰레드는 다른 쓰레드에게 자원을 양보하게 된다.
-    - Thread가 가지고 있는 join메소드를 호출하게 되면 해당 쓰레드가 종료될 때까지 대기하게 된다.      
-    
-  - 파트8. 람다
-    - 익명 메소드
-    - 메서드를 하나만 가지고 있는 인터페이스를 함수형 인터페이스라고 하는데, 이런 경우 메서드 하나를 전달하기 위해서도 객체를 생성해야하는 자바의 불편함을 해결하는 방법으로 람다표현식을 사용할 수 있음
-    
-
-### 자바 웹을 다루는 기술[Book Study]
-
-- Servlet
-  - 서블릿의 생명주기 메서드
-    - 초기화 : init() 
-    - 작업수행 : doGet(), doPost()
-    - 종료 : destroy()
-    
-  - 사용자 정의 서블릿 만들기
-    - HttpServlet 클래스를 상속받아서 만들며, init(), doGet(), destroy() 메서드를 오버라이딩해서 기능을 구현
-  - 사용자 정의 서블릿 형식
-  
-    ```java
-      public class FirstServlet extends HttpServlet {
-        @Override
-        public void init() {
-          ...
-        }
-
-        @Override
-        public void doGet(HttpServletRequest req, HttpServletResponse resp) {
-          ...
-        }
-
-        @Override
-        public void destroy() {
-          ...
-        }
-
-      }
-    ```
-    
-  - 톰갯의 servlet-api.jar 클래스 패스 설정하기
-      - 이클립스 상단의 New 아이콘을 클릭한 후 Dynamic Web Project를 선택
-      - 경로확인 후 Generate web.xml deployment descriptor 옵션의 체크박스에 체크한 후 Finish 클릭
-      - Build path > Configure Build Path... 선택 / Libraries > Classpath > Add external JARs... 선택 / CATALINA_HOME(톰갯 루트 디렉터리)의 lib 디렉터리에 있는 servlet-api.jar 선택 후 열기 / 클랙스 패스의 설정을 확인한 후 종료
-      
-      
-### HTML, CSS 정리
-
-- a 태그의 호버 범위 조정 
-  - 링크를 주고자 할 때 a 태그를 적용(기존 태그 안쪽에)
-  - a 태그의 display 속성을 block으로 지정하면 둘러싼 태그를 기준으로 전체를 사용
-  - 패딩 적용해서 여백을 적절히 조절 가능
-  
-- hover 적용
-  - 가급적 html 태그의 좌측에 붙이는 것이 좋음
-  
-- inline : 글자화!! => 최소한의 너비를 갖으며, 너비와 높이를 지정해도 적용이 되지 않음
-- inline-blcok : inline에 block 속성을 추가, 너비와 높이를 지정하면 적용이 됨
-- inline 계열은 문자 취급하기에 부모 요소에서 text-align:center; 로 조절 => 스스로 정렬 불가능
-
-- block : 무조건 한 줄을 사용, 기본값으로 너비를 가로 전체, 높이는 최소로 설정이 되어있음
-- block 계열은 margin: 0 auto;로 가운데 정렬 => 스스로 정렬 가능      
-- 태그는 부모, 자식 관계를 활용해서 작성 / 요소를 확정할 수 있음, 다른 요소와 설정이 겹치지 않게
-
-- background-color 속성은 주고 시작하는게 레이아웃을 보다 빠르게 완성할 수 있음
-
-- object-fit:cover; 주어진 너비, 높이에 이미지를 맞춤
-
-- 이미지는 고유의 가로, 세로 비율을 유지하려는 속성을 가지고 있음
-- 이미지는 부모의 가로, 세로 크기에 영향을 받지 않고 원래 크기를 기본적으로 유지함
-- 부모 태그의 너비값을 설정하지 않고 이미지의 가로를 100%로 지정하면 반응형에서 부모의 크기에 따라 이미지의 크기가 자동 조절이 됨
-
-- 코드펜 학습내용 블로그 올리는 방법
-  - 코드펜에 저장한 다음 Embed / iframe 으로 복사한 후 블로그의 입력창의 html모드에서 붙여넣기 하면 손쉽게 공유 가능
-
-- a 노멀라이즈 : color:inherit; => 텍스트 계열의 기본 컬러 속성은 black이 아닌 inherit이므로 주의 요망
-
-- h1, h2, ... h태그들은 기본적으로 margin 속성을 갖기에 노멀라이즈에서 margin:0; 을 줌
-
-- 상황에 맞는 태그가 있는 경우 
-
-- body, ul, li 노멀라이징 : div와 차이가 없도록 일반화 시켜줌
-  - margin:0;
-  - padding:0;
-  - list-style:none;
-  
-- 대부분 공통 서식을 쓰지만 일부만 변경이 되는 경우 기존 css를 활용하기 위해 html태그에 class를 추가하여 필요한 부분만 변경
-
-- position:absolute; 인 경우 너비가 inline 요소처럼 줄어듬
+  - 데이터 바인딩에서 가장 효율적인 것은 함수를 활용
+    - submission을 다수 발생하면 처리 속도가 떨어질 수 있음
 
 
 ---
 
-## 2021-04-08 공부내용
+## 2021-05-14 업무일지
 
-### CSS, HTML
+### DB 권한 신청 및 웹 스퀘어 적용
 
-- n차 메뉴
-  - 2차, 3차 메뉴 등은 항상 a태그의 형제인 ul로 구성 
-  - 선택자에서 사용 용도에 따라 > 를 사용하여 자식요소만 선택하거나 일괄 적용이 필요한 경우는 > 를 생략한 후손 선택자를 활용하여 모두 하위 메뉴를 선택할 수 있음
+- 실무에 있어서 DBA의 역할과 기획 pl, pm의 역할 
+- 클라이언트의 요구 사항을 명확히 파악하는 과정이 중요
+- 기획자가 페이지 명세를 정확히 파악하고 정리해야 개발자가 이에 맞게 개발 가능
+- 데이터베이스로부터 구현까지 기준은 고객의 요청 사항이고, 기술적으로 가능한 지점을 찾아가는 역할이 중요
+
+- 화면단 구성에 웹스퀘어 활용
+  - 라이브러리를 활용한 화면단 구성
+  - html태그에 클래스명을 추가하여 레이아웃 조절
+  - 스넵쳇 활용 가능여부를 점검하여 생산성 향상 방안 시험 예정
   
-  - 메뉴별로 호버시에 하위 메뉴가 보이게 할 때는 아래와 같이 작성
-    ```css
-    .menu-box ul ul {
-        display: none;   
-        position: absolute; // 펼쳐졌을 때 주변에 영향을 주지 않게 하기 위함
-    }
+- 17일부터는 화면단 구성 시작 예정
+
+---
+
+## 2021-05-17 업무일지
+
+### DB 권한 신청
+- 아이피 주소 신청시 주소 오류로 재신청
+
+### AS-IS, TO-BE
+- TO-BE는 점심 식사 이후 8085포트에 성공
+- AS-IS는 포트 8085로 실행시 오류
+- 양쪽 모두 오류로 SVN에서 다시 다운로드 후 실행 실패
+- 실행환경 구성에 있어 메뉴얼에 맞춰서 실행이 중요
+- 퇴근 시까지 복구가 되지 않아 익일 처음부터 재설치 진행 예정
+
+- 무조건 내일은 실행환경 세팅 마무리를 목표로 적극 질문 및 해결!
+
+
+---
+
+## 2021-05-18 업무일지
+
+### AS-IS, TO-BE
+- DB safer 인증 로그인 후 오전 8시 10분 경에 바로 AS-IS 구동 확인
+  - 보안으로 인한 단순 오류로 판단됨...
+  
+- 웹스퀘어 화면 구현
+  - 화면 정의서, 신구 화면 매핑 파일 참조하여 TO-BE 화면 구현
+  - 화면단만 구성하고 있어 목록 조회 화면만 구성
+  - 여러 개의 텝으로 구성된 화면단 구현 연습
+    - 웹스퀘어 파일을 유지하기 위한 속성이 존재하는 듯
+    - 4개 텝의 화면 구성 후 마지막 태그 정리시 일반 xml파일로 전환됨
+    - 4000줄이 넘는 코드에서 오류 찾기는 쉽지 않아 재작성 예정
+    - 가급적 구현 기본 양식을 벗어나지 않도록 코딩하는 것이 중요
+  - 상세 페이지 구현 연습 후 실제 페이지 구현에 투입
+    - 기술개발 파트 중 구현이 되지 않은 파트 배정 예정
     
-    .menu-box ul > li:hover > ul {
-        display: block;
-      }
-    ```
+- 정부프레임워크 세팅
+  - 무엇보다 세팅이 중요
+  - 필수 설정은 꼭 확인하고 설정해야 오류를 피할 수 있음
+  - 가급적이면 메뉴얼 중에서 최신의 것으로 선택해서 활용하면 버전 업그레이드로 인한 오류도 막을 수 있음
+    - 버전 상이로 인한 오류가 설치 과정 복기시에 가장 찾기 힘든 부분...
+
+
+---
+
+## 2021-05-20 업무일지
+
+### 화면 구성 시작
+- 기술개발 파트 마지막부터 시작해서 작성
+- Q&A 페이지를 처음으로 작성
+  - & 특수기호를 텍스트로 입력하였을 때 mxl 표기법으로 입력하지 않아 오류 발생
+  - 해당 오류를 발견하기까지 과정에서 웹스퀘어 head 파트의 데이터리스트와 body의 데이터리스트의 바인딩 이슈 파악
+  - 탭 메뉴 구성 구조 파악
+
+- 오전 오류 해결 후 오후에 본격적인 화면 구성 시작
+  - 전체 목표량인 11페이지 중에 10페이지 완성
+  - 11페이지 중 작은 화면 단위 구성은 내일 확인 후 수정 요망
+  
+- 출근 후 파악 목표 항목
+  - css 라이브러리 구조 파악
+  - 데이터리스트 바인딩 구조 파악
+  - 화면 정의서와 AS-IS 맵핑 확인
+  - 셀렉트 박스 등과 같은 박스 파트 구성 파악
+  - 레이아웃과 관련한 구성요소를 파악하여 새로운 레이아웃은 참고 파일없이 작성할 수 있도록 연습
+  
+  
+---
+
+## 2021-05-21 업무일지
+
+### 설정 및 해결 문제
+- opne ssl 설정이 필요한 to-be 바로 업데이트 반영
+- 레이아웃과 데이터리스트 적용에 있어 사소한 오탈자도 오류를 발생할 수 있어 한줄 한줄 반영하고 저장하면서 체크해야 바로 원인을 파악할 수 있음
+- css 요소를 적용하기 위한 분석의 시간을 월요일 오전에 가질 필요가 있음
+- 정석대로 접근하는 것이 제일 중요
+
+- 설정에 오류가 있어도 수정하지 못하는 근본적인 이유
+  - 컴퓨터 공학적 지식이 부족
+  - 네트워크와 프로그램에 대한 이해가 깊어지면 관련 이슈를 보다 빠르게 파악하고 해결이 가능할 듯
+  
+  
+---
+
+## 2021-05-24 업무일지
+
+### SVN
+- 깃과 마찬가지로 항상 업데이트(깃 풀)를 먼저 하는 습관이 필요
+- 인터페이스에 익숙해져서 형상 관리도 자유자재로 가능해져야 함
+- 커밋 전에 업데이트를 하지 않아 충돌이 나는 경우 업데이트 전에 커밋할 파일을 복사해두고 업데이트 후 커밋
+- 서브 텍스트에디터 설치 필요
+
+#### 웹스퀘어 
+- cw : 컬럼너비
+- 사용할 컬럼 수를 정하고 설정
+- 데이터리스트
+- 레이아웃을 위한 태그명 확인 필요
+- ui 메뉴얼 읽고 정리 요망
+
+#### SSL
+- SSL : 보안 소켓 계층(Secure Sockets Layer, SSL)
+    - SSL은 웹사이트와 브라우저(혹은, 두 서버) 사이에 전송된 데이터를 암호화하여 인터넷 연결을 보안을 유지하는 표준 기술
+    - 해커가 개인 정보 및 금융 정보를 포함한 전송되는 모든 정보를 열람하거나 훔치는 것을 방지
     
-  - 클래스 작명 규칙 : BEM
-  - text-overflow: ellipsis;  => 잘린 글을 ... 으로 표시
+- 보안 설정 관련 이슈 해결 필요
   
-- HTML 초기 메뉴 구성
-  - con-min-with : 너비를 줄여도 더 이상 줄지 않는 한계 너비를 지정
-  - con : 너비를 늘여도 콘텐츠가 담긴 부분이 더 이상 늘어나지 않는 한계 너비를 지정
-  
-  
-### Spring 복습
-- 메뉴바에서 게시판 클릭시 해당 게시판으로 이동 : 컨트롤러에서 showList 기능 구현시 리턴값이 String 인 이유 =>  @ResponseBody 를 삭제하고 해당 화면을 보여줄 JSP파일로 연결을 해줘야하기에 해당 주소를 ""에 담아 리턴
-  - 브라우저에 일반적인 홈페이지 형식으로 클라이언트에게 보여주기 위해 jsp로 그 기능을 넘김
-  - 출력에 필요한 값들은 서블릿을 통해 변수로 담아 jsp로 전달
+---
 
-- list.jsp 파일이 하나인데 두 개의 게시판을 보여줄 수 있는 과정
-  - [강의링크](https://youtu.be/aJqNiWmPsTc) 참조하여 확인
-  - 서블릿으로 입력받은 보드아이디를 변수로 jsp에 넘겨서 요청값에 따라 결과 화면이 다르게 출력
-  - 정적인 웹페이지가 아닌 동적인 웹페이지 구현
-  
-- Header, Footer 등으로 공통부분을 나눌 때 html 태그의 열리고 닫힘은 신경쓰지 않아도 공통부분이 정확히 나뉘도록 하면 오류가 발생하지 않음
+## 2021-05-25 업무일지
 
-- JSTL, Servlet 문법 정리 필요
+### 담당파트 화면 구현 완료
+- 개발 가이드 기본 작성 사항에 대한 점검이 필요
+
+- 웹스퀘어 아웃라인 활용
+  - 아웃라인의 항목들을 이동하여 배치하는 것으로 소스 편집을 대신할 수 있음
+  - 코드의 재활용성에 있어 유용함
+  - 단, 아웃라인 활용 후 소스코드를 확인하여 편집상태를 확인해야함
+
+- 개발가이드 숙지
+  - 다음 단계 개발 착수 전 상세 개발 가이드 참고 필요
+  - 필수 기재 사항 확인 및 API 활용법 숙지 필요
+  
+- 전체 업무 프로세스
+  - 고객 요청 사항 분석
+  - ASIS vs TOBE 변경 사항 체크
+  - ERD, DB 구축
+  - 화면정의서(설계)
+  - 개발(구현)
+  - 테스트
+  - 서비스 개시
+  
+---
+
+## 2021-05-26 업무일지
+
+### 팀 구성원 변동
+- 화면단 구성 완료 후 야근, 휴일 근무 등으로 인한 PL님의 이동
+- 차장급 개발자들의 이동 여부와 새로운 담당자의 역할이 중요
+- ERD, DB 설계 및 추가 화면 구성 후 개발로 당분간 개발자들의 업무는 미미할 것으로 예상
+
+### 계약, 연봉
+- 정규직 vs 프리랜서
+  - 정규직 계약 대비 프리랜서가 동일 경력 보유시 연봉이 높음
+  - 경력이 없는 신입도 프리랜서로 프로젝트 투입 가능
+  
+### 업무내용
+- 개발 현장에서 업무는 기획 단계를 지난 후 투입되는 경우 중급, 초급 개발자 모두 주어진 분량을 소화
+- fullstack으로 개발하는 것이라고 보면 좋지만, 퍼블리싱 작업은 대부분 되어 있어 화면단은 복사, 붙여넣기를 잘 하면 빠르게 구현 가능
+- 화면단의 디자인이나 레이아웃을 개인적으로 변경하는 것은 안됨
 
 
 ---
 
-## 2021-04-09 공부내용
+## 2021-05-27 업무일지
 
-### Spring
+### 화면정의서 작성
+- 기존의 작업 내용을 정리하는 작업
+- 파워포인트, 스크린샷으로 tobe화면 캡쳐 후 반영
+- 오전에 받은 분량 처리 후 오후에 추가로 받아서 처리중으로 내일 오전에 마무리 목표
+- 공공기관의 개발 프로젝트의 경우 문서작업이 생각보다 많음
 
-- @JsonIgnore 어노테이션을 통해 멤버의 정보중에서 로그인 비번이나 authKey와 같은 정보는 json 파일로 출력되지 않게 할 수 있음
-
-- magAndReplace() 에서 사용하는 replace의 경우 화면 이동 후 이전 히스토리를 삭제하기에 백스페이스 등으로 이전 화면 진입 시도시 실행을 막을 수 있음
-  - 중복으로 처리되는 오류를 사전에 막을 수 있음
-  
-- 로그인 후 원래 가려던 페이지로 리다이렉팅하는데 필요한 기술 : URL Encoder
-  - url에 담긴 쿼리에 &가 포함되면 컴퓨터가 이를 구분하여 인식할 수 없기에 인코딩된 부분은 주소로 인식할 수 있게끔 해줌
-  
-- 함수를 잘 활용하면 똑같은 기능을 구현하더라도 전체적으로 간결한 코드로 구현이 가능
-  - 두 번 이상 반복이 되는 경우라면 메서드(함수)로 만들어서 활용해보는 연습을 하면 실력 향상에 도움이 될 것으로 예상
-  - 현재 프로젝트에 사용되는 Util 패키지의 util들이 만들어지는 과정이 1월 교육과정 강의에서 확인할 수 있음
-  - java 기본 수업의 내용에서 직접 구현하던 경험을 바탕으로 자주 사용하거나 너무 길어 가독성이 떨어지는 메서드는 util의 형태로 가공하는 연습 필요
-
-- jsp가 html의 역할을 하며 동적인 부분을 구현할 수 있게 spring 프레임워크의 도움을 받으며, web에 보여지는 부분을 담당하는 css는 일반적인 웹 개발시와 같은 폴더 구성에 직접 css 코드를 작성하여 디자인할 수도 있지만 jsp 태그에 직접 적용해서 손쉽게 구현할 수 있는 css 프레임워크를 활용하면 전체적인 개발의 속도를 높일 수 있음
-  - 동적인 웹 구현과 백앤드 구현 : java와 관련 프레임워크
-  - 프론트앤드 단의 작업 : 프론트앤드 프레임워크 활용(테일윈드 등)
-  
-   
-
-#### POST MAN 사용법
-  - GET : 파라미터에 쿼리가 담김
-  - POST : 바디에 쿼리가 담김
-  - postman 에서 post인 쿼리는 수정이 필요 : 바디에 쿼리가 담길 수 있게 변경
-
-#### 초기 STS 설정시 유의 사항
-- 깃허브에서 클론한 프로젝트를 임포트 하기 전에 pom.xml 의 자바 버전 정보를 확인하고, 설치된 sts에서 사용하는 자바환경과 일치하도록 수정 후 import 시킴
-
-#### [테일윈드](https://tailwindcss.com/docs) 
-- html 태그 입력으로 간단하게 css작업을 할 수 있음
-- 생각보다 훨씬 쉬운 적용이 가능하고, 치트시트를 활용하거나 공식문서를 활용하면 UI를 꾸미는데 있어 시간 절약을 상당히 많이 할 수 있을 것으로 보임
-
-#### css flex
-- div를 세로로 정렬할 때 있어 flex-coloum을 사용하기 보다 flex-item안에 세로로 정렬할 div들을 넣어서 처리하는 것이 더 좋음
-- 반응형을 구현할 때 세로로 정렬된 div들은 inline-blcok 속성을 토글해서 가로로도 정렬이 가능
-- flex의 자식은 항상 부모의 높이를 물려받음
-- 
 
 ---
 
-## 2021-04-10 공부내용
+## 2021-05-28 업무일지
 
-### Spring
-- 디버그시에 콘솔에서 확인하되 삭제하지 않아도 되는 방법
-  - import lombok.extern.slf4j.Slf4j;
-  - 사용예시) log.debug("searchKeyword : " + searchKeyword);
+### 화면정의서 작성 중지
+- PL이 프로젝트를 떠나게 되어 현재 프로젝트 작업 중단
+  - 분석 / 기획 단계가 아직 끝나지 않은 상황으로 총체적 난국
+  - 12월에 시작한 프로젝트가 6월이 되도록 설계, DB가 완료되지 않아 개발을 시작할 수 없음
+  - 개발자, 기획, PL, PM 등 프로젝트에서 각각 담당하는 역할을 알게 됨
 
-### SQL, DataBase
-- 추가 함수
-  - if => null 처리에 사용
-  - inner join
-  - group by
-  - sum, avg, max, min
-  - distinct
-  - self join
-  - between
+- ERP 사업의 경우 실제로 사용하는 프로젝트이기에 가장 까다로운 요구 조건이 있음
+  - R&D 사업의 경우 부담이 적음
+  - 가급적이면 고객과의 미팅부터 RFP(제안요청서)작성, 기획까지 모두 해보는 것이 성장에 가장 도움이 됨
+  - DB를 다루는 방법, 쿼리 작성 등 전반적인 개발 과정을 모두 직접 구현해보는 테스트를 DB작성 
+  - 뭐든지 배워서 실력을 키워야 협상이 가능
+
+---
+
+## 2021-05-31, 06-01 업무일지
+
+### 시즌3 시작
+- 파트장 교체
+  - pl 교체 예정으로 당분간 업무 대기 예정
+  - 개발 전에 필수 숙지 메뉴얼 확인
+  - to-be 패키지 구조, 컨트롤러, 서비스, VO, SQL 파일 위치 및 웹스퀘어 호환 파라미터 확인
+  - ECL 직원 대면 및 인사
+
+---
+
+## 2021-06-02 업무일지
+
+### 개발 업무
+- 기술성과관리, 지식재산권
+  - 첫 페이지부터 개발 작업 시작
+  - 파트에서 개발된 페이지가 없기에 최초 개발 페이지 작성 예정
+  - DB부터 쿼리 작성 CRUD 처리에까지 경험할 수 있는 기회
+  - 화면정의성, 회의내용, AS-IS, TO-BE 모두 확인하며 구현기능 구상
+  - 프로세스도 확인이 필요
+  - 기획단계부터 개발 단계까지 모두 생각해볼 수 있음
   
   
 ---
 
-## 2021-04-11 공부내용
+## 2021-06-03 업무일지
+
+### 개발 업무
+- ERD 분석, 물리 ERD 기반으로 개발 시작
+  - 참고 소스 없이 바닥부터 개발
+  - 구현 필요한 기능들이 난이도가 높음
+  - 한 페이지당 필요한 작업 요소
+    - 컨트롤러
+    - 서비스(인터페이스)
+    - 서비스(구현)
+    - 공통 DAO
+    - SQL 쿼리
+    - 웹스퀘어 이벤트 적용(자바스크립트)
+    - 구현 확인
+    
+- 금요일(4일) 구현 목표
+  - 조회 화면 완성
+    - 패키지 파일 모두 구성 
+    - 변수명, 함수명, 소스파일명, 패키지 구성명 등 작성 기준 정리
+    - 주석 활용한 메뉴얼화
+    
+---
+
+## 2021-06-04 업무일지
+
+### 개발 업무
+- ERD 분석, 물리 ERD 기반으로 개발 시작
+  - 목록 조회 페이지 구현
+    - 컨트롤러
+    - 서비스(인터페이스)
+    - 서비스(구현)
+    - 공통 DAO
+    - 웹스퀘어 이벤트 적용(자바스크립트)
+  - 월요일 구현 예정
+    - SQL 쿼리
+    - 복잡한 페이지 구현 시작
 
 
-### SQL, DataBase
-- 중급 함수
-  - outer join
-  - left join
-  - right join
-  - 인싸, 아싸로 접근하면 이해, 기억이 쉬움
+---
 
-- 데이터베이스 구축
-  - aquerytool.com
-  - 논리적, 물리적 단계를 나눠서 데이터베이스를 구축할 수 있는 툴
-  - 개인적으로 데이터베이스를 구축해야할 경우 유용
-  - 자동으로 쿼리를 작성해주는 기능이 있음
-  - 데이터베이스의 유지, 보수를 고려한 구조를 구축해야 함
-  - 가시적으로 데이터베이스를 만들어 시뮬레이션을 하고 물리적으로 작성 후 아래와 같이 쿼리를 자동 작성해서 사용이 가능
+## 2021-06-07 업무일지
+
+### 개발 업무
+- 목록페이지 추가 구현
+  - 유사한 구조의 목록페이지 추가 구현 완료
+  - DB가 없어서 테스트는 못하지만 기존의 코드를 참고하여 구현
   
-    ```sql
-    DROP DATABASE IF EXISTS simpleBoard;
-
-    CREATE DATABASE simpleBoard;
-
-    USE simpleBoard;
-
-    CREATE TABLE `member`
-    (
-        `id`            INT         NULL        AUTO_INCREMENT COMMENT '번호', 
-        `userId`        CHAR(30)    NOT NULL    COMMENT '아이디', 
-        `userPw`        CHAR(30)    NOT NULL    COMMENT '비밀번호', 
-        `userName`      CHAR(30)    NOT NULL    COMMENT '이름', 
-        `userNickname`  CHAR(30)    NOT NULL    COMMENT '닉네임', 
-        PRIMARY KEY (id)
-    );
-
-    CREATE TABLE board
-    (
-        `id`          INT         NOT NULL    AUTO_INCREMENT COMMENT '번호', 
-        `board_name`  CHAR(30)    NOT NULL    COMMENT '게시판 이름', 
-        PRIMARY KEY (id)
-    );
-
-    CREATE TABLE reply
-    (
-        `id`              INT         NOT NULL    AUTO_INCREMENT COMMENT '번호', 
-        `boardId`         INT         NOT NULL    COMMENT '게시판 번호', 
-        `boardArticleId`  INT         NOT NULL    COMMENT '게시글 번호', 
-        `writerId`        INT         NOT NULL    COMMENT '작성자 번호', 
-        `userNickname`    CHAR(30)    NOT NULL    COMMENT '작성자', 
-        `body`            TEXT        NOT NULL    COMMENT '내용', 
-        PRIMARY KEY (id)
-    );
-
-    CREATE TABLE article
-    (
-        `id`            INT         NOT NULL    AUTO_INCREMENT COMMENT '번호', 
-        `boardId`       INT         NOT NULL    COMMENT '게시판 번호', 
-        `title`         CHAR(50)    NOT NULL    COMMENT '제목', 
-        `body`          TEXT        NOT NULL    COMMENT '내용', 
-        `writerId`      INT         NOT NULL    COMMENT '작성자 번호', 
-        `userNickname`  CHAR(30)    NOT NULL    COMMENT '작성자', 
-        `hit`           INT         NOT NULL    COMMENT '조회수', 
-        PRIMARY KEY (id)
-    );
-
-    ```
+- SVN 업데이트
+  - 업데이트시 오류가 나는 소스가 포함되면 서버가 구동되지 않음
+  - 커밋 전에 로컬에서 에러가 나는지 반드시 확인하고 아무 이상이 없을 때 커밋
+  - 기능 구현에 있어 궁금한 점은 메모 후 질문
+  - 스프링 관련 학습을 지속적으로 병행해서 심화영역까지 다룰 수 있는 스킬 배양
   
-### Spring
-
-- html, css, js를 이용한 웹 구성과 비슷한 흐름의 spring web 구현 과정
-  - 백앤드 단의 DB와 mvc패턴으로 구현된 프로그램이 프론트앤드 단으로 연결되는 jsp
-  - jsp파일도 html과 유사하게 구조를 짜되 동적인 부분은 백앤드와 jstl, el 등으로 연결
-  - 태그에 클래스명을 통해 테일윈드 cdn을 활용한 css작업
-  - 게시글 출력, 검색창, 페이징 구현
-  - 쿼리가 실행됨에 있어 쿼리에 담겨 있어야하는 정보를 유지하는 기술
-  - 언어별 문법이 조금씩 상이하기에 연습이 필요
+- 업무 일정
+  - 현재 DB 개발 현황을 파악하고 지원이 더 필요한지 여부를 판단
+  - 협의 제안 필요할 듯
   
-- [게시물 데이터 빠르게 추가하는 SQL 쿼리 참고 동영상](https://www.youtube.com/watch?v=UmMJ7Qf_RzE)
-  - [SQL 쿼리](https://github.com/jhs512/untactTeacher/commit/33f04df237d1e4ead4c301fa0b36c9fe6ec55fc8)
-    ```sql
-      INSERT INTO article
-    (regDate, updateDate, memberId, title, `body`, boardId)
-    SELECT NOW(),
-    NOW(),
-    FLOOR(RAND() * 2) + 1,
-    CONCAT('제목_', FLOOR(RAND() * 1000) + 1),
-    CONCAT('내용_', FLOOR(RAND() * 1000) + 1),
-    FLOOR(RAND() * 2) + 1
-    FROM article;
-    ```
+
+---
+
+## 2021-06-08 업무일지
+
+### 개발 업무
+- 커밋은 신중히
+  - 로컬에서 완전한 테스트를 한 후 올리지 않으면 화면단이 아닌 자바 소스의 경우 컴파일 에러 등으로 테스트 서버가 구동이 되지 않을 수 있음
+  - 로컬에서 모든 테스트를 마친 후 커밋을 원칙으로 함
   
-- 페이지 구현에 유용한 util
-  - 페이지 클릭시 기존 검색 쿼리가 담긴 주소가 날라가는 것을 방지하기 위한 코드를 간편하게 구현해주는 유틸
-  - 변경된 파라미터와 값을 이용해 새 쿼리 주소 생성
-  - 아래의 코드가 활용할 util
+- 오라클 dual
+  - 오라클에서 기본으로 제공하는 테이블로 함수를 테스트해볼 수 있는 툴
+  - 현재 DB가 없기에 dual을 활용해서 테스트를 진행해야함
+  - [참고자료](https://goddaehee.tistory.com/m/92)
+
+- 디버깅
+  - 이클립스 디버깅 툴을 활용한 디버깅을 통해 쿼리가 실행되고 오고가는 데이터를 확인할 수 있음
+  - 의도한 대로 함수가 실행이 되는지 확인해야함
+  - 관련 단축키 또한 숙지 필요
   
-    ```java
-      public static String getNewUrlRemoved(String uri, String paramName) {
-        String deleteStrStarts = paramName + "=";
-        int delStartPos = uri.indexOf(deleteStrStarts);
-
-        if (delStartPos != -1) {
-          int delEndPos = uri.indexOf("&", delStartPos);
-
-          if (delEndPos != -1) {
-            delEndPos++;
-            uri = uri.substring(0, delStartPos) + uri.substring(delEndPos, uri.length());
-          } else {
-            uri = uri.substring(0, delStartPos);
-          }
-        }
-
-        if (uri.charAt(uri.length() - 1) == '?') {
-          uri = uri.substring(0, uri.length() - 1);
-        }
-
-        if (uri.charAt(uri.length() - 1) == '&') {
-          uri = uri.substring(0, uri.length() - 1);
-        }
-
-        return uri;
-      }
-
-      public static String getNewUrl(String uri, String paramName, String paramValue) {
-        uri = getNewUrlRemoved(uri, paramName);
-
-        if (uri.contains("?")) {
-          uri += "&" + paramName + "=" + paramValue;
-        } else {
-          uri += "?" + paramName + "=" + paramValue;
-        }
-
-        uri = uri.replace("?&", "?");
-
-        return uri;
-      }
-
-      public static String getNewUriAndEncoded(String uri, String paramName, String pramValue) {
-        return getUrlEncoded(getNewUrl(uri, paramName, pramValue));
-      }
-    ```
-
-
+- 빈 오류
+  - 해결방법 [참고자료](https://mkil.tistory.com/m/415)
+  - 오류 같은 경우 검색을 하면 대부분의 해결방법을 찾을 수 있기에 혼자 해결하기보다는 구글링을 먼저 하는 것이 좋음!!!
+  
+- 엘셀 메크로
+  - 비주얼 베이직 활용한 방법(한상진 대리 활용)
+  - 추후 엘셀 관련 자동화를 위한 서치와 정리 필요
+  
   
 ---
 
-## 2021-04-12 공부내용
+## 2021-06-09 업무일지
 
-### Spring
-  
--  파일 저장시 파일명이 __ 로 이어지게 구분되어 있으면 이후 파일명 관련 메서드를 구성할 때 split으로 나눠서 처리할 수 있음
-  - 예시 : fileInputNameBits
-  
-- 게시판에 글과 함께 저장하는 첨부파일의 정보를 DB에 저장하고, 실제 파일을 폴더에 저장하는 과정
-  - 메타정보를 세분해둘 수 있는 genFile 생성 및 관리 필요
-  
-- 파일 저장에 필요한 multipartRequest
-  - multipartRequest 정리 필요
-  
-- JSP 부분의 내용 정리가 필요함
+### 개발 업무
+- 디버깅
+  - 웹스퀘어 디버그 기능
+    - debugger; 를 명시한 위치에서 디버그 모드로 돌입
+    - 개발자 도구를 켜논 상태여야 실행이 됨
+    
+  - 이클립스 디버그 기능
+    - 먼저 디버그 지점까지 도달하지 못하는 경우도 유의
+    - 콘솔창을 통해 확인하는 오류 메세지를 통해 오류 해결
+    - 디버깅 창에 전송되는 데이터 확인 및 정상 구동 확인
+    - 페이지의 CRUD를 담당하는 버튼들의 경우 넘어가는 데이터 확인 가능
+    - Watch 기능
+      - 주목하는 변수만 확인 가능
+      - 변수가 특정 조건을 만족하는지도 확인 가능
+    - Edit Break Piont
+      - 초기 조건부터 체크하지 않고 특정 조건에 해당할 경우에만 브레이크 포인트에 걸리게 설정 가능
+      - 효율적인 디버깅이 가능
+    
+  - VO 변수
+    - 데이터 요청과 응답에 필요한 모든 변수명이 VO에 정의되어야 오류가 발생하지 않음
+    
+  - 오라클 dual
+    - from dual 로 실제하는 테이블 없이 데이터를 뿌려줄 수 있음
+    - 테이블 조인 등과 같이 실제 컴럼을 조회하는데 필요한 테이블이 없지만 결과값은 요청이 정상적으로 들어왔을 때 반환해줌
+    - DB 완성 이후 from 이후의 쿼리를 작성하고, select 컬럼명의 수정이 필요함
+    
+---
 
+## 2021-06-10 업무일지
+### 개발 업무
+
+
+- 디버깅
+  - 브레이크 포인트를 걸어둔 경우 프로세스가 강제로 일시정지된 상태가 발생할 수 있음
+  - 디버깅을 위해 데이터를 전송하는 경우 확실한 입력값을 확인하고 테스트 해야함
+    - 입력값이 설정되지 않은 채 테스트 하여 정상적인 코드를 오류가 있는 것으로 파악해서 시간을 낭비함
+    - 최초 변수명 작성시 신중을 기해야 하며, 확정된 변수는 최초 작성 이후 복사/붙여넣기를 권장
+  
+  - 작은 오타라도 한개만 있으면 무조건 실행 오류를 발생시킴
+    - 특히 경로명, 변수명에서 동일 철자를 사용해도 표기법에 따른 대소문자 변경이 발생하는 경우 특히 조심해야 함
+    
+- 현업 확인 요청사항 
+  - 현업에서 화면단을 확인하고 수정을 요청한 사항에 대한 수정 작업
+    - 단순한 수정 및 레이아웃 등의 변경은 처리 완료
+    - 이벤트 구현 및 프로세스와 관련한 부분은 내일 구현 예정
+    
+- 업무 파악에 대한 이해
+  - 화면단에 대한 클라이언트의 요청 사항을 알아들으려면 주어진 화면에서 처리되는 업무들에 대한 파악이 있어야 함
+  - 이를 위해 데이터베이스는 물론 기존 사이트에서 처리 방식에 대한 구상과 확인 통해 로직을 설계해야 함
+  
+- OPC (오라클 자격증)
+  - 자격증 취득에 돈이 많이 필요하지만 취득하면 DBA나 더 높은 단가의 일을 구할 수 있다는 장점이 있음
+  - 개인 프로젝트를 어느정도 소화할 수 있을 때 데이터 베이스 관련 공부도 병행하여 SI에서 경력을 이어가는 경우 경쟁력을 높이는 것이 가능하도록 대비 필요
+
+
+---
+
+## 2021-06-11 업무일지
+
+### 개발 업무
+
+- 업무 파악
+  - 실제 버튼들이 수행하는 역할과 고객이 실제로 원하는 기존의 기능 구현에 대한 이해
+  - 주어진 버튼들에 대한 실제 클릭 및 화면 전환까지 파악이 필요
+  - ui 수정은 쉽지만, 구성요소의 역할에 따른 임의 수정이 힘든 부분이 있음
+  
+- 이해가 우선인 업무 적응
+  - 주어진 상황이 매번 변화하는 업계 특성상 원리를 이해하고 적용하는 연습이 중요
+  - 복사, 붙여넣기만 해서는 변화에 적응이 힘듬
+  - 스프링, 자바 이외에 DB에 대한 이해가 필요
+  - 할 수 있는 역량이 커짐에 따른 몸값의 상승
+  
+- 질문의 중요성
+  - 타인의 질문에 즉각 대답할 수 없는 부분은 잘 모르는 부분이므로 체크하고 확인
+  - 질문은 상대방이 이해하기 쉽고 요지를 파악하기 쉽게 정리해서 전달
+  - 대답은 기억하기 힘들면 메모해서 두번 묻지 않도록 집중
+  
+- 개발 환경 대비
+  - 웹스퀘어의 기본 라이브러리 활용
+    - 웹스퀘어 화면 단에서 처리되는 자바스크립트 함수 이해
+    - 실제 자바 단에서 이루어지는 작업은 많지 않음
+    - 어노테이션, 변수명, 경로명 등 작명 및 입력에 주의 요망
+    - 오라클 데이터베이스 이해 및 쿼리 작성 능력이 중요
+    - 틈틈히 오라클 공부
+  
+  
+---
+
+## 2021-06-14 업무일지
+
+### 개발 업무
+- JavaScript의 중요성
+  - 웹스퀘어에서 이벤트 실행 및 검증에 있어 대부분이 JavaScript로 작성됨
+  - JavaScript 함수 및 라이브러리 활용법에 익숙해야 앞으로 개발에 도움이 됨
+  - 개인 프로젝트의 Vue3.0과 TypeScript를 학습하며 JavaScript 실력 향상 도모
+  
+- 웹스퀘어
+  - 데이터리스트 연동이 되지 않았던 부분
+    - data 부분에 use="true" 속성이 빠져서 반영이 안되었던 사항
+    - 태그와 속성의 의미를 알아야 문제 해결이 가능
+    
+  - 초기화 함수의 경우 일반 페이지에서는 작동하지만 팝업에서는 동작하지 않음
+    - 팝업과 관련된 파라미터 속성에 대한 이해가 필요
+    
+  - 데이터 바인딩, 쿼리 작성, 세세한 기능들의 구현
+    - 페이지별로 구현할 내용들이 상당히 많음
+
+
+---
+
+## 2021-06-15 업무일지
+
+### 개발 업무
+- 팝업창 초기화 안되는 이슈
+  - 경로에 이상이 있는 스크립트 주석 처리(삭제)
+  - is not a function 에러를 체크
+  - 초반에 활용된 함수를 정리
+  - 팝업창도 일반 화면과 같이 페이지  onload 이벤트 적용 가능
+  
+- 공통 함수 
+  - 개발환경에서 정의한 공통 함수를 숙지하고 활용하면 스크립트를 새로 작성하지 않고 개발 가능
+  - 함수가 매우 다양하기에 주석을 통해 활용 가능한 함수의 존재를 파악하는 것이 중요
+  - 실제 활용할 필요가 있을 때 정독하고 테스트하며 활용하면 됨
+  
+- SQLgate
+  - 오라클 쿼리 실제 작성
+  - 학습한 것과 같은 쿼리로 보이는 상황의 오류는 해결에 시간이 소요
+  - 개발 전에 쿼리 복습 필요
+  
+- 주요 기능에 대한 테스트
+  - 파일업로드
+  - 유효성 테스트
+  - 권한별 메뉴, 버튼 활성화
+  - 엑셀 다운로드
+  - 보고서 출력
+  - 메일 발송
+  - 담당자에게 전달 메세지
+  - 기능별로 처음 구성시 시간이 상당히 소요될 것으로 예상
+    - 미리 기능을 테스트해볼 필요가 있음
+    - 자바스크립트의 영역이 생각보다 많음
+    - 페이지별 업무 파악도 필요
+
+
+---
+
+## 2021-06-16 업무일지
+
+### 개발 업무
+- 백앤드
+  - 화면단에서 뿌려줄 데이터의 형태를 보고 필요한 map과 list의 개수를 파악하는 것이 중요
+  - 필요한 map과 list를 head에 만들고 스크립트로 바인딩
+  - 컨트롤러에 보낼 때는 vo로 보내야함
+  - vo는 map과 list에 대응되게 작성해야하며, 실제 전송되는 것은 하나의 map vo이므로 map의 파라미터로 list vo를 넣어줌
+  - serviceImpl은 map과 list에 대응되는 함수를 구현하며, 쿼리 소스에도 개별적으로 쿼리를 수행
+  - resp에 담아온 데이터를 화면단에서 다시 뿌려줌
+  
+- 프론트앤드
+  - 화면의 구성은 거의 완료가 된 단계
+  - 자바스크립트로 조건 체크 스크립트 구현 필요
+  - 화면마다 필요한 조건 확인 후 쿼리 작성 전까지의 스크립트 작성
+  - 필요한 API는 제공문서를 참고하면서 활용
+    
+---
+
+## 2021-06-17 업무일지
+
+### 개발 업무
+- 백앤드 구현 완성
+  - 맵에 다수의 리스트를 결합하여 데이터 송수신하는 백앤드 작업 구현
+  - VO에 데이터 조회를 위한 파마미터를 반드시 작성해야함
+  - 컨트롤러, 서비스, sql까지 변수명 변동에 주의해야함
+  - 디버깅으로 데이터 송수신 확인 작업이 중요
+  
+- 오류 처리
+  - 오류의 원인 파악 및 해결 경험이 중요
+  - 경험한 오류의 경우 해결에 속도가 빠름
+  - 오류를 이해하는데 있어 자바, 스프링에 대한 학습이 도움이 될 듯
+  
+- 개발 관련 상식
+  - 배경 지식이 많을수록 대화에서 필요한 사항을 빨리 캐치할 수 있음
+  - 학습을 게을리 하지 않는 습관이 중요
+  
+  
+---
+
+## 2021-06-18 업무일지
+
+### 첫 월차
+- 공통 유효성 확인 소스
+  - 집에서 확인
+  - 스프링 [자바 웹을 다루는 기술] 책을 통한 학습
+  - 데이터 전송 방식에 대한 서치
+  
+
+
+---
+
+## 2021-06-20 업무일지
+- 주간 계획
+  - 개발 회의 월요일 10시(오후 4시에 실시됨)
+    - 천필환 과장님의 개발 프로세스 안내 
+    - 지난 주 CRUD 구현과 관련된 내용
+    - 추가적으로 아직 구현해보지 못한 내용들에 대한 정리 필요
+  
+  - 화면단 스크립트 구현
+  - 담당 파트 업무 이해
+  - 스프링 관련 추가 학습
+
+- 주어진 할당량은 기한 내에 처리
+  - 필요한 스크립트, 기술, 로직에 대한 사전 준비
+  - 개발이 시작되면 막힘없이 개발을 진행할 수 있도록 함
+  - 일정을 맞추지 못해 야근을 하는 일이 발생하지 않도록 주의
+  
  
+---
+
+## 2021-06-21 업무일지
+- 유효성 확인 스크립트
+  - 화면단에서 입력값에 대한 유효성 확인 스크립트 작성
+  - coomon.js common_util.js 에서 필요한 유틸의 메서드 확인
+  - 구현단을 확인하지 못한 상태에서는 이해하는데 시간이 걸림
+  - control + h 로 검색어를 포함한 소스파일을 검색할 수 있음
+  - 구현된 소스를 통해 파악하면 앞으로는 빠르게 구현이 가능
+
+- 조건부 조회 및 동적 셀렉트 박스 구성
+  - 금일 교육자료를 바탕으로 내일 구현 예정
+  - 동적 셀렉트박스 : 공통코드 작성법 활용
+  - 조건부 조회는 스크립트 필요
+  - 100% 조건 확인 스크립트
+  - 파일업로드 기능 구현 등 실험 가능한 모든 스크립트 테스트 예정
+  
+- 구현 예정인 파트에 대한 명확한 책정 이후 바로 개발할 수 있는 준비!!!
+  
   
 ---
 
-## 2021-04-13 공부내용
-
-### Spring
-
-#### [개발환경에 따른 설정을 달리해야할 때, application.yml 파일 설정을 통한 간편 관리 방법](https://galid1.tistory.com/664)
-- 예시코드
-
-  ```java
-  spring:
-    profiles:
-      active: home
-    mvc:
-      view:
-        prefix: /WEB-INF/jsp/
-        suffix: .jsp
-
-  server:
-    port: 8024
-
-  mybatis:
-    type-aliases-package: com.sbs.untact.dto
-
-  custom:
-    logging:
-      dir: log
-      level: debug
-
-  ---
-
-  spring:
-    profiles: local
-
-    datasource:
-      driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-      #driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:log4jdbc:mysql://127.0.0.1:3306/insta?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
-      username: sbsst
-      password: sbs123414    
-
-  ---    
-
-  spring:
-    profiles: home
-
-    datasource:
-      driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-      #driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:log4jdbc:mysql://127.0.0.1:3306/insta?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
-      username: root
-      password:  
-
-  ```
-
-
-
-- Vue, React 등을 활용하기 위해서는 파일 전송 방식을 ajax로 바꿔야함.
-
-- 파일업로드 부분은 반복학습이 필요 (101강은 추후 다시 보기)
-- JSP 파일에서 사용되는 JavaScirpt 함수의 이해를 위한 JavaScirpt 추가 학습 필요
-- 이클립스 자체적인 오류로 코드에 이상이 없어도 오류가 뜨는 경우에는 프로젝트 재시작, 업데이트를 통해 점검하면 정상으로 돌아오기도 하기에 반드시 체크!
-- 거의 같은 기능의 메서드를 구현하는데 있어서 서비스, DAO수준에서는 오버라이딩된 메서드 구현을 사용 가능, dao.xml에서는 중복된 메서드명 사용이 불가하지만 mybatis가 영리하게 해결해줌
-
-
-- 테일윈드를 sass로 변환하는 과정 이후 정리
-
-
-### 자바 스크립트
-
-[캡틴판교 블로그 참고](https://joshua1988.github.io/)
-
-- 비동기식 처리
-  - 콜백함수 활용
-    ```js
-    function getData(callbackFunc) {
-      $.get('url 주소/products/1', function(response) {
-        callbackFunc(response); // 서버에서 받은 데이터 response를 callbackFunc() 함수에 넘겨줌
-      });
-    }
-
-    getData(function(tableData) {
-      console.log(tableData); // $.get()의 response 값이 tableData에 전달됨
-    });
-    ```
+## 2021-06-22 업무일지
+- 패키지 구조 작성
+  - 2Depth까지 패키지를 구성하고 컨트롤러, 서비스, VO 작성하기
+  - 기존에 작성했던 파일 위주로 구성 테스트
+  - 작동 확인 후 웹스퀘어 파일들을 패키지 구조로 옮김
+  - 화면 url 환경 설정을 바꿔줘야 로컬에서 확인 가능
+  - 백앤드 단의 작업을 위해 용어 정리를 우선으로 실시
+  - 용어 정리된 내용을 바탕으로 구성
   
-  - promise 활용
-    - pending(대기)
-    - fulfilled(이행)
-    - rejected(실패)
-    - 예외 처리시에는 catch 구문으로 처리해야 더 많은 오류를 처리할 수 있음
-    - 더 많은 예외 처리 상황을 위해 프로미스의 끝에 가급적이면 catch()를 붙이는 것을 권장
+- 기능 구현
+  - 한 꼭지의 패키지 구성을 완료하면 페이지별로 필요한 기능 구현 연습 시작
+  - 내일은 꼭 기능 구현해보기
+  - 송부장님이 의뢰한 메뉴 연동 반영 테스트 
   
-  
-      ```js
-      function getData(callback) {
-      // new Promise() 추가
-        return new Promise(function(resolve, reject) {
-          $.get('url 주소/products/1', function(response) {
-            // 데이터를 받으면 resolve() 호출
-            resolve(response);
-          });
-        });
-      }
-
-      // getData()의 실행이 끝나면 호출되는 then()
-      getData().then(function(tableData) {
-        // resolve()의 결과 값이 여기로 전달됨
-        console.log(tableData); // $.get()의 reponse 값이 tableData에 전달됨
-      });
-      ```
-
-  - async와 await 활용
-    - 비동기 처리 함수 중 가장 최신의 문법으로 기본적으로 위에서 아래로 실행되는 기존의 프로그래밍 방식과 유사한 흐름으로 코딩이 가능
-    
-
-      ```javascript
-      function fetchItems() {
-        return new Promise(function(resolve, reject) {
-          var items = [1,2,3];
-          resolve(items)
-        });
-      }
-
-      async function logItems() {
-        var resultItems = await fetchItems();
-        console.log(resultItems); // [1,2,3]
-      }
-      ```
+- 메뉴얼은 반드시 수시로 확인하면서 활용해야 함
   
 
 ---
 
-## 2021-04-14 공부내용
-
-### Spring
-
-- 1월 프로젝트
-  - swagger2 api 설정으로 api 문서로 자동 변환이 가능함
-  - json ignore
-  - 아이디 체크
-  - mapping 관련 정리(request, get, post 등)
-  - lodash 활용한 키 입력 확인시 딜레이 적용
-  - 파일업로드를 지정한 파일형식만 허용하는 방법
-    - input 태그의 accept 속성에 파일 형식을 지정하면 모든 파일이 아닌 지정한 파일 형식의 첨부만 가능
-    
-  - 테스트 데이터 대량 입력 sql 쿼리
-    ```sql
-
-    INSERT INTO article
-    (regDate, updateDate, memberId, title, `body`, boardId)
-    SELECT NOW(),
-    NOW(),
-    FLOOR(RAND()*2)+1,
-    CONCAT('제목_', FLOOR(RAND()*1000)+1),
-    CONCAT('내용_', FLOOR(RAND()*1000)+1),
-    FLOOR(RAND()*2)+1,
-    FROM article;
-
-    ```
+## 2021-06-23 업무일지
+- 패키지 구조 완성
+  - 오전에 백앤드 패키지 구조 만들기 완성
+  - 컨트롤러, 서비스, 서비스impl, VO
   
-  - 비동기 자바스크립트 코드를 콜백함수 사용 형식이 아닌 async, await이나 promise로 바꿔서 구현이 가능한지...
-
-- 개인 프로젝트
-  - 전체 코드 리뷰, 분석, 정리 후 재작성
-  - 기존 프로젝트와 병합 시도
-
-    ```java
-    import java.util.regex.Pattern;
-
-    // 문자로 시작하고 5~21자까지의 아이디만 허용하는 정규표현식
-    return Pattern.matches("^[a-zA-Z]{1}[a-zA-Z0-9_]{4,20}$", str);
-    ```
-
-### JavaScript
-- $(function(){ }); 의 사용
-  - 제이쿼리 $(document).ready(function(){ });와 동일한 의미의 코드로 코드가 길어질 경우 간단하게 사용하는 문법
-  - 페이지가 준비되면 바로 실행이 되는 함수
-
-
-### CSS
-- inline속성을 가진 아이템들이 엔터로 줄바꿈이 되어있을 때 간격이 발생하는 것을 막는 방법 중 하나로 부모 요소에 폰트사이즈를 0으로 줄 수 있음
-- 
+- 파일업로드 업데이트
+  - 싱글파일 업로드와 멀티파일 업로드 소스 확인
+  - 담당 파트에서 교체 필요 부분 확인
+  - 멀티파일 업로드 파트 소스 교체 완료
+  - 일부 팝업창의 경우 화면에 나타나지 않는 문제는 내일 공통팀에 문의 예정
+  
+- 공통코드 활용 셀렉트 박스
+  - 내일 소스코드 확인 및 적용 테스트 
+  - 필요한 화면단에 적용(오전 내로 테스트 완료 목표) 
+  
+- 조건에 따른 외부 팝업 및 선택 반영
+  - 내일 오후에 시도 예정으로 필수 구현 필요
 
 
 ---
 
-## 2021-04-15 공부내용
-
-### CSS
-- 타일형으로 아이템들을 배치할 때 간격을 주는 방법
-  - margin으로 간격을 조절하지 않고, box-sizing을 border-box로 설정한 후 padding으로 원하는 간격을 설정
-  - 좌, 우 양 끝쪽의 아이템은 container역할을 하는 div안에 있기에 padding값만큼 안으로 들어오게 됨
-  - 이 부분은 container의 margin을 -값으로 설정해서 해결!!!
-  - 가로 스크롤바가 생기는 부분은 컨테이너 부모에 overflow를 hidden으로 설정하면 해결 가능
-  
-- tag선택자 not()사용하면 코드를 줄일 수 있음
-
-- only-child 활용하여 형제요소가 없는 태그 선택
-
-- 반응형에서 이미지가 너무 작아지는 경우 방안
-  - 부모 요소 내에서 자신의 margin값을 -로 설정하고 부모 요소에 overflow를 hidden으로 설정하면 주어진 이미지로 여백을 날리면서 해결 가능
-    - body, html 에 overflow-x: hidden;
+## 2021-06-24 업무일지
+- 멀티파일 업로드
+  - 일부 팝업창에서 나타나지 않던 문제 원인
+    - 화면 로드시 초기화 함수를 선언하지 않았던 문제
+    - 의미를 정확히 알지 못했던 초기화 함수가 실행되어야만 하는 이유를 알게 됨
+    - 화면단만 구현시에 임시로 작성해두었던 스크립트들이 영향을 주는 현상
+    - 개발하면서 발견되는 사용하지 않는 스크립트들은 정리가 필요
     
-- 크로스브라우징 레이아웃 문제를 고전적인 방법인 float으로 해결하되 flex, grid 개념은 필요할 때 사용할수 있도록 숙지하는 방향으로 FE 작업 
-
-- flex를 주면 자식 요소는 flex-item이 되고 블록 속성을 가지게 됨
-  - 예) a 태그도 따로 블록을 지정하지 않아도 블록 속성을 갖게 됨
-  - flex를 주는 태그는 블록 속성을 갖게 되고 자식은 바로 flex-item으로 작동하는 것을 이용하면 메뉴바 구성을 쉽게 할 수 있음
-  - 간격을 맞추는 방법
-    - 내용이 없는 div를 활용하여 grow 속성을 활용하면 가능
-  - flex: 1 0 0; => 아이템들의 간격을 균일하게 좌우로 맞춤
-    - flex-grow: 1; => 남아 있는 간격을 나눠갖기에 실제로는 균등 분할이 되지 않음
-    
-- 기본 라이브러리 파일 구축 후 활용
+- 공통코드 활용 셀랙트 박스
+  - 공통코드 확인은 코드정의서를 통해 확인 가능
+  - 셀렉트 박스에 채울 내용은 AS-IS에서 확인
+  - mapping을 위해 리스트나 맵의 명칭, 컬럼명을 입력
+  - 결국 조회 박스단을 모두 업데이트 하기로 결정
+  - 3개의 대 메뉴중에서 한 개의 메뉴의 조회 박스 작업 완료
   
-- 애니메이션 기능은 검증된 외부 라이브러리 활용
-  - 외부 라이브러리 사용시에는 자동으로 추가되는 태그들이 있기에 반드시 개발자 툴로 태그를 확인하고 css 작업을 해야 태그 지정 오류로 인한 작업 내용 미적용을 방지할 수 있음
-
-  
----
-
-## 2021-04-16 공부내용
-
-### Spring Boot Board Development
-
-- 4월 10, 11일 코드 리뷰
-  - 키워드 값이 없을 때 처리 사항이 현재 구현되어 있지 않음
-
-- 자체 제작 페이지에 게시판 기능 구현
-
-
-### Servlet / JSP
-
-- 뉴렉처 서블릿 / JSP 강의 내용 정리
-
-  - context : 다른 폴더의 경로를 마치 하위 폴더로 인식하게 하여 사용할 수 있는 문법
-  - servlet mapping으로 클라이언트 단에서 접근할 수 없는 web-info 폴더 내의 클래스 파일에 매핑을 통해 접근할 수 있게 함
-  - servlet은 요청이 있을 때 해당되는 프로그램만 실행되고 요청을 모두 수행하면 종료됨
-  - 아래의 코드에서 true는 버퍼가 찰 때까지 기다리지 않고 출력을 하는 옵션 => 이 response 객체를 활용해 콘솔이 아닌 브라우저에 출력을 할 수 있음
-  
-    ```java
-    OutputStream os = response.getOutSteam();
-    PrintStream out = new PrintStream(os, true);
-    out.println("Hello Servlet!!")
-    ```
-  
-  - 위와 같은 코드로 실제로는 아래의 코드를 많이 사용 (PrintWriter 활용) 
-  
-    ```java
-    PrintWriter out = response.getWriter();
-    out.println("Hello Servlet!!");
-    ```
-  
-  - 맵핑시에는 xml파일을 직접 수정하기보다 어노테이션을 사용하는 경우가 현업에서는 더 많음
-    - 설정 파일을 나눠서 작업하기 용이하지 않음
-    - 코드의 양이 적음, 구현이 간편함
-    
-
-
-  
----
-
-## 2021-04-17 공부내용
-
-### [MyBatis](https://mybatis.org/mybatis-3/ko/getting-started.html)
-- 공식문서의 사용법을 활용하여 환경 설정부터 쿼리 적용까지 수행
-- 
-
-
-### Servlet / JSP
-
-- 뉴렉처 서블릿 / JSP 강의 내용 정리
-  - 문서형식을 지정하지 않으면, 브라우저가 자의적으로 해석하여 보여주기 때문에 의도한 바와 같이 전달이 되지 않을 수 있음
-  
-    ```java
-    response.setCharacterEncoding("UTF-8"); // 문서작성에 사용된 인코딩 방식 정의
-    respones.setContentType("text/html; charset=UTF-8"); // 브라우저가 해석할 인코딩 방식 정의
-    ```
-  
-  - 쿼리스트링 : https://domain/list?title=제목 과 같은 주소창의 내용중 ? 이후의 부분
-    - 기본 주소인 list의 추가 조건을 설정하여 쿼리를 전달하여 동적인 결과물을 얻을 수 있음
-    - https://domain/list?title= => ""
-    - https://domain/list? => null
-    - https://domain/list => null
-  
-  - input tag의 name이 key값의 역할을 함
-  
-  - get 방식으로 주소창에 퀴리를 담아 데이터를 전송하는데는 제한이 있기에 전달값에 따라 적절하지 않거나 오류가 날 수 있는 경우가 발생
-  
-  - post 방식으로 method를 선택하여 주소창에 쿼리가 작성되지 않고 데이터가 전송됨
-    - 개발자 도구를 통해 네트워크에서 전송값을 확인 가능
-  
-  - 한글이 전송되면서 깨지는 현상이 발생하면 톰캣의 기본 인코딩 방식이 UFT-8이 아니기 때문
-    - Servlet의 server 설정 파일을 수정해서 해결도 가능하지만 일반적으로 하나의 톰캣 서버에 여러 서비스를 운영할 수 있기 때문에 사용하는 Servlet 프로그램에 아래와 같은 코드를 추가하여 해결 가능
-      - request.setCharacterEncoding("UTF-8");
-  
-  - 한글이 전송되는 Servlet마다 위 코드를 사용하여 처리하는 것은 번거롭기에 filter를 사용하여 처리 가능
-  - filter의 맵핑은 설정파일에서도 가능하지만 어노테이션으로 간단히 구현 가능
-    - 예시) @Webfilter("/경로")
-  
-  - 같은 name 값을 갖는 데이터의 경우 배열로 받아서 처리가 가능함
-    - 동적인 사이트의 경우 입력란을 유동적으로 추가, 삭제가 가능하기에 이런 방식을 사용
-  
-  - 상태 유지를 위한 5가지 방법
-    - application : 모든 사용자
-    - session : 접속자마다 다름
-    - cookie
-    - hidden input
-    - querystring
-    
-  - Application 저장소(서버에 저장)
-    - 서블릿 컨텍스트(Context)
-    - 예시 코드
-      ```java
-      Servletcontext application = request.getServletContext();
-      application.setAttribute("value", v);
-      application.setAttribute("op", op);
-      ```
-  - Session 저장소(서버에 저장)
-    - 사용법은 Application과 사용법은 똑같음
-    - 저장의 범위가 다름 / 세션이 다르면 저장값이 다름
-    - 웹서버는 SID로 사용자를 구분
-    - 최초 방문시에는 SID가 주어지지 않아 세션에 접근이 불가하여 application에만 접근이 가능
-    - 요청을 수행한 후에는 SID가 주어지고 session이 종료될 때까지 이를 통해 사용자를 구분함
-    - 세션의 타임아웃을 통해 주어진 시간이 지나면 세션이 만료됨 : 세션을 위한 메모리를 유지해야하기에 사용이 되지 않는 세션은 정리가 필요함 
-    
-  - Cookie 저장소(클라이언트에 저장)
-    - TCP/IP 정보, Header 정보
-    - 사용자 데이터
-    - application과 session은 서버에 데이터를 저장해두지만 cookie는 데이터를 클라이언트가 가지고 다님
-    - addCookie(); => 서버에서 저장 => 클라이언트에게 전달
-    - getCookie(); => 클라이언트로부터 획득
-  
-### Spring
-
-- 게시판 글 작성 페이지 구현
-  - 서블렛과 JSP를 활용하여 콘솔로 구현된 게시판을 웹으로 구현
-  - html, css, javascript 의 내용이 필요
-  - 사용하고자 하는 기능을 직접 구현하는 것도 좋지만 구현된 라이브러리를 활용하는 것도 중요한 능력
-
-  
----
-
-## 2021-04-18 공부내용
-
-### Mybatis
-
-- commit을 해야 DB에 반영이 됨
-  - session.commit
-  - transaction과 연관
-  
-- 변수를 넘길 때 객체로 넘겨야 하기에 추가적인 생성자가 필요하면 만들어서 사용
-
-- ParameterType 으로 전달받는 객체에 대한 정보를 xml 파일에 넘겨줘야함
-
-- 파라미터 표기 방법
-  - #{} 의 경우 ''를 붙여줌 => 대부분 String을 받기 때문에 주로 사용
-  - ${} 의 경우 ''를 안붙임
-  
-### SpringBoot
-
-- input type => tel, email, password 체크
-- 회원가입, 로그인 등 맴버 관련 기능 구현
-- 인터셉터 도입
-- 사용 가능하고 구현 가능한 기술 목록 정리와 구현 목표 기술 목록 작성 필요
-- 1인 쇼핑몰 구축하기를 프로젝트로 설정
-
-
-### Servlet / JSP 
-- 쿠키(지정된 경로에만 쿠키값을 요청할 수 있음)
-  - 모든 경로 허용
-    - valueCookie.setPath("/"); 
-    - opCookie.setPath("/");
-    
-  - 쿠키의 경로는 오직 한개만 설정이 가능함
-      
-  - 쿠키의 수명
-    - cookie.setMaxAge(24*60*60); => 1일 생명 주기, 초단위 입력
-    - 주기에 따라서 브라우저 실행이 멈추면 쿠키가 모두 사라지게 할 수도 있고 지정된 기간동안 지정한 위치에 저장할 수도 있음
-    
-  - 주소창에 입력되는 쿼리는 가급적 소문자로 작성하는 것이 SEO상의 불이익을 덜 받을 수 있음
-
-- Application, Session, Cookie 차이점 정리
-  - Application
-    - 사용범위 : 전역 범위에서 사용하는 저장 공간
-    - 생명주기 : WAS가 시작해서 종료할 때까지
-    - 저장위치 : WAS 서버의 메모리
-     
-  - Session
-    - 사용범위 : 세션범위에서 사용하는 저장 공간
-    - 생명주기 : 세션이 시작해서 종료할 때까지
-    - 저장위치 : WAS 서버의 메모리
-    
-  - Cookie
-    - 사용범위 : Web Browser별 지정한 path 범주 공간
-    - 생명주기 : Browser에 전달한 시간부터 만료시간까지
-    - 저장위치 : Web Browser의 메모리 또는 파일
-  
-  - 특정 사용 경로가 지정되거나 저장기간이 길 경우 쿠키를 선택하여 저장하는 것이 좋음
-   
-- Redirection
-  - response.sendRedirect("주소url");
-  - 위에 입력한 주소창으로 리다이렉트 시켜줌(이전 페이지로 이동시켜주는 등에 활용)
-  
-- 동적인 페이지(서버 페이지)의 필요성
-  - 서버 페이지 : 전달받은 쿼리 값에 따라서 이미 만들어진 html 파일이 아니라 서버에서 동적으로 만들어 주는 html 페이지
-  - JSP : Java Server Page
-  - 계산기 구현 예제(입력된 값과 연산 부호를 저장하는데 쿠키를 사용)
-  
-- 서블릿에서 get과 post 전송방식 구분하는 방법
-  - 방법1 : 서비스 오버라이드
-    ```java
-    @WebServlet("/경로")
-    public class Calculator extends HttpServlet {
-      @Override
-      protected void service(HttpServletRequest req, HttpServletResponse resp) {
-        if(req.getMethod().equals("GET")) {
-
-        } else if(req.getMethod().equals("POST")){
-
-        }
-      }
-    }
-    ```
-  
-  - 방법2 : get 혹은 post 오버라이드 메서드 구현
-    ```java
-    @WebServlet("/경로")
-    public class Calculator extends HttpServlet {
-      @Override
-      protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-
-      }
-      @Override
-      protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
-
-      }
-    }
-    ```
-- 하나의 서블릿 파일에 두가지 전송방식을 사용하는 메서드들을 모두 담을 수 있음
-  - 쿠키의 경로를 지정할 수 있어 다른 url에 쿠키값이 전달되는 것을 방지할 수 있음
-  
----
-
-## 2021-04-19 공부내용
-
-### Servlet / JSP 
-
-  - 서블릿 내장 객체
-    - 서블릿을 작성할 때 변수명으로 내장객체에서 사용중인 변수인 경우 사용이 불가
-    - 내장 객체가 가지고 있는 메서드를 모두 기억할 필요는 없지만 필요에 따라 검색해서 사용할 정도로 이해하고 있는 것이 중요
-    - <% %> 로 java 코드블럭을 만들어 사용 
-    - jasper로 작성한 코드는 스파게티 코드처럼 복잡해질 수 있음
-
-  - JSP MVC model1
-    - Model : 출력 데이터 
-    - View : HTML 코드 (출력 담당)
-    - Controller : 자바코드 (입력과 제어를 담당)
-      - 입력코드는 상단에(코드 블록)) => 로직을 담당
-      - 출력코드는 하단에 배치
-      - 출력코드에 포함되는 java코드(코드블록)는 입력코드 부분에서 최대한 처리하고 실제 출력이 되는 부분만 변수에 담아서 출력 코드에 <% 변수 %> 와 같은 형태로 삽입하여 처리
-      - 자바코드에서는 한줄 코드인 경우 {}가 생략이 가능하기에 더 보기에 간결한 코드를 작성 가능
-      - view를 담당하는 html에서 java코드를 신경쓸 일이 거의 없어져서 협업에도 효율적임
-
-  - JSP MVC model2
-    - 컨트롤러와 뷰가 물리적으로 분리된 방식
-    - C(컨트롤러)과 M(모델) / V(뷰 HTML) => 2개의 파트로 분리하면 유지, 보수가 더욱 간편해지고 성능 향상에도 이점이 있음
-    - redirect vs forword
-      - redirect : 새로운 페이지로 요청
-      - forword : 작업을 이어서 수행
-      - java code
-        ```java
-        request.setAttribute("result", result); // 변수명은 임의로 선택 가능, jsp에 넘겨줄 변수 선언
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("경로.파일명.jsp");
-        dispatcher.forward(request, response);  //포워드를 통해 연결된 jsp에서 데이터를 전달받아 작업을 이어갈 수 있음
-        ```
-      - jsp code // java 로 선언된 변수를 받아서 사용
-        ```java
-        <%=request.getAttribute("result")%>
-        ```
-
-  - View를 위한 데이터 추출 표현식 EL (Expression Language)
-    - 저장 객체에서 값을 추출해서 출력하는 표현식(아래의 경우 view에 아직 java코드가 남아있음)
-    - Controller
-      ```java
-      request.setAttribute("cnt", 30);
-
-      List list = new ArrayList(){"1", "test", ...};
-      request.setAttribute("list", list);
-
-      Map n = new HashMap(){"title", "제목"};
-      request.setAttribute("n", n);
-      ```
-
-    - View (jsp)
-      ```java
-      request.getAttribute("cnt");
-
-      ((List)request.getAttribute("list")).get(0);
-
-      ((Map)request.getAttribute("n")).get("title");
-      ``` 
-    - View (jsp / EL 사용) => 매우 간단해짐
-      ```java
-      ${cnt}
-
-      ${list[0]}
-
-      ${n.title}
-      ```
-
-  - 저장객체에서 값을 추출하는 순서
-    - pageScope :  (페이지 내에서 필요한 데이터 저장가능 객체)
-    - requestScope : request
-    - sessionScope : session
-    - applicationScope : application
-    - page => request => session => application 순으로 추출
-    - 위 순서대로가 아닌 원하는 저장객체에서 추출하고자 할 때는 Scope를 사용
-      - 예시
-        ```java
-        ${sessionScope.cnt}
-        ```
-
-  - EL 연산자
-    - [] .
-    - ()
-    - empty / not empty
-    - * / div % mod
-    - + -
-    - < > <= >= lt gt le ge (오류가 발생할 수 있기에 가급적 문자로 된 연산자 선택, 오류가 나지 않는 환경이면 기호를 선택)
-    - && and
-    - || or
-    - ? :
-    - ${ } 안에 연산기호 사용 가능
-
-      - null 체크시 empty와 !=null && =="" 의 차이
-
-  - JDBC를 활용하여 DB와 연결한 동적인 웹 구성
-    - 기본적인 JDBC 세팅
-    - web 개발에 있어서 사용하는 라이브러리는 배포시 경로가 달라질 수 있기 때문에 웹 컨텐츠에 포함시켜야 함
-    - WEB-INF / lib폴더에 필요한 라이브러리 저장
-    - 목록페이지 => 상세페이지 구현
-      - 게시글 상세 페이지, 게시글 목록 구현에 테이블 태그 활용
-      - 테이블 꾸미는 CSS 사용해서 UI 구현
-
-  - JSP MVC model2 의 장점
-    - 개별적으로 유지, 보수 협업 가능
-    - 실행면에서 콘트롤 부분은 자바이기 때문에 미리 컴파일해둘 수 있어 속도 향상
-
-  - JSP MVC model2 의 단점
-    - model1에 비해 복잡도가 올라갈 수 있음
-
-  - Model2에서 콘트롤러와 뷰의 데이터를 연결해주는 객체로는 request가 가장 적합함
-    - controller는 연산을 담당하고 jsp는 출력을 담당하기에 항상 controller가 먼저 실행이 되야함
-    - 데이터가 연속성을 가지고 전달되야하기에 redirect가 아닌 forword를 사용하여 전달
-
-  - Model 데이터를 위한 구조화의 필요성
-    - 데이터를 아우를 수 있는 클래스를 구성(예시: Article, Member 등)
-    - getter를 사용하지 않고 jsp에서는 member.id 와 같이 get을 생략하고 . 뒤에 get 뒷부분을 소문자로 수정해서 붙여서 활용
-    - jsp에 최대한 java code를 사용하지 않기 위함
-    - EL을 활용하여 간결한 코드 작성
-    - DTO, DAO, Controller 와 유사한 구성
-
-  - View 페이지 은닉하기
-    - view 역할을 하는 페이지는 주소창에서 검색이 되면 안됨
-    - 항상 controller에서 로직을 수행한 이후 동적으로 작성이 되어 웹에 표현이 되야함
-    - WEB-Info 폴더 안으로 view 폴더를 만들고 그 안에 view단의 파일들을 저장하여 경로를 수정하면, 주소창으로부터 접근할 수 없게 조치할 수 있음
-
-  #### JSTL (JSP Standard Tag Library)
-  - Maven repository : maven을 활용하기 위한 다양한 라이브러리가 있어 매우 유용함
-  - 아래의 어노테이션을 문서 상단에 추가
-  - 태그 라이브러리를 통한 로직을 수행
-  - EL은 변수를 간단하게 사용하게 해줌
-  ```java
-  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-  <c:set>  
-  <c:reomve>
-  <c:if>
-  <c:choose>
-  <c:when>
-  <c:otherwise>
-  <c:forEach>
-  <c:forTokens>
-  <c:url>
-  <c:catch> 
-  ```
-
-  - <c:forEach> => bigin, end, var, items 등을 활용해 반복 조건을 설정 가능
-    - varStatus를 활용해서 여러 상태를 확인하고 활용이 가능함  
-  - 페이지네이션 (뉴렉쳐 63~64강) 
-
-  - JSTL format 태그로 날짜, 숫자 등의 출력 형식을 지정할 수 있음
-
-  - JSTL function을 활용해서 사용할 수도 있음
-
-  - 기업형 개발에서는 콘트롤러(JSP로 문서 출력도 담당) - 서비스 - DAO - DBMS 로 나누어서 업무 분담
-    - 개인적으로 개발할 경우에는 위와 같이 세분화시키지 않아도 되지만 기업에서는 분업을 하기에 위와 같은 구조의 프로세스를 익히는 것이 중요
-
-  - 서비스로 처리할 함수 : 클라이언트의 요청에 근거하여 요청을 정리
-
-  - 서비스에서 처리한 함수들은 추후 DAO에서 처리 가능하게 재구조화할 수 있음
-
-  - 검색에 있어서 폼 양식 내의 셀렉트 박스 안의 내용이 선택한 값으로 유지되게 하기 위해서 jsp 태그에 selected가 올 수 있도록 EL로 조건문을 활용 가능
-    - param.id와 같이 파라미터에 저장되 데이터를 활용
-
-  - 검색에서 있어서 검색 조건이 풀리지 않게 설정이 중요
-
-  - 페이지는 null 값이 올 수 있기에 string으로 받고 처리 후에 int로 형변환하여 사용
-
-  - 항상 null과 함께 빈 문자열 ""을 체크해야함 => empty를 활용하면 간단하게 체크 가능
-
-  - 삼항연산자를 사용하는 경우 바깥쪽에  ""가 있으면 내부 EL에는 ''를 사용 가능
-
-  #### 게시물의 목록에 댓글 수 포함 (게시물 제목 옆에 댓글 수가 표시되도록...)
-  - 제목 옆에 span 태그를 추가해 댓글 갯수를 받아서 출력
-  - sql의 쿼리가 복잡해지는 것을 view를 사용하면 간결하고 가독성 높게 작성 가능
-
-  #### 관리자 페이지
-  - 필요한 서비스 목록을 조사하고 추가하기
-  - 어드민 컨트롤러를 추가하고 서비스에 연결, 서비스는 DAO에게 요청
-
-  - 새로운 패키지 생성시 패키지의 위치가 라이브러리에 포함되는 경우 이클립스의 버그로 새로고침을 하면 정상적인 위치에 표시가 됨
-
-  
----
-
-## 2021-04-20 공부내용
-
-### Servlet / JSP 
-- 다중값 선택 post 하기
-  - 하나의 foarm tag에 두개의 버튼이 있어 submit이 되는 경우 체크박스의 내용이 어떤 경우든 전달이 되기에 구분하는 로직이 필요
-  - 오류 구분 : 403(보안오류), 404(url오류), 405(메서드 오류)
-  - 항상 네트워크 해더값을 확인해서 전송되는 정보가 의도한 대로 전달이 되고 있는지 확인이 요망
-  - 요청을 완료한 이후 콘트롤러는 이후에 연결될 페이지를 리턴하면 됨
-  - 실제 요청을 처리하는 것은 서비스에게 위임
-  - 서비스는 직접 처리 혹은 DAO에게 위임하여 처리하고 결과값은 공유
-  - 콘솔 프로그램에서는 콘트롤러에 결과값을 주어 콘솔에 출력하도록 했지만 웹에서는 출력을 담당하는 jsp파일에서 데이터를 활용할 수 있게 결과값을 전달
-  
-- 불린형의 데이터의 경우 소스에서 getter, setter를 자동생성시 get대신 is로 처리가 되므로 사용에 혼선이 생기지 않게 get으로 수정하는 것이 좋음
-
-- 데이터베이스의 컬럼을 추가하게 되면 수정해야할 사항이 많기 때문에 최초에 작업을 시작하기 전에 DB 구조를 잘 짜야함
-
-  #### 파일업로드
-  - foarm tag에 enctype = "mulipart/form-data" 입력
-  - 파일을 업로드 할 때는 반드시 멀티파트 폼 데이터로 인코딩방식을 설정해야함
-  - string과 binary를 구분하여 데이터를 전송
-  - 파일업로드를 위한 서블릿 설정
-    - web.xml에 설정 => 문서 전체에서 사용가능
-    - annotation으로 설정 => 필요할 때마다 설정하여 사용가능
-    - max-file-size: 한번에 전송 가능한 파일 사이즈
-      - 예시) max-file-size: 50MB
-    - max-request-size: 전송 가능한 전체 파일 사이즈(파일 전송이 여러 건일 경우)
-      - 예시) max-request-size: 50MB*5 => 총 250MB 까지 전송이 가능
-    - Part를 활용한 파일 처리
-      - 예시 코드
-      ```java
-      Part filepart = request.getPart("file");
-      String fileName = filePart.getSubmittedFileName();
-      InputStrem fis = filePart.getInputStream();
-
-      ```
-
-    - 물리 경로 얻어 저장
-      ```java
-      String realPath = requestServletContext().getRealPath("/upload");
-
-      String filePath = realPath + File.separator + fileName;
-      FileOutputSream fos = new FileOutputStream(filePath);
-
-      byte[] buf = new byte[1024];
-      int size = 0;
-      while((size = fis.read(buf)) != -1)
-        fos.write(buf, 0, size);
-
-      fos.close();
-      fis .close();
-      ```
-
-    - 저장되는 디렉토리는 개발중인 디렉토리가 아닌 배포되어 서비스되는 디렉토리로 설정이 되기에 이클립스의 개발 폴더에서는 업로드된 파일을 확인할 수 없음
-
-    - StringBuilder builder = new StringBuilder(); 로 파일명 생성
-  
-  #### 파일 다운로드
-  - HTML 태그에 download를 작성하면 가능
-  - 예전에는 서버에서 처리했지만 위 태그로 간편하게 구현 가능
-  
-  #### 관리자 권한으로 공개/비공개 설정 구현
-  - 폼 태그로 리스트 목록과 공개 체크된 목록을 히든으로 넘겨서 공개 목록과 히든 목록을 작성
-  - 실제 데이터 처리를 쿼리를 사용하여 서비스 혹은 DAO 에서 처리하도록 구현
-  
-  #### JSP로 웹서비스 제작 흐름
-  - 웹서비스 기획
-  - 기획 단계에서 페이지, 대상별로 필요한 기능을 정리
-  - 구현할 기능을 기반으로 콘트롤러, 서비스, DAO, DTO, jsp, css, javaScript 소스를 설계
-  - 메서드 들은 선언만 해둔 상태로 전체적인 로직이 수행되는 구조를 마련
-  - 개별적으로 기능들을 구현하면서 초기에 기획한 파라미터나 변수 등에 변화가 생기면 반영하고 수정하면서 구현
-  - DB관련 부분의 수정은 여러 곳의 수정을 필요로 하기에 기획 단계에서 실제 서비스를 예상하여 필요한 컬럼을 추가
-  
-  #### 트랜젝션 처리
-  - 구상한 업무 처리에 있어 여러 프로세스가 포함된 경우 모두 수행이 되어야 한 트랜젝션이 처리된 것으로 완료해야하기에, 일부 성공, 실패의 경우 트랜젝션이 완료되지 않도록 처리해야 함.
-  
-  #### 서비스 혹은 DAO 구현시 메서드 오버로드
-  - 콘트롤러에서 넘겨주는 변수값의 형태가 한가지가 아닌 여러 가지 방식으로 넘겨줄 수 있도록 메서드를 변수에 따라 여러가지로 오버로드해두면 컨트롤러 혹은 서비스에서 로직을 수행하기가 수월해짐
-
-  - 쿼리 작성에 있어서 + + 사이에 변수를 넣는 것보다 String.format을 활용하면 보다 직관적인 코딩이 가능함
-
-    
-### Spring
-- 결합력 : 서비스의 개선에 있어서 관련 파트 각각의 소스코드의 수정이 있어야만 하면 높은 결합력
-- 인터페이스를 활용하여 구현하면 결합력을 낮출 수 있음
-    
-  #### DI(Dependency Injection) 
-  - 종속성 주입
-  - 부품 조립
-  - xml 파일
-
-  #### IoC Container 
-  - Inversion of Control
-  - 작은 부품부터 만들어서 큰 부품에 조립하는 과정
-  - DI 순서
-  - 스프링이 부품을 조립해주는 작업을 대신해줌
+- 담당한 파트 전체의 조회 기능 및 셀렉트 박스 구현 예정
 
 
 ---
 
-## 2021-04-21 공부내용
+## 2021-06-25 업무일지
+- 조회 스크립트 작성 완료
+  - 주 화면단의 스크립트 작성 완료
+  - 타이틀 부분 수정 및 작은 오류 수정
+  - 셀렉트 박스 공통데이터 연동 
+    - 공통코드 확인 필요 부분은 다음주에 최종 확인 필요
+  - 링크 부분 확인 및 
 
-### maven
-- IDE와 별개인 빌드 도구
-- maven : 빌드관리, Gradle, Ant 등도 있음
-- GIT : 형상관리, CVS 등도 있음
-- JUint : 테스트 도구 
-- POM(project object model).xml
-- 자바 프로젝트를 웹 프로젝트로 변경 => jar를 war 변경하면 간단하게 설정 변경
-- 빌드 패스에서 설정한 라이브러리 경로는 절대 경로인 경우 실행하는 환경이 달라지면 실행이 되지 않아 다시 빌드 패스를 설정해야함
-
-  #### 라이브러리 오류 문제  
-  - 다운로드 오류 등으로 라이브러리 파일에 문제가 있는 경우 m2 / repository 폴더의 모든 내용을 삭제
-  - 메이븐이 다시 전체 재다운로드해서 문제 해결
-  - java resources 에 느낌표가 뜨면 라이브러리에 문제가 있음을 나타냄
-  - 메이븐 설정을 바꾼 후 메이븐 업데이트를 하면 오류가 사라짐
-
-### jQuery
-- cdn으로 사용하는 것이 실제 서비스에서는 성능이 더 좋음
-- 라이브러리를 다운받는 것은 만약을 대비하는 의미로 사용
-- 다큐먼트 객체를 간단하게 사용하기 위함과 크로스브라우징을 가능하게 하는데 강한 이점이 있음
-
-### JavaScript
-- 데이터를 구분하기 위한 표현방법
-  - XML(태그활용), CSV(콤마로 데이터 구분), JSON(javascript의 자료 표현 양식)
-  - xml과 csv의 단점을 보완한 양식으로 최근 가장 많이 쓰이는 데이터 전송 양식
-  - API에서 제공하는 데이터도 JSON 형식으로 배포
+- 개발 업무
+  - 처음 접하는 기능의 경우 이해하는데 시간이 필요
+  - 이후에 적용은 최초 1번은 시간이 많이 걸리지만 반복할 수록 시간이 적게 소요
+  - 3번째부터는 복붙으로 거의 해결이 됨
+  - 단순 코더가 아닌 실력있는 개발자가 되기 위해서는 지속적인 자기동기부여가 필요
   
-#### eval() 👍 
-  - 전송받은 JSON파일의 데이터는 문자열로 인식이 됨
-  - JSON으로 인식해서 데이터를 활용하기 위해서는 문자열을 다시 JSON으로 바꿔줄 필요가 있음
-  - eval()함수를 활용하면 '' 혹은 "" 으로 둘러싸여 문자열로 인식되는 코드를 원래 상태의 코드로 처리할 수 있게 해줌
-  - 예시 코드
-  ```javascript
-  eval('var x = 30;');
-  
-  console.log(x);
-  // 콘솔에 30 이 출력됨
-  // eval() 함수 안의 문자열이 변수로 인식됨
-  
-  var data = '[ \
-    {"co":0.6,"so2":0.006}, \
-    {"co":0.4,"so2":0.007} \
-  ]';
-  
-  eval("var ar = " + data + ";");
+- 효율적인 업무 패턴 습득
+  - 스스로 해결 가능한 범위
+  - 도움이 필요한 업무
+  - 위 2개의 구분을 2시간의 고민 내에 해야함
+  - 끝까지 혼자 하려하면 시간을 허비하는 결과를 초래할 수 있음
 
-  console.log(ar[0].co);
-  // eval()을 활용해서 ()안에 JSON 데이터를 담은 새로운 변수가 선언되게 하여 데이터 활용
-  // JSON parser가 있지만 eval()함수의 사용법을 익히기 좋은 활용 예시
 
-  ```
-#### JSON parser 👍
-  - JSON.parse();를 통해 JSON으로 변환되는 자료의 형태는 키값이 ""로 감싸져있어야 정상적으로 변환함
-  - JavaScript에서는 보통 ""를 생략하고 작성하기에 이렇게 작성된 데이터를 전송하면 JSON.parse();로 파싱할 수 없음
-  - "" 없이 작성된 JSON 파일을 ""가 있는 형식으로 변환해주는 함수 => JSON.stringify();
-  - JSON.stringify();로 변환 후 전송하면 쉽게 작성한 데이터를 JSON.parse();로 활용할 수 있게 됨
-    - 예시코드
-   
-      ```javascript
-      // 1. 변환이 필요없는 경우
-      var data = JSON.parse('{"id":1, "title":"aaa"}'); // 엄밀하게 key값에 ""를 넣어서 작성 
-      console.log(data.title);
-      // aaa  출력
 
-      // 2. 변환이 필요한 경우
-      var data2 = {id:2, title:"bbb"}; // 일반적으로 key값에 ""를 생략하고 작성
-      var json = JSON.stringify(data2);
-      alert(json);
-      // {"id":2, "title":"bbb"}으로 변환된 결과값이 출력
-      ```
-    
-- for in 문
-  - for(var i in array) / for(var i in object) => 모두 인덱스 혹은 key값을 반환하기에 데이터값을 사용하기 위해서는 array[i] / object[i] 와 같이 사용해야 함 
-  
-- 함수 자체를 객체로 만드는 자바스크립트
-  - 변수의 스코프에 유의해야함
-
-- 클로저(closure)
-  - 일반적으로 함수 내부에서 선언된 변수는 지역변수로 함수의 실행이 끝나면 변수의 생명주기도 끝이 남
-  - 자바스크립트는 함수안에 다른 함수를 인자로 갖을 수 있는데, 이 때 내부에 인자로 포함된 함수가 바깥쪽 함수와 같은 변수를 사용하지만 내부에서 선언하지 않는 경우(로컬변수가 생성되지 않는 경우) 바깥쪽에서 선언된 함수를 참조하게 됨
-  - 바깥쪽 함수가 실행을 마쳐도 변수의 생명주기를 끝내지 못함 <= 내부에 인자로 포함된 함수가 실행될 때 참조해야하므로...
-  - 이 변수의 생명주기를 끝낼 수 있는 것(함수가 닫히는 것)은 내부 함수의 실행
-  - 그렇기에 내부에 인자로 포함된 함수를 클로져(closure)라고 함
-
-- parseInt("123abc"); => ""안의 값이 숫자가 아니면 원래 NaN을 반환하지만,
-  숫자로 시작하는 경우 아래와 같이 숫자만 반환함
-  - Returns 12
-  - CSS의 모든 값은 스트링으로 오기에 10px 과 같은 자료의 경우 10만은 얻기 위해서 문자열을 잘라내고자 할 때 parseInt()를 사용하면 복잡한 로직 필요없이 숫자만 얻을 수 있음
-    
- - 스크립트 내부에서 이벤트 실행을 위한 함수 호출
-   - 예시코드
-  
-      ```javascript
-      <script>
-        btnPrint.onclick = printResult;  // printResult()와 같이 ()를 넣지 않는다
-      // ()를 넣으면 실행을 의미
-      // onclick 시에 btnPrint에게 printResult의 실행을 부탁
-      </script>
-      ```
-    
-- window.onload
-  - 자바스크립트 코드가 HTML 엘리먼트보다 먼저 실행이 될 경우 참조하는 엘리먼트가 로드되지 않은 경우 실행되지 않는 오류가 발생
-  - 자바스트립트 코드를 엘리먼트 아래에 작성하면 로드 이후이므로 정상 실행이 됨
-  - 위치에 관계없이 자바스크립트 함수가 실행되기 위해서 조건을 부여
-  - window.onload는 window가 모두 로드되면 실행이 되는 조건
-  - 따라서 HTML의 엘리먼트들이 모두 로드 된 이후에 실행이 되기에 오류없이 정상 실행
-    
-    - 예시코드
-
-      ```javascript
-      function init() {
-        btnPrint.onclick = printResult;
-      }
-
-      window.onload = init; // 오류가 발생되지 않고 실행이 됨
-      ```
-#### 명명규칙에 따른 HTML과 javaScript의 id, class 명 전환 👍🏻
-  - HTML은 카멜표기를 지원하지 않아 '-'로 단어를 이어서 명명
-  - javaScript는 카멜표기법으로 명명
-  - btnPrint과 같이 명명하는 것은 javaScript에서는 오류가 없지만 HTML에서는 오류가 발생할 수 있어 id, class를 참조할 때 문제가 발생
-  - 이런 이유로 아래와 같이 DOM 요소 선택을 통해 변수를 알맞게 명명하고 사용
-  
-    ```javascript
-    function init() {
-      var btnPrint = document.getElementById("btn-print");
-      btnPrint.onclick = printResult;
-    }
-
-    window.onload = init;
-    ```
-    
 ---
 
-## 2021-04-22 공부내용
-
-### JavaScript
-- 스크립트 코드의 지역화
-  - 한번만 호출될 때 사용거나 이벤트 호출을 위해 작성한 함수는 함수명을 지어줄 필요가 없음 
-  - 익명함수의 형태로 만들어서 바로 필요한 부분에 삽입
-  - 함수 내에 필요한 변수를 선언한 코드의 지역화를 통해 변수의 재활용성을 높임
-  - 예시코드
-    ```javascript
-    window.onload = function() {
-      var btnPrint = document.getElementById("btn-print");
-      
-      var add = function(x, y) {
-        return x + y;
-      };
-      
-      btnPrint.onclick = function() {
-        var x = prompt("x값을 입력하세요.", 0);
-        var y = prompt("y값을 입력하세요.", 0);
-        
-        x = parseInt(x);
-        y = parseInt(y);
-        btnPrint.value = x+y;
-      };
-    }
-    ```
-    
-- 이벤트 바인딩 (여러 스크립트 파일을 사용할 때) ⭐️
-  - 나중에 오는 스트립트로 덮어씌여지기에 앞단의 코드 적용이 안되는 문제 발생
-  - addEventListener를 활용한 문제 해결 방법
-  - 이벤트를 누적
-  - 예시 코드
-    ```javascript
-    window.addEventListener("load", function() { // 이벤트를 누적(괄호 사용 주의)
-      var btnPrint = document.getElementById("btn-print");
-      
-      var add = function(x, y) {
-        return x + y;
-      };
-      
-      btnPrint.onclick = function() {
-        var x = prompt("x값을 입력하세요.", 0);
-        var y = prompt("y값을 입력하세요.", 0);
-        
-        x = parseInt(x);
-        y = parseInt(y);
-        btnPrint.value = x+y;
-      };
-    });
-    ```
-   
-- innerText 와 같은 쓰임인 textContent
-   
-  #### 노드 선택 방법1 (getElementsByClass)
-  - getElementById(); => 아이디는 유일하기에 선택되는 노드는 단 한개
+## 2021-06-28 업무일지
+- 조회 박스 수정
+  - 공통 스크립트 확인
   
-  - getElementsByTagName();  => 태그는 문서내에 여러개가 존재하기에 선택되는 노드는 여러개가 될 수 있음
-  - getElementsByClassName();  => 클래스는 문서내에 여러개가 존재할 주 있기에 선택되는 노드는 여러개가 될 수 있음
-    - getElementsByTagName, getElementsByClassName는 선택된 결과가 배열로 주어지기 때문에 사용에 있어 배열의 요소를 지정해야함
-      - 예시 코드
-      ```javascript
-      var btnAdd = section.getElementsByClass("btn-add")[0]; 
-      // 맨 뒤의 [0]으로 getElementsByClass로 얻게 된 요소들 중 첫번째 요소를 선택
-      ```
-      
-  #### 노드 선택 방법2 (querySeletor)
-  - 쿼리 셀랙터
-  - querySeletor(), querySeletors() => 선택하는 요소의 개수에 따라 선택하여 사용
-    - 예시 코드
-      ```javascript
-      var btnAdd = section.querySeletor(".btn-add"); 
-      // CSS 선택자를 활용하여 한 개만 선택
-      ```
-    
-  #### 정교한 노드 선택 방법 (querySeletor)
-  - HTML 태그 내의 여러 속성을 활용해 정교하게 선택 가능
-  - 특정 요소를 선택하기 위해 매번 새로운 아이디, 클래스 명을 고안해야하는 어려움을 해소
-    - 예시 코드
-      ```javascript
-      var btnAdd = section.querySeletor("input[name='btn-add']"); 
-      // CSS 선택자 활용 가능
-      ```
-
---- 
+- AS-IS 소스 확인 방법
+  - 콘솔에서 AS-IS 구현과정을 관찰
+  - 필요한 쿼리 확인
+  - 공통코드 사용인지 데이터 테이블 활용인지 구분 필요
+  - 필요한 기능을 정리하고 순서에 따라 구현
   
-## 2021-04-23 공부내용
-
-### JavaScript
-
-- childNodes
-  - 자식 요소 중에 주석도 포함되기에 일반적으로 엔터로 구분하는 코드들 사이에 엔터값을 자식으로 인식함
-  - 코드의 오류가 아닌 엄밀한 자식요소에 대한 분석이 필요
-  - 모든 노드들을 자식으로 인식
-- children
-  - 태그 형태의 노드들만 자식으로 인식
-
-- datalist 태그
-  - 텍스트 인풋창에 선택가능한 셀렉트가 들어있음 
+- 대분류, 중분류, 소분류
+  - 초기화 함수에 데이터 리스트로 대분류를 조회하여 저장
+  - 화면에 매핑하여 표기함
+  - onchange 이벤트를 활용해서 대분류가 선택되었을 때 중분류가 조회되어 중분류 리스트에 매핑
+  - 매핑된 데이터를 다시 대분류와 같이 화면에 표기하고 소분류까지 같은 방식으로 구현
+  - 대분류가 '전체'로 초기화될 경우 나머지 중분류, 소분류도 '전체'로 초기화하는 함수 구현
   
-- 선택자 변환 방법
-    - border-color => borderColor 와 같이 스네이크 표기법을 사용하는 HTML의 선택자를 카멜표기법을 사용하는 자바스크립트에 맞게 변경하면 인식 가능
-
-  #### Document 객체 조작 방법
-    - createElement
-    - createTextNode
-    - getElementsByTagName
-    - insertBefore();
-    - appendChild();
-    - removeChild();
-    - hasChildNodes();
-
-    - append(); 텍스트 노드를 직접 추가 가능, 복수의 노드 추가 가능
-    - .remove(); .앞의 노드를 바로 삭제 가능
+- 내일 구현된 소스들을 바탕으로 오전은 논리구조 파악
+- 오후는 실제 구현 시작
 
 
-    - innerHTML 안에 추가할 태그를 작성하여 통째로 삽입
-      - = 으로 추가하면 기존에 있던 태그 대신 대체되고 += 으로 추가하면 기존 태그가 보존되지만 성능상에 문제가 발생할 수 있음
-      - 중간에 활용할 변수는 => '' + 변수 + '' 와 같이 조합해서 활용 가능
+---
 
-  #### 노드 복제 (template 활용!!!)  
-    - 템플릿 복제를 사용하면 최초 샘플 데이터 없이 복제하고 데이터를 추가할 수 있음
-    - 템플릿은 실제 화면에 구현되는 내용이 아닌 양식을 제공하는 역할을 함
-    - template을 사용할 때는 cloneNode 방법에 유의 => importNode(); 사용  
-      - 예시 코드
-        ```javascript
-        var template = section.querySelector("template");
-        var cloneNode = document.importNode(template.content, true);
-        ```
+## 2021-06-29 업무일지
+- 동적 셀렉트 박스
+  - AS-IS 테이블 확인
+  - TO-BE 테이블, 컬명 변동 사항 파악 후 새 쿼리 작성
+  - 대, 중, 소분류 호출 쿼리 테스트
+  - 매핑 엑셀 파일을 통한 명명 규칙 확인
+  - 데이터 맵과 셀렉트박스 바이딩 성공
+  - 백앤드 단에서 쿼리 실행 후 데이터 바인딩은 실패
+    - 내일 오전에 도전 후 질문
     
-   --- 
+- 자바스크립트와 백앤드 단의 함수 실행 관계 학습 필요
+- 콘솔과 개발자 도구 활용 실력이 실제 개발에 있어서 매우 중요함
+  - 디버깅
+  - 스크립트 이해
+  - 라이브러리 이해
+
+---
+
+## 2021-06-30 업무일지
+- 디버깅
+  - 개발의 꽃
+  - 개발자가 매일 맞이하는 오류
+  - 오류의 메세지를 파악하고 발생 위치를 찾아 해결해나가는 것은 개발자의 역량
+  - 변수의 사용
+  - 콘솔이나 개발자 도구를 활용한 디버깅을 통해 데이터 전송값 확인
+  - 활용하는데 있어 필요한 함수, 메서드는 API를 찾아가면서 익히고 사용
+
+- 개발메뉴얼
+  - 개발에 있어 정해진 규칙인 메뉴얼은 항시 참고해야할 바이블
+  - 규준에 맞지 않으면 오류가 발생하거나 감리에 있어 결국 수정이 필요가게 되므로 준수
+  - 기능 구현에 있어서도 공통 라이브러리 활용을 잘 해야함 
   
-## 2021-04-24 공부내용
+- 로직을 구현
+  - 개발하고자 하는 기능을 구현하기 위한 로직을 구상
+  - 실제로 구동이 되는 코드는 손으로 직접 작성하고 테스트
+  - 오류들을 없애면서 구현
+  - 구현된 상태에서 유지, 보수를 예상하며 리펙토링으로 마무리
+  
+- 개발자 도구, 디버깅 도구
+  - 개발자로 실력을 인정받기 위해서는 반드시 위 두 가지 사항을 잘 해야함
+  - 실제로 대부분의 오류는 오류메세지, 디버깅 툴을 활용할 수 있다면 파악할 수 있고 해결 가능함
+  - 컴퓨터가 이상해서 발생하는 오류는 극히 드물고, 거의 대부분 개발자의 실수 혹은 무지에서 나오는 결과임
+  
+  
+---
 
-### JSP (sbsStudy)
-- Dynamic Web project
-  - tomcat과 같은 웹서버 프로그램 설치
-  - STS와 연동
-    - 서버에서 톰켓 추가(설치 위치 기억 필요)
-    - 포트 설정(기존에 사용중인 포트 피하기)
-    - 서버에 올릴 자원 선택(서버 우클릭 후 add and remove)
-  - 기본 주소 : http://localhost:8080(포트번호)/jsp(프로젝트명)/index.html(소스명)
-    - 포트번호를 달리해서 서버를 동시에 여러 개를 구성할 수 있음
+## 2021-07-01 업무일지
+- 디버깅
+  - 어제 천과장님의 코칭을 바탕으로 스스로 발생한 이슈 해결 시도
+  - 콘솔 창의 오류 내용중 참고할 부분을 편집해서 분석
+  - 중분류 검색 쿼리가 실행되지 않는 이슈를 해결
+  - 학습한 디버깅 방법을 통해 ajax통신 부분이 주석으로 되어 있던 점 확인
   
-  - Server tap에서 바로 톰켓 설치
-    - server tap 에서 우클릭 후 new / server를 선택하여 설치하고자 하는 서버와 버전을 선택할 수 있음
-    - 설치가 되어있지 않은 경우, 창에서 저장 경로 설정 후 바로 다운로드 하여 설치 및 세팅 가능
-    - server 창에서 여러 버전의 톰켓을 우면 여러 포트의 동시 사용이 가능함
+- 담당파트 지정
+  - 3개의 메뉴를 전체적으로 진행하던 현재의 흐름에서 첫번째 메뉴만 집중해서 담당하는 방법으로 잠정적 확정
+  - 패키지명을 통일하는 과정에서 mng를 삭제하는 작업
+  - 기존에 전체적으로 작업해둔 메뉴의 인수인계
+    - 웹스퀘어 소스, 백앤드 소스 구조 및 패키지 구성 방법
+    - 데이터 리스트 바인딩, 아이디 부여, 작명법 등 전달
+    - SVN 형상 관리 노하우 전달
+    
+- 길을 안내하는 조력자
+  - 각기 개발자의 시간을 존중하는 질문과 답변
+  - 논리, 방법, 툴 사용법 등에 대한 안내에 해당하는 도움 제공
+  - 실제 개발은 개발자 자신이 해결해야할 업무
   
-  - Spring에서 구현
-    - spring으로 작업시에는 내장 톰켓 사용
-    - yml, xml 등으로 포트 및 톰켓 설정
-    - prefix, suffix 로 매핑될 주소의 앞뒤를 설정하여 주소 구성에 있어 편리함이 있음
-    
-    
-### Spring
-- afterLoginUri 설정 필요
-  - encodedUri을 사용해야 정상적으로 주소를 인식
-  
-    
-    
-### JavaScript
-- 노드객체 선택
-  - parentNode
-  - firstChild
-  - lastChild
-  - previousSibling
-  - nextSibling
-  
-  - 요소를 지정해서 선택하고자 할 때는 element를 중간에 넣어서 활용
+---
 
-
-
----  
-## 2021-04-25 공부내용
+## 2021-07-02 업무일지
+- 분기처리 동적 셀렉트 박스 구현 완료
+  - 공통코드 사용이 아닌 쿼리로 조회 및 구현하는 대분류, 중분류, 소분류 셀렉트 박스
+  - 전체 클릭시 초기화되는 함수도 구현 완료
+  - 화면단과 백앤드 단의 본격적인 개발은 다음주부터 가능
+    - 자바스크립트로 기능 구현
+    - 백앤드 쿼리 구조 구현
+    - 연동 페이지, 연동 테이블 등 파악 및 구현 필요
+    - 야근을 최소화할 수 있는 개발 일과를 마련하기!
     
-### JavaScript
-- input value vs checked 
-    
-- event target
-    
-- bubbling을 활용하면 반복을 줄이고 효과적인 코딩이 가능함 
-  - 중첩된 요소들 중에서 선택된 요소에만 반응하도록 구현 가능
-  - target 으로 선택된 요소 확인
-  - stopPropagation(); => 버블링 전파를 막아줌 
-  - target.classList.contains("클래스명") => 주어진 클래스명이 포함된 요소만 선택
-  - 
+- 개발경력
+  - 프로젝트 경험 및 kosa 등록
+  - 활용가능한 프레임워크, 언어 등을 정리 필요
   
-    
---- 
-  
-## 2021-04-26 공부내용
-    
-### Spring boot Web Project
-- 비밀번호 암호화
-  - sha256 util을 활용한 암호화
-  - 서버단에서 암호화를 하는 경우 클라이언트에서 서버로 오는 중에 비밀번호 보안에 취약점이 발생
-  - 클라이언트 단에서 암호화를 한 후 전송하는 것이 보다 안전한 방법
-  - 해당 기능을 적용하기 위한 검색 => 독립된 실험 공간에서 기능 적용 및 확인, 오류 점검 => util 화 하는 과정을 모두 마친 후 원하는 프로젝트에 적용
-  - sql 문으로 암호화도 가능
-    - SELECT SHA2('password', 256);
-    
-- CSS, JS, img폴더 경로
-  - spring boot 에서는 기본적으로 src/main/resources/static에 위치한 자바스크립트, CSS, 이미지 등 정적 파일들은 URL에서 / 로 설정됨
-  
-  - 다음과 같이 파일이 위치하면 위치에 맞게 호출이 가능
-    - src/main/resources/static/js/*** (http://도메인/js/***)
-    - src/main/resources/static/css/*** (http://도메인/css/***)
-    - src/main/resources/static/image/*** (http://도메인/image/***)
 
-    
-### Servlet
-- 톰켓 설정 변경
-  - 환경 설정이 달라짐에 따라 설치된 톰켓의 버전이 상이한 경우 발생하는 오류
-  - 설정 방법
-    - 서버탭에서 우클릭하여 new 선택 후 필요한 버전의 톰켓 설치
-    - 프로젝트 내의 아파치 톰켓을 우클릭 => 빌드 패스 => 컨피겨 빌드 패스 => 톰켓 클릭 후 활성화 되는 우측 메뉴중 edit 클릭하여 설치한 톰켓으로 설정 변경
-    - 서버탭에서 사용하고자 하는 톰켓 서버에 프로젝트 add
+---
+
+## 2021-07-05 업무일지
+- 개발 업무 확정
+  - 기술성과관리 / 보유기술관리를 담당
+  - 완료 후 지식재산권 지원
+  
+- 백앤드 단에서 쿼리 작성
+  - as-is 콘솔에서 쿼리 확인 후 to-be 테이블 매핑
+  - 컬럼명이 화면단과 일치하지 않아 어려움
+  - 조정 작업중으로 이후 수정될 여지가 있음
+  - 테이블은 완성이 되었기에 테스트 데이터 입력 후 쿼리 확인 가능
+  
+- 1차 작업 목표
+  - 조회화면 / 목록 구현
+    - 화면 최초 로딩시 목록 조회
+    - as-is, to-be 테이블 매핑 빠르게 찾는 방법 확인 및 숙달 필요
+    - 화면단 간단한 스크립트 구현
     
 
-     
---- 
+---
+
+## 2021-07-06 업무일지
+- SQL DB테이블 테스트 데이터 추가
+  - 임시 쿼리 확인
+  - 조회단에서 퀴리 수정시 매핑 vo와 연계된 소스들의 수정 필요
+
+- 구현된 소스 확인
+  - 천과장님의 소스 확인
+  - 상황별 스크립트 사용 분석 필요
+  - 쿼리 작성 논리 파악
   
-## 2021-04-27 공부내용
+- 개발자 도구에서 자바 디버깅
+  - 개발자 도구에서 디버깅 위치를 지정해서 디버깅할 수 있음
+
+- SVN 싱크 제외 설정
+  - 이그노어로 싱크에서 temp, .settings 폴더 제외 가능
+
+
+---
+
+## 2021-07-07 업무일지
+- 조회 기능 구현 완료
+  - 실제 디비에 테스트 데이터 추가 및 조건별 검색 확인
+  - 가상으로 만든 쿼리 수정과 VO 수정이 새로 만드는 작업보다 손이 더 가고 오류가 많이 남
+  - 예전보다 빠른 디버깅을 하는 상황이지만 DB연결에 있어서는 새로운 에러를 맞이함
+  
+- 보유기술 파트의 조회 관련 테이블 파악 및 기능 구현
+  - 현재 확실하게 매핑이 된 자료가 없어, 테이블 파악 후 쿼리 작성이 필요
+  
+- 구현된 소스 확인이 시급
+- AS-IS 분석도 병행이 필요
+
+
+---
+
+## 2021-07-08 업무일지
+- 고객 요청 사항에 대한 확인 작업
+  - 화면 단과 기능에 대한 확인 작업 및 답변 작성
+  - 고객의 요청이 가장 우선이기에 요구 분석 및 응대가 중요
+  
+- 테스트 데이터
+  - 본격적인 개발을 위해 디비 테스트 데이터가 필요
+  - AS-IS 데이터를 쿼리고 가공하여 TO-BE 데이터로 가공후 활용
+  
+- 조회 기능 재활용성
+  - 재활용 가능한 VO, 쿼리 작성으로 기능 구현에 편의성을 도모
+
+
+---
+
+## 2021-07-09 업무일지
+- 화면 분석, 설계의 중요성
+  - 전달 받은 수정 사항의 모호함
+  - 기능 구현과 연계된 화면 이해가 필요
+  
+- 데이터 베이스
+  - 테스트 데이터 이관의 필요성
+  - 컬럼 매핑 후 이관의 가능성 체크 가능
+  
+- API 활용
+  - 활용할 모든 함수를 작성할 수 있어야 한다기보다 활용에 초점을 두고 개발
+  - 메뉴얼의 활용 경험이 중요
+  
+- 질문, 답변
+  - 프로젝트 진행을 위해 자신의 업무를 최상단에 놓고 우선순위를 산정
+  - 주어진 할당량을 채우는 것이 가장 중요
+
+---
+
+## 2021-07-12 업무일지
+- 의사소통의 중요성
+  - 설계, 분석을 담당한 부장님의 설명(명확하지 않은 설명)
+  - 화면단에서의 문제를 고려하지 않은 조치
+  - 필히 추후 수정이 예상됨
+  
+- pl의 능력
+  - 말과 행동이 다르고 업무파악과 실무 능력이 부족함
+  - 야근에 대한 자신의 말을 기억하지 못하는 것으로 보임
+  - 인성이 부족한 자로 경계하고 지내야 함
+  
+- 어딜가나 있는 능력없는 부장들
+  - 이런 환경도 극복하는 것이 실력이 될 듯
+  - 주어진 불리한 환경을 빠르게 극복하는 것을 목표로 설정!!!
+  
+  
+
+---
+
+## 2021-07-13 업무일지
+- 페이지 완성
+  - not null 제약조건 고려한 AS-IS 데이터 이관 완료
+  - 데이터 연동 완료
+  - 페이징 설정
+  - 엑셀 다운로드 기능 구현
+  
+- 남은 구현 기능 정리
+  - to do list 작성 및 계획 수립
+  - common.js의 모든 기능을 알 필요는 없고 필요한 기능 위주로 서치, 적용
+  - 가장 중요한 것은 쿼리 분석 및 작성
+  - 기존 AS-IS 쿼리를 확인해서 정확한 테이블, 컬럼명 확인이 중요
+  
+  
+---
+
+## 2021-07-14 업무일지
+- 업무 파악
+  - 전체적인 업무 흐름 파악 완료
+  - 담당 파트와 아닌 것의 차이 확인
+  
+- 난이도 중 단계 업무
+  - 통계현황 그래프, 도표를 위한 데이터 조회
+  - 테이블 확인 및 이후 테스트 데이터 이관 필요
+  - 쿼리 작성 후 조회 조건에 따른 통계 현황 표시
+  
+- 쿼리 작성 능력
+  - 원하는 조회 결과를 도출할 수 있는 쿼리 작성 능력이 필요
+  - 배운 것을 실무에 적용하는 경험이 필요
+  - SQLD 공부하면서 쿼리 연습
+  
+  
+---
+
+## 2021-07-15 업무일지
+- 키워드 조회 쿼리 작성 및 데이터 이관 완료
+  - 상세 페이지에서 사용할 DB 테스트 데이터 이관
+  - 조인, 정규표현식, 조건절 등 응용이 많이 필요함
+  - not null 조건 체크 및 대응 필요
+  
+- 조회 팝업 활용
+  - 공통으로 활용하는 팝업의 경우 재활용이 가능 
+  - 구현에 있어 효율성이 높음
+  
+- 다른 파트에서 활용되는 쿼리 공유
+  - 담당 파트의 화면에 사용되는 쿼리의 경우 다른 파트에서 유사 화면 구현이 재활용 가능
+  - DB의 구현이 늦어 100% 쿼리 작성이 불가능하지만 나머지 데이터 조회하는 쿼리 작성 및 경로, 함수명 작성
+  - 해당 함수만 활용하면 다른 화면은 내 쿼리 작성이 완료되면 자동으로 구현이 완료됨
+  - 업무 간 연계도 파악하면 효과적인 분업이 가능함
+
+- 통계현황 그래프, 도표를 위한 데이터 조회
+  - 현재 테스트 데이터를 바탕으로 쿼리 작성 후 데이터에 대응되는 동적 통계 화면 구성
+  - 한 가지 쿼리로 10개 가량의 도표, 그래프 처리 가능
+
+
+---
+
+## 2021-07-16 업무일지
+- 대중소분류 포함 현황 조회 구현
+  - 다른 파트에서 사용되는 조회 화면 구현 완료
+  - 과제 관련 데이터가 필요한 부분을 제외한 코드 구현 완료
+  
+- 데이터 이관시 제약 조건 + 데이터 변형 이관
+  - 제약 조건을 파악하여 처리하였지만 데이터 자체 값을 변형하여 이관하는 경우도 있음을 확인
+  - 쿼리를 사용하여 데이터 값을 변환하여 이관 완료
+  - TO-BE에서 공통코드 및 쿼리 활용 가능해짐
+
+- 코드 대신 명칭으로 화면 표기 전환
+  - 기존 검색 결과는 코드로 표기
+  - 공통코드 테이블 조인으로 명칭으로 표기 되도록 코드 수정
+  
+
+---
+
+## 2021-07-18 업무계획
+- 주간 업무계획
+  - 통계화면 데이터 베이스 연동
+  - 상세화면 데이터 베이스 연동
+  - 쿼리 정교화
+  - 화면 스크립트 정교화
+  - 메뉴얼 기반 점검 작업
+  
+- 기술성과 관리에서 보유기술 파트를 완성하는 것을 목표
+
+---
+
+## 2021-07-19 업무일지
+- 개발자 교육
+  - 개발 환경
+  - 백앤드
+  - DB
+  - UI/UX
+  
+- 프론트단 질문 해결
+
+- 도표를 위한 데이터 조회 쿼리
+  - AS-IS 쿼리 분석은 완료
+  - TO-BE 적용에는 기존의 쿼리를 변형해서 적용 시도
+  - 1단계 필요 항목 조회는 성공했으나 카운트에는 아직 성공하지 못한 상태
+  
+- 교육으로 인한 시간 사용
+  - 목표한 작업량을 마치지 못했지만 교육시간을 고려하면 완료했을 것으로 예상
+  - 화요일은 오전에 쿼리 작성 완료 및 페이지별 반영하여, 3개의 페이지 도표 완성 목표
+  
+- 목록페이지 완료 후 상세페이지 시작
+  - 상세페이지 파트별 필요 쿼리 및 데이터 확인
+  - 팝업 구현에 필요한 연관 업무 파악 필요
+  
+- 백앤드 VO 정리
+  - 컨트롤러, 서비스, VO 단에서 정리를 통한 로직 간소화 필요
+
+- 필요한 스크립트 순차적 적용
+  - 버튼 등에 필요한 스크립트
+  
+  
+---
+
+## 2021-07-20 업무일지
+- 도표 페이지 쿼리 작성
+  - 이론과 실제 적용의 차이
+    - 이론으로 이해한 함수를 실제 적용함에 있어 어려움
+    - 하루 이상 고민하고 도움을 얻어 해결
+    - 쿼리 작성 과정을 이해해야 앞으로 페이지 구현 속도가 빨라질 수 있음
     
-### NTLsoft Project
-- 메인화면 구현
-- 게시판  3개 : 공지사항, 자유게시판, 질의응답
-- 웹 포폴 페이지, 쇼핑몰 포폴 페이지 링크
-- 회원 관련 기능 동작 테스트 확인
-- css적용을 위한 태그명 수정 필요
-- 이번 버전은 테일윈드 적용하지 않은 순수 css로 작업 예정
-- 파일 업로드, 댓글, 좋아요, 관리자 페이지 구현 예정
-
-#### static 폴더
-- css, js, img 등 DB에 영향을 받지 않는 정적인 파일들을 저장하면 spring boot 에서 자동으로 인식하는 폴더
-- 저장 경로를 잘 확인해야 오류가 아니기에 원하는 화면 구현 가능
--  
-
-### JSP / Servlet 
-- Github에서 클론 등의 방법으로 가져온 프로젝트 실행시 처리 사항
-  - 프로젝트 우클릭 후 Properties / Project Facets 클릭
-  - 해당되는 사항을 체크 : servlet으로 구현 중인 웹프로젝트는 다이나믹 웹 프로젝트이기에 Dyanmic Web module 체크
-  - runtimes 도 버전에 맞는 톰켓 설정
-
-- 상속받아 클래스 작성시 Source / Override/Impelment Methods 선택하여 원하는 기능만 선택해서 오버라이드해서 구현 가능
-
-
---- 
-  
-## 2021-04-28 공부내용
-    
-### JSP / Servlet 
-- MySQL 사용을 위한 [세팅](https://github.com/jhs512/jspCommunity/commit/438c2c260495da802a5697d6b71788c3177ce9e0) 필요 
-- Servlet이 필요한 데이터 처리를 모두 완료하고 jsp에 넘김
-- jsp에서는 데이터를 활용하여 html구성
-- 분업화된 mvc2 구조
-
-### Project
-- NTLsoft main, list페이지 작업
-  - 기존 작업 틀을 유지한 채로 css 스타일링
-  - class, id 의 중요성
-  - 라이브러리를 사용할 때는 중복으로 인한 스타일 미적용이 발생 가능
-  - 사용하고자 하는 라이브러리에 대한 학습 후 html태그에 식별자 사용을 권장
-  - 레이아웃과 관련된 부분은 초반에 구성하고 시작하면 작업 속도가 빨라질 수 있음
-  - 개인 블로그 프로젝트는 테일윈드 기반으로 기획하고 작업 예정
+- 도표별 검색 조건 적용 예정
+  - 도표별 쿼리 완성하면 3페이지 완료 가능
   
-
---- 
-  
-## 2021-04-29 공부내용
-    
-### Spring Boot
-- 기본 생성 패키지
-  - spring starter project 실행시 자동 생성되는 Application 파일만 생행하면 기본적인 톰켓, 스프링 등의 세팅이 이루어짐
-  - 내장 톰켓의 기본 포트는 8080으로 세팅되고 실행됨
-  
-- UUID 클래스
-  - 유일한 식별자를 생성 가능
-  - UUID 가 사용될 수 있는 사례
-    1. 업로드된 파일명의 중복을 방지하기 위해 파일명을 변경할 때 사용.
-    2. 첨부파일 파일다운로드시 다른 파일을 예측하여 다운로드하는것을 방지하는데 사용.
-    3. 일련번호 대신 유추하기 힘든 식별자를 사용하여 다른 컨텐츠의 임의 접근을 방지하는데 사용.
-    
-    ```java
-    import java.util.UUID;
-
-    public class UUIDTest {
-        public static void main(String[] args) {
-
-            UUID one = UUID.randomUUID();
-            UUID two = UUID.randomUUID();
-
-            System.out.println("UUID One: " + one.toString());
-            System.out.println("UUID Two: " + two.toString());
-        }
-    }
-    ```
-- 폴더 구조
-
-    src
-    └─ main
-       └─ resource
-          └─ templates (View: Thymeleaf, Groovy, Velocity 등)
-          └─ static    (정적 컨텐츠 : html, css, js, image 등)
-
-
-- 스프링 부트는 스프링 프로젝트와 다르게, 동적 파일들의 파일 변경을 자동으로 반영하지 않음
-  - 스프링부트 데브툴스 의존성 추가와 라이브 리로드 추가로 해결 가능
-
-    ```java
-    <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-devtools</artifactId> </dependency>
-    ```
-
-### PHP
-
-- 변수 선언
-  - $a 와 같이 변수명 앞에 $를 붙여서 선언
-  
-- 기본 문법
-  - 출력
-    - print($a);
-    - echo $a
-    
-  - 문자열 연결
-    - .  => 다른 언어에서 주로 사용하는 + 대신 .을 사용
-    
-  - 변수 활용
-    - "문장..." 안에 변수를 사용하고자 하는 위치에 바로 삽입해서 사용 가능
-    - "... $a ..." 과 같이 사용가능하지만 식별을 위해 "... {$a} ..."와 같이 중괄호로 묶어서 표현 권장
-    
-  - JSP와 비슷하게 사용
-    - php 문법인 부분은 <?php ?>로 감쌈
-    
-  - {}안에서 연산자 사용 불가능
-    - 연산 결과를 저장할 변수 선언 후 저장하여 활용
-    ```php
-    $a = 5;
-    $b = 10;
-    $result = $a + $b;
-    echo $result;
-    ```
-  
---- 
-  
-## 2021-04-30 공부내용
-    
-### 개인프로젝트 (NTLsoft)
-    
-  - 페이지별 css 작업
-  - 멤버 관련 기능 버그 수정
-  - 구현 기능 점검
-  - 추가 구현 예정 기능 정리
-    - 자기 게시물 수정, 삭제
-    - 댓글 관련 기능 
-    - 검색에 작성자 키워드 포함
-    - 파일 업로드 다운로드
-    - 에디터 활용 글 작성모드
-    - 좋아요 기능
-    - 메인페이지 슬라이더 등 css 효과 추가
-    - 관리자 모드 페이지
-    - 어스키 활용 자동 로그인 기능
-    - cors 관련 문제 대비
-    - 회원 가입 환영 이메일 자동 발송 기능
-    - 자동 발신 메일 양식
-
-
+- 검색 조건 적용 확인 
+  - 현재까지 구현된 쿼리의 정상 작동 여부를 확인
+  - 미비한 부분이나 오류 보완
   
---- 
-  
-## 2021-05-03 공부내용
-- Spring Boot Web
-  - Jackson ObjectMapper
-    - 자바 오브젝트를 JSON으로 시리얼라이징하거나 JSON 문자열을 자바 오브젝트로 디시리어라이징할 때 사용하는 클래스
-    - writeValue
-    - writeValueAsString
-    - writeValueAsBytes
-    - readValue
-    
-  - ResultMap
-    - 일대다 대응이 가능한 매핑
-    - 엑스트라 데이터를 맵에 담아서 활용가능
-
-  - [@RequestMapping을 이용한 요청 매핑](https://yang1650.tistory.com/133)
-    - 클래스와 메서드에 @RequestMapping 적용하기
-      - 컨트롤러와 메서드에 @RequestMapping 애노테이션을 모두 사용하면, 클래스에적용한 값과 메서드에 적용한 값을 조합해서 매핑될 경로를 결정
-      - @RequestMapping 애노테이션은 경로에 {변수} 형식의 경로 변수를 사용할 수 있음
-      - @PathVariable 애노테이션을 사용하면 경로 변수의 값을 파라미터로 전달받을 수 있음
-
+- 백앤드 단의 컨트롤러, 서비스, VO 정리 
+  - 큰 틀에서의 정리는 완료함
+  - 내부적으로 간소화하는 작업이 필요함
+  - 다른 파트의 소스 확인을 통한 업그레이드 필요
+  
+  
+---
 
---- 
+## 2021-07-21 업무일지
+- 도표별 검색 쿼리 완성
+  - 단순한 기존 쿼리 변경이 아닌 상황에 맞는 쿼리를 재작성
+  - 쿼리를 짜면서 개념을 익히고 최적의 쿼리를 짜는 능력 향상 필요
+  
+- UI 수정 사항 반영
+  - 정렬 관련 사항 반영
+  - 셀 너비 조절
+  - css 적용이 안되는 이슈 해결
   
-## 2021-05-04 공부내용
-### [SQL Mapper와 ORM](https://gmlwjd9405.github.io/2018/12/25/difference-jdbc-jpa-mybatis.html)
+- 목록 페이지
+  - 대부분 구현을 완료
+  - 최종적으로 테스트 후 쿼리 점검 및 스크립트 점검
   
-  - Persistence Framework는 SQL Mapper와 ORM으로 나눌 수 있음
+- 상세페이지 분석
+  - 필요 테이블 컬럼, 관련 파트 분석
+  - 초기화면 로딩시 화면 표시에 필요한 로직 구성
+  - CRUD 작업을 위한 테스트 코딩 필요
+  
+- 상세페이지 전 사전 코드 학습
+  - 천과장님 코드를 통한 학습 필요
+  
+  
+---
 
-  - ORM은 데이터베이스 객체를 자바 객체로 매핑함으로써 객체 간의 관계를 바탕으로 SQL을 자동으로 생성해주지만 SQL Mapper는 SQL을 명시해야 함
-  
-  - ORM은 관계형 데이터베이스의 ‘관계’를 Object에 반영하자는 것이 목적이라면, SQL Mapper는 단순히 필드를 매핑시키는 것이 목적이라는 점에서 지향점의 차이가 있음
-    
-    #### SQL Mapper
-    - SQL <—매핑—> Object 필드
-    - SQL Mapper는 SQL 문장으로 직접 데이터베이스 데이터를 다룸
-    - 즉, SQL Mapper는 SQL을 명시해줘야 함
-      Ex) Mybatis, JdbcTempletes 등
-      
-    #### ORM(Object-Relational Mapping), 객체-관계 매핑
-    - 데이터베이스 데이터 <—매핑—> Object 필드
-    - 객체를 통해 간접적으로 데이터베이스 데이터를 다룸
-    - 객체와 관계형 데이터베이스의 데이터를 자동으로 매핑(연결)해주는 것을 의미
-    - ORM을 이용하면 SQL Query가 아닌 직관적인 코드(메서드)로 데이터를 조작 가능
-    - 객체 간의 관계를 바탕으로 SQL을 자동으로 생성
-    - Persistant API라고도 함
-      Ex) JPA, Hibernate 등
+## 2021-07-22 업무일지
+- 그래프 스크립트 완성
+  - 기존 스크립트는 lazy='false' 태그 추가시 화면에 나타나지 않는 문제가 발생
+  - 스크립트를 나눠서 함수로 구성하여 사용하는 방식으로 해결(천과장님 소스 참고)
 
+- 한 화면에서 여러건의 조회를 통한 구현이 필요한 경우 
+  - 맵으로 담아서 화면단에서 data에서 뽑아서 활용
+  - 생각보다 구현에 필요한 로직은 간단
+  - 쿼리를 상황에 맞게 구현하는 것이 가장 주요한 작업
+  
+- 자바스크립트의 경우 변수 확인 필수
+  - 사용하지 않지만 임시로 만들어둔 변수라도 매칭이 되지 않는 경우 실행 자체가 되지 않음
+  - 선언한 변순는 스크립트 내에서 완벽하게 매핑된 상태라야 오류가 발생하지 않음
+    - 이 경우 실행 자체가 되지 않기에 찾기 어려웠음
+  
+---
 
+## 2021-07-23 업무일지
+- 목록페이지 완료
+  - 기술과제 테스트 데이터까지 넣어서 모든 컬럼이 조회돌 수 있도록 DB 연동
+  - 그래프 중 년도별 검색까지 완료하여 모든 그래프 연동 완료
+  - 셀 너비 조절 및 미세 화면 조절
+  
+- 상세페이지 분석
+  - 연동된 데이터 베이스, 테이블 분석
+  - 기술과제 테이블 연동 필요
+  - DB 연동을 위한 사전 작업 : 테스트 데이터 이관
+  - 화면단에 뿌려질 데이터의 출처 확인
+  
+- 휴가 전 커밋
+  - 상세페이지를 남겨둔 나머지 페이지 구현 완료 및 커밋
+  - 휴가 후 상세페이지를 바로 시작할 수 있도록 분석
+  
+  
+---
 
---- 
+## 2021-07-25 휴가계획
+- 최대한 체력 보충
+- 학습 내용 복습
+- 이후 일정 대비
+- SQLD 시험 대비 및 설계 관련 파트 내용 검색
+  
   
-## 2021-05-06일 공부내용
+  
+---
 
-### Oracle Datebase
-- SQL Developer
-  - 주석표시 -- => -를 2번 사용
-- 오라클 PDB 서버
-  - 가상 서버로 본 서버와는 다르게 플러그인 기능으로 테스트해보는 서버로 사용 가능
-  - EXEC DBMS_XDB.SETLISTENLOCALACCESS(FALSE);
-    - 원격으로 접속이 가능해짐
-  - 보기에서 DBA 클릭하여 접속
-  - 테이블 스페이스 생성
-  - 사용자 추가 : 보안 / 사용자 / 새로운 사용자 생성
-  
-- 데이터 형식
-  - charcter  => ''로 감싸서 표현
-    - CHAR : 검색 속도 빠름, 메모리 낭비 가능
-      - 스탠다드 사이즈 : 4000바이트
-      - 익스텐디드 사이즈 : 32767바이트
-      
-    - VARCHAR2 : 가변 길이, 검색속도 느림
-    - NCHAR : N은 보통 문자의 3배 사이즈를 차지, 다국적 언어를 입력받을 때 CHAR(2 CHAR)와 같이 사용하는 것보다 저장공간이 적게 소요되서 더 바람직
-    - NVARCHAR2
-     
-  - Numeric
-  - Date, TIMESTAMP(Date보다 세밀한 시간표현, 시분초까지)
-  - LOB
-  - 예약어를 변수로 사용하고자 하는 경우 "comment"와 같이 ""로 감싸면 사용 가능
-  
-- 데이터 조작
-  - Insert
-  ```oracle
-  INSERT INTO MEMBER(ID, PWD) VALUES('brad', '0520');
-  INSERT INTO MEMBER(PWD, ID) VALUES('0520', 'brad');
-  ```
-  
-  - UPDATE
-  ```oracle
-  UPDATEMEMBER SET PWD='111', NAME='손오공' WHERE ID='dragon';
-  ```
-  
-- 트랜젝션 처리를 위한 COMMIT, ROLLBACK
-  
-  
---- 
-  
-## 2021-05-07일 공부내용
+## 2021-07-27 휴가중
+- 육아 휴가
+- 허벌라이프 다이어트 시작
+- 학습의 시간은 많이 확보하지 못함
+- 휴가 후 다시 평소 리듬 되찾기 필요할 듯
 
-### Oracle Datebase
-- 연산자
-  - 산술연산자
-    - + 는 숫자만 연산
-    - || 는 문자만 연산
-    
-  - 비교연산자
-    - IS NULL 
-    - IS NOT NULL 
-    - BETWEEN (범위가 주어질 때)
-    - IN (여러 불연속적인 데이터들을 범위로 사용 가능)
-    - NOT IN
-  
-  - 패턴 비교연산자
-    - LIKE : 특정 패턴을 포함하는 데이터 검색
-    - % => 임의의 문자를 의미
-    - _ => 자리수를 한정하여 검색 가능 
-      예) J_ => J로 시작하고 한글자가 뒤에 붙어있는 데이터 결과
-  
-  - 정규표현식 : REGEXP_LIKE()
-    - 시작 : ^
-    - 끝 : $
-    - \d : [0-9] 범위의 숫자
-    - \D : 숫자가 아닌 문자(대문자로 표현하면 부정을 의미)
-    
-    - \w : [0-9a-zA-Z]와 같이 숫자, 영어소문자, 영어대문자가 될 수 있는 한 글자를 표현
-    - {} : 반복횟수
-          예) {4} => 4번 반복, {3,4} => 3번이나 4번 반복
-          
-    - * : 0개 이상
-    - + : 1개 이상
+  
+---
 
-    - 쿼리 예시
-    ```oracle
-    SELECT * FROM MEMBER WHERE REGEXP_LIKE(TITLE, '^01[016-9]-\d{3,4}-\d{4}$');
-    ```
-    - 특정 정규패턴 포함한 데이터 검색에는 ^, $을 생략하면 검색 가능
-    - | : or 의 의미로 사용 가능
-      예시) (com|net)
-     
-- ROWNUM 으로 행 제한하기
-  - ROWNUM는 항상 1로 시작
-  - * 가 아닌 MEMBER.* 과 같이 사용하면 .앞의 테이블명으로 한정하는 효과가 있어 아래와 같은 쿼리가 가능
-  ```oracle
-  SELECT ROWNUM NUM, MEMBER.* FROM NOTICE;
-  ```
-  
-- DISTINCT
-  - 중복된 값 제거
-  
-- 여러 가지 함수
-  - CONTACT : 문자열 합치기
-  - TRIM : 빈 공백 제회
-  - LOWER : 소문자로 변환
-  - UPPER : 대문자로 변환
-  - SUBSTR : 문자열 추출
-  - REPLACE : 문자열 대체
-  - TRANSLATE : 각가의 문자를 대치
-  - 문자열 패딩 함수 : LPAD, RPAD (영문은 한글자, 한글은 2글자로 인식)
-  - INCAP : 문자의 첫글자를 대문자로 바꿔주는 함수
-  - INSTR : 문자열 내에서 원하는 문자를 검색
-  - ABS : 절댓값을 구하는 함수
-  - SIGN : 양수/음수를 알려주는 함수
-  - ROUND : 숫자의 반올림 값을 알려주는 함수
-  - POWER : 제곱
-  - SQRT : 제곱근
-  - NLS_DATE_FORMAT : 날짜 표기 포맷 변경 가능 
-  - EXTRACT : 날짜 추출 함수
-  - ADD_MONTH : 날짜를 누적하는 함수
-  - MONTH_BETWEEN : 날짜의 차이를 알려주는 함수
-  - NEXT_DAY : 다음 요일을 알려주는 함수
-  - LAST_DAY : 월의 마지막 요일을 알려주는 함수
-  - TO_DATE, TO_CHAR, TO_NUMBER, TO_TIMESTAMP : 형식변환 함수
-  - NVL(NULL, 대채값) => null을 처리하는 함수
-  - NVL2(NULL, ,NOT NULL 대채값, NULL 대채값) => null을 처리하는 함수
-  - DECODE(기준값, 비교값, 출력값, 비교값, 출력값)
-  ```oracle
-  SELECT DECODE(SUBSTR(PHONE, 1, 3)),
-                       '011', 'SK',
-                       '016', 'KT',
-                       '기타') FROM MEMBERS;
-  ```
-  
-- SELECT 구절과 정렬(ORDER BY)
-  - SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY => 작성 순서가 중요
-  - 실행순서
-    - FROM -> CONNECT BY -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY 
-    - 별칭의 경우 실행 순서에 영향을 받음
-    
-  - GROUP BY를 사용하는 경우 WHERE로 조건을 걸 수 없기에 이때는 HAVING절로 조건을 줄 수 있음
-  
-  - 정렬이 된 상태에서 ROW_NUMBER를 얻고자 하는 경우 ROW_NUMBER() 함수 사용
-  ```oracle
-  SELECT ROW_NUMBER() OVER(ORDER BY HIT), ID, TITLE, WRITER_ID, REGDATE, HIT FROM NOTICE;
-  ```
-  
-  - RANK() 로 ROW_NUMBER()를 수정하면 같은 수치 데이터가 있는 경우 같은 등수로 랭크되어 결과값이 산출됨
-  
-  - DENSE_RANK() : 동점자도 순서를 주는 순위
-  
-- 서브쿼리(부조회)
-  - 쿼리의 결과를 다시 SELECT 나 조건에 활용할 수 있음
-  
-- JOIN
-  - INNER JOIN
-  - OUTER JOIN
-  - LEFT, RIGHT, FULL JOIN 가능
-  - SELF JOIN
-  
-- Oracle inner join 
-  - join을 기술하지 않고 where절로 join 조건 기술
-  
-- Oracle outer join 
-  - join을 기술하지 않고 where절로 join 조건 기술 후 + 기호 사용
+## 2021-07-28 휴가정리
+- 허벌라이프 다이어트, 육아
+  - 공부할 시간 확보는 거의 힘들었던 휴가
+  
+- 내일 업무 환기
+  - 상세 페이지 구현 예정으로 활용 테이블 파악 및 데이터 입력 필요
+  - 상세 페이지에서 구현이 필요한 기능들에 대한 정리
+  - 구현된 기능들에 대한 피드백 및 정교화
+  - 구현 예정인 기능들에 대한 업로드된 소스를 통한 학습
 
-- UNION
-  - 통합검색에 여러 게시판을 모아서 검색할 때와 같은 경우 사용
-  - MINUS, INTERSECT, ALL
-  
-- VIEW
-  - 실사용에서 자주 사용되는 형태는 매번 쿼리를 사용하지 않고 뷰로 만들어 테이블처럼 활용
 
-- 제약조건
-  - NOT NULL, DEFAULT
-  - CHECK 제약조건
-    - 데이터가 필요한 요건을 갖추고 있는지 확인
-    - 코드 예시
-    ```oracle
-    ALTER TABLE TEST ADD CONSTRAINT CK_TEST_PHONE CHECK(PHONE LIKE '010-%-____');
-    ```
-  - PRIMARY KEY
-  - UNIQUE
-  - 제약 조건(CONSTRAINT)는 하단에 한번에 정리해서 쿼리를 작성하면 가독성이 좋음
-  - 시퀀스 생성으로 자동증가 설정 가능
-  
-- Oracle 에서는 MySql에 있는 Auto_Increment 기능이 없음
-  - 시퀀스로 만들어서 사용해야함
-  - SEQ.NEXTVAL => 다음 번호를 입력
-  - 자동 증가로 입력하지 않아도 되게끔 설정하기 위해서는 테이블 편집에서 열을 선택하고 열의 시퀀스를 사용할 시퀀스로 지정해야 함
-  
---- 
-  
-## 2021-05-09일 공부내용
+  
+---
 
-### SPRING AOP (Aspect Oriented Programming)
+## 2021-07-29 코로나 검사
+- 아침에 심한 인후통으로 코로나 검사
+  - 결과가 다음날 나오며, 그때까지 집에서 안정
+  - 출근 대신 재택 근무
+  - 내일 문자로 결과 확인 후 출근 예정
+  
 
-- 관점지향 프로그래밍
-- 스프링 자체에 대한 이해
+  
+---
 
+## 2021-07-30 업무일지
+- 코로나 검사결과 확인 후 출근
+  - 그동안 업무 내용 체크
+  - 웹스퀘어 라이센스 업데이트
   
---- 
+- 상세페이지 시작
+  - 공통코드 적용
+  - 사용되는 테이블 파악
+  - 쿼리 구조 파악
+  - 팝업 내용 파악
   
-## 2021-05-10일 공부내용
-
-### SPRING AOP (Aspect Oriented Programming)
-
-- Before Advice
-- After returnnig Advice
-- After Throwing Advice
-- Around Advice
-
-
---- 
+- SVN 업데이트
+  - 유차장님 업데이트 오류로 인한 재작업
+  - SVN 오류 해결을 위해 돕다 마지막 한시간 반 정도를 사용
+  - 월요일에 SVN 새로 다운 받을 필요가 있음
   
-## 2021-05-11일 공부내용
-
-### Ionic Framework
-- Vue를 활용한 프론트앤드 구현 미션
-- 밴앤드는 스프링부트로 구현
-- 소스코드 분석 후 추가 요청 사항 반영
-- FireBase 
+  
+---
 
+## 2021-07-31 업무일지
+- 7월 마무리
+  - 초급, 신입 개발자 중에서 현재 프로젝트를 따라가기 힘들어 중도 퇴사가 있음
+  - 보통 6개월 이상의 교육 수료 후 채용이 되는 것을 감안하면 3개월의 교육 수료 후 입사한 케이스는 드뭄
+  - 맨땅에 해딩하며 공부하고 습득한 내용들을 통해 개발 진행
+  - 상세페이지 한개를 완성하는 순간 현재 프로젝트의 대부분의 페이지를 완성할 수 있는 스킬들 활용 가능
+  - DB 파트에서 미진한 부분을 스스로 해결해낼 수 있는 능력 배양
+  - SQLD 시험 대비하면서 오라클 쿼리 작성 능력을 신장시킬 예정
   
---- 
+- 개인 프로젝트 준비
+  - 퇴근 후 학습에 집중할 수 있는 절대적인 시간이 부족하여 원하는 진도의 속도를 낼 수는 없음
+  - 욕심을 줄이고, 실현 가능한 목표를 세워 한 개씩 클리어 해나가는 것으로 조절
+  - Vue.js를 반복 학습하고, 타입스크립트, 리엑트 등을 학습 예정
+  - 구매해둔 다양한 개발 관련 서적 읽기
+  - 아이오닉과 배포까지의 프로세스를 직접 구현해볼 필요가 있음
+  - 9월에는 실제로 개인 프로젝트를 수행할 수 있는 실력을 갖추는 것이 단기적인 목표(NTL 개인사업자 1년 경과)
   
-## 2021-05-12일 공부내용
-### eclipse maven plugin error
-- [해결방법](https://web-obj.tistory.com/451)
-- 
   
+---
 
---- 
+## 2021-08-02 업무일지
+- 상세 페이지 시작
+  - 진석필 부장님의 1대1 코칭
+  - 상세페이지를 위한 쿼리를 처음부터 스텝 바이 스텝으로 작성
+  - 대화를 통해 미처 알지 못했던 부분들에 대한 이해
   
-## 2021-05-15, 16일 공부내용
-
-### Spring
-- Dependency Injection
-  - Setter Injection
-  - Constructin Injection
-  - IOC Container(Inversion of Control)
-    - 부품이 결합되는 방식으로 설명할 경우 가장 작은 부품부터 조립되기에 이런 방식이 역방향
-    - 컨테이너 내에서 부품이 결합되어 제공되기에 컨테이너를 포함한 개념으로 제공
-    
-  - Spring Bean Configuration
-    - bean tag에 정의 : id, class(클래스는 풀패키지로 작성, 같은 이름의 클래스가 존재할 수 있기에 구별을 위함)
-    - bean이 지정한 객체를 생성해줌
-    - bean tag내에 property로 결합하고자하는 클래스를 주입
-    - property 내에 name에는 set부분을 지우고 set뒤의 대문자를 소문자로 바꿔서 대입
-    - xml 파일이 조립 지시서 역할을 함
-    - context.getBean("name");
-    - context.getBean();
-    
-  - Application Context
-    - ClassPathXmlApplicationContext
-    - FileSystemXmlApplicationContext
-    - XmlWebApplicationContext
-    - AnnotationConfigApplicationContext
-    
-  - Configure
-    - Convert to Maven Project
-    
-  - xmlns
-    - ns : namespace
-    
-  - 어노테이션을 활용한 DI
-    - @Autowired
-    - @Qualifier()
-    - @Component
-      - @Service
-      - @Controller
-        - @RequestMapping
-        - @GetMapping
-      - @Repository (Dao)
-    
-    ```java
-    <context:component-scan base-package="  "/>
-    // 어플리케이션 컨텍스트에 등록된 빈들의 어노테이션들이 적용될 수 있게 함
-    // 어노테이션이 설정된 새로운 빈들을 찾는 스캔도 할 수 있음
-    ```
-    - @Value : 기본값 설정 가능
-    - @ComponentScan()
-    - @Configuration
-    - @Bean
-    
-    
-- 이클립스에 스프링 설치
-  - help / marketplace에서 spring 검색 후 설치
-  - 스프링 부트도 같은 방식으로 설치 가능
-  
-  
-- Transaction management
-
-- DAO를 인터페이스로 생성함으로써 Service와 느슨하게 결합이 가능
- 
-
---- 
+- 수정 사항 반영
+  - 목록 조회시 대중소 분류에 따른 검색 기능 업데이트
+  - 검색조건 추가 및 대응되는 쿼리 수정
+  - 화면단 수정까지 필요한 사항은 추후 반영 예정
   
-## 2021-05-17일 공부내용
-
-### 웹스퀘어
-- 웹스퀘어5 개발 가이드 [링크](http://docs.inswave.com:1975/sp2_user_guide#)
-- "위지위그 개발 도구가 포함된 HTML5 웹 표준 UI 플랫폼입니다." (WYS WYG: What You See Is What You Get)
-
-- WebSquare XML파일의 기본 구조
+- 업무 프로세스에 대한 이해
+  - 버튼을 통해 구현해야할 부분들에 대해 업무 프로세스를 바탕으로 이해가 필요
+  - 권한 등의 적용에 필요
   
-  ```websquare
+---
 
-  <?xml version="1.0" encoding="UTF-8"?>
-  <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ev="http://www.w3.org/2001/xml-events"
-      xmlns:w2="http://www.inswave.com/websquare" 
-   xmlns:xf="http://www.w3.org/2002/xforms">
-      <head>
-          <w2:type>DEFAULT</w2:type>
-          <w2:buildDate />
-          <xf:model>
-              <xf:instance>
-                  <data xmlns="" />
-              </xf:instance>
-              <w2:dataCollection baseNode="map"></w2:dataCollection>
-              <w2:workflowCollection></w2:workflowCollection>
-          </xf:model>
-          <script type="javascript"><![CDATA[ ]]></script>
-          <style type="text/css"><![CDATA[ ]]></style>
-      </head>
-      <body></body>
-  </html>
-  ```
+## 2021-08-03 업무일지
+- 상세페이지 
+  - 쿼리 분석 및 완료
+  - 화면단 매핑 완료
+  - 비율 자동 합계 스크립트 구현
+  - 키워드 화면단 매핑 스크립트 구현
 
- 
---- 
+- SQLD
+  - 자격증 공부와 병행하여 쿼리 작성 및 DB에 대한 이해를 높이는 것이 필요
   
-## 2021-05-18, 19일 공부내용
+- 화면단 스크립트
+  - 구현된 소스를 확인해서 사용가능한 스크립트 이해 및 활용 필요
+  - 상세페이지 한 개 작성 후 천과장님 소스 정독 필요
+  
+ ---
 
-### 컴퓨터 프로그래밍
-- 컴퍼일 언어
-- 인터프리트 언어
-- 함수가 제공하는 3가지 능력
-  - 코드 파편화
-  - 코드 집중화
-  - 코드 은닉화
-  
-- 웹 개발자의 직업군  
-  - 웹퍼블리셔
-  - 프론트앤드 개발자
-    - DOM을 활용하는 방법의 진화
-    - jQuery를 많이 이용했지만, 최근에는 React나 Angular로 구현 가능
-    
-  - 백앤드 개발자
+## 2021-08-04 업무일지
+- 상세페이지
+  - 기술분류체계 매핑 쿼리 및 화면단 스크립트 적용
+  
+---
 
-- SPA (single page application)
-  - Ajax와 같은 비동기식 데이터 처리로 필요한 부분만 수정해서 페이지를 보여줌
-  - 전체 페이지 로드는 최초 한번만 하고 이후 변경이 되는 부분만 수정하여 전체화면이 깜빡이지 않음
-  - 데이터 로드 속도가 빨라짐
-    
-- 학습 예정 언어 / 프레임워크
-  - Ionic
-  - Typescript
-  - React
-  - Node.js
-  - Spring(boot가 아닌...)
-  - Linux
-  - Vue
-  - C, C++
+## 2021-08-05 업무일지
+- 상세페이지
+  - 워드 클라우드 적용(천과장님이 작성해주심)
+  - 워드 클라우드에서 사용할 데이터리스트를 불러올 쿼리 작성중
 
-   
---- 
+- 의사소통
+  - 송부장님과 진부장님 사이에서 의사소통
+  - 두 분 모두 전달한 바와 다른 얘기로 곤란한 상황이 됨
+  - 실력으로 모든 내용 이해하고 기술적인 부분을 기대지 않아야 이런 문제로부터 자유로워질 수 있음
   
-## 2021-05-23일 공부내용
-
-### 24~30일 개발 플랜
-- NTLsoft Homepage
-  - Backend 수정 및 보완
-  - Frontend 디테일 보완
-  - 서비스 실시까지 실행
   
-- App project
-  - Ionic Framework
-  - Vue.js
-  - Spring Boot
   
-- Private Library
-  - Frontend
-  - Backend
   
-- Future Plan
-  - Web service
-  - Application service
   
-- ASAP !!!
   
   
   
---- 
   
-## 2021-05-24일 공부내용
-
-### HTTP
-- request
-- reponse
-- 개발도구에서 network를 통해 여러 정보를 확인
-
-
---- 
   
-## 2021-05-25, 26일 공부내용
-
-### Linux
-- 윈도우 vs unix
-- 모바일, 서버 등 대부분이 unix 기반으로 제작됨
-- 관리자 권한 실행
-  - sudo
-  - ~$ : 일반 사용자
-  - ~# : 관리자 권한 사용자
-  - sudo su -root => 관리자로 사용자를 전환
-  - su : switch user
-  
-#### 리눅스 파일 시스템
-- / : root
-- bin : system
-- home
-- media
-- etc : registry
-
-### 명령어
-- ~ : 홈 디렉토리를 의미
-- mkdir : 디렉토리 생성
-- rmdir : 디렉토리 삭제
-- touch : 빈 파일 생성
-- mv : 파일이동 / 변경
-- rm : 파일 삭제
-- cp : 파일 복사
-- rm -r : 폴더의 내부 파일부터 모두 삭제, 파일 삭제 기능이지만 빈 폴더가 아닐 경우 폴더 삭제 가능
-- rm -ri : 폴더를 삭제할 때 삭제 여부를 확인하는 상호작용을 하면 삭제 작업을 진행하여 의도치 않는 삭제를 방지할 수 있음
-- find : 찾기
-- find -name 이름 -size 파일크기
-- cat : 문서 내용 자세히 보기
-- head -n2 : 위에서 2줄
-- tail -n2 : 아래에서 2줄
-- grep : 검색
-- -r : 역순
-
-### 텍스트 편집기
-- nano
-- vi
-
-
---- 
   
-## 2021-05-28일 공부내용
-
-### Linux
-- 명령어
-  - history : !번호 를 입력해서 실행했던 명령중에서 실행 가능 
-  - piping : A | B => A의 결과를 B에 넘겨서 수행
-    - 예) cat test | grep He
-    - test 파일을 읽은 값을 넘겨서 그 중에서 "He"라는 문자열을 포함한 단어를 검색
-    
-  - redirect : > 파일명 => 파일에 저장, 덮어쓰기가 됨, >> 파일명 => 파일에 저장, 내용 추가
-  - echo : 화면에 출력
-  - ; => 여러 명령을 이어서 작성할 때 명령의 끝에 붙여서 이어줌
-
-- 압축 파일 다루기
-  - f : 파일 이름을 지정
-  - c : 파일을 tar로 묶음
-  - x : tar 압축을 풂
-  - v : 내용을 자세히 출력
-  - z : gzip으로 압축하거나 해제함 => 압축된 파일의 확장자에 gz를 추가
-  - t : 목록 출력
-  - p : 파일 권한을 저장
-  - C : 경로를 지정
-  
-  
---- 
-  
-## 2021-05-29일 공부내용
-
-### Linux
-- 링크파일
-  - li -s : Symbolic Link
-  - 예제) ln -s test1.txt test1.ln
-  - 일반적으로 많이 사용하는 링크파일은 심볼릭 링크
-  
-- 환경변수
-  - 실행하고자하는 파일의 경로를 지정해야 정상적으로 실행이 가능함
-  - 환경변수에 경로를 추가해서 실행이 가능하게 할 수도 있음
-  - 심볼릭 링크를 설정해서 실행 가능
-  
-- 바로가기
-  - 링크파일을 만들어서 실행 경로를 매번 입력하지 않아도 되게 설정 가능
-  
-- 사용자 관리하기
-  - useradd : 사용자 추가
-  - usermod : 사용자 변경
-  - userdel : 사용자 삭제
-
-- 디렉토리 소유권 변경
-  - sudo chown : change owner
-  - 사용자가 소유자가 아닌 경우 파일 생성 등에 권한 이슈가 발생할 경우 소유자를 사용자와 같게 변경하는 작업이 필요
-  
-- 파일 권한 변경
-  - chmod : 권한 변경
-  - r : read
-  - w : write
-  - x : execute
-  
---- 
-  
-## 2021-05-30일 공부내용
-
-### Linux
-- 본 쉘 스크립트
-  - $1, $2, $3, ... : 파라미터
-  
-- whereis : 사용할 스크립트의 위치를 파악하고자 할 때 사용, 다수 검색될 수 있음
-- which : 여러 스크립트 중 현재 위치(계정)에서 사용하는 스크립트를 알아볼 때 사용
-
-- 프롬프트 스트링(PS1) 설정
-  - 출력 : echo
-  - 변경 : PS1="변경할 프롬프트명";
-  - 프롬프트에 사용할 수 있는 시퀀스는 다양함
-  
-- 출력되는 색상 변경
-  - LS_COLORS
-  - 명령어 뒤에 파일 종류명을 입력하고 색상을 지정
-  - 예) LS_COLORS="di=0;33"
-  - 텍스트 형식
-    - 0 = default colour
-    - 1 = bold
-    - 4 = underlined
-    - 5 = flashing text
-    - 7 = reverse field
-  - 텍스트 색상표
-    - 참고하여 원하는 색상으로 변경
-    
-- 별칭 만들어 사용하기(alias)
-  - 예) alias ls='ls -l'
-    - ls를 별칭으로 하는 ls -l 명령
-
-- ALT + F2 : 새로운 터미널 추가 실행, 터미널 전환하기
-
-- PAM(Pluggable Authentication Modules)
-
-### Ionic
-- 크로스 플랫폼 앱 제작 가능
-- UI 컴포넌트를 제공하여 빠르게 구현 가능
-- 빌드와 실행 속도가 빠름
-- Angular, React, Vue 와 조합이 가능하며, vanilla JavaScript로도 제작이 가능
-- UI 컴포넌트의 경우 다른 css프레임워크와 사용 경험이 유사하여 빠르게 적용이 가능
-- JavaScript로 기기의 기능에 접근이 가능
-  - 카메라, 가속센서, 블루투스 등의 기능을 활용한 기능 구현
-  
---- 
-  
-## 2021-06-01일 공부내용
-
-### Linux
-
-- 설치관리자 활용 가능
-  - deb 확장자를 가진 파일은 압축 해제 및 설치까지 되는 파일
-  - dpkg 
-    
---- 
-  
-## 2021-06-03일 공부내용
-
-### Linux
-- 향상된 패키지 관리도구(APT)를 이용한 JDK 설치
-- telnet 서버 활용
-  - Port Forwarding
-- ssh 서버 활용
-  - putty
-  
-    
---- 
-  
-## 2021-06-06일
-
-### 학습 플랜
-- 회사 업무 능력 향상
-  - 스프링
-  - 자바
-  - 네트워크
-  
-- 개인 실력 향상
-  - 타입스크립트
-  - 뷰
-  - 리엑트
-  - 아이오닉
-  - 리엑트 네이티브
-  - 스프링부트 심화
-  - 노드제이에스
-  - 네트워크 및 자료구조
-  - 운영체제
-  - 리눅스
-  - 각종 문제 해결 과정에서 인지하게 되는 언어 혹은 프레임워크
-  
---- 
-  
-## 2021-06-10일
-
-### 스프링부트 프로젝트 복습
-- 마지막 강의를 기준으로 복습하고 지난 3개월 간의 강의 내용을 정리
-  - 속성으로 배워 부족한 부분은 강의 복습과 더불어 새로운 루틴의 학습이 필요
-  - [자바 웹을 다루는 기술]이라는 책을 통한 학습 예정
-  - 실무에서 많이 활용되는 기술들로 정리된 책으로 완독이 필요
-  - 개인 프로젝트에서 백앤드단은 스프링부트를 활용하기에 이를 위한 대비이기도 함
-  
-- 관리자 페이지
-  - 일반 페이지를 조금 손봐서 작성이 가능
-  - 프로젝트 소스를 활용한 개인 프로젝트에 적용이 시급
+  
+  
 
 
 <!-- </div> -->
